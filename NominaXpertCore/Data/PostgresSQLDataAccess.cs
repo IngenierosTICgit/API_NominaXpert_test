@@ -75,6 +75,7 @@ namespace ControlEscolar.Data
         {
             try
             {
+                _logger = LoggingManager.GetLogger("NominaXpert.Data.PostgresSQLDataAccess");
                 if (string.IsNullOrEmpty(ConnectionString))
                 {
                     throw new InvalidOperationException("La cadena de conexión no está configurada. Asegúrate de establecer PostgreSQLDataAccess.ConnectionString antes de usar la clase.");
