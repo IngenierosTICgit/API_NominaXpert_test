@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panelBar = new Panel();
+            btnEmpleadoAPI = new FontAwesome.Sharp.IconButton();
             btnCargaBar = new FontAwesome.Sharp.IconButton();
             btnListadoBar = new FontAwesome.Sharp.IconButton();
             panelContainer = new Panel();
@@ -38,6 +39,7 @@
             // panelBar
             // 
             panelBar.BackColor = Color.FromArgb(48, 51, 59);
+            panelBar.Controls.Add(btnEmpleadoAPI);
             panelBar.Controls.Add(btnCargaBar);
             panelBar.Controls.Add(btnListadoBar);
             panelBar.Dock = DockStyle.Top;
@@ -45,6 +47,27 @@
             panelBar.Name = "panelBar";
             panelBar.Size = new Size(1262, 64);
             panelBar.TabIndex = 2;
+            // 
+            // btnEmpleadoAPI
+            // 
+            btnEmpleadoAPI.Cursor = Cursors.Hand;
+            btnEmpleadoAPI.FlatAppearance.BorderSize = 0;
+            btnEmpleadoAPI.FlatStyle = FlatStyle.Flat;
+            btnEmpleadoAPI.Font = new Font("Corbel", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnEmpleadoAPI.ForeColor = Color.White;
+            btnEmpleadoAPI.IconChar = FontAwesome.Sharp.IconChar.CodeCompare;
+            btnEmpleadoAPI.IconColor = Color.FromArgb(12, 215, 253);
+            btnEmpleadoAPI.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnEmpleadoAPI.IconSize = 32;
+            btnEmpleadoAPI.Location = new Point(328, 0);
+            btnEmpleadoAPI.Name = "btnEmpleadoAPI";
+            btnEmpleadoAPI.Padding = new Padding(10, 0, 20, 0);
+            btnEmpleadoAPI.Size = new Size(199, 61);
+            btnEmpleadoAPI.TabIndex = 5;
+            btnEmpleadoAPI.Text = "Empleados API";
+            btnEmpleadoAPI.TextAlign = ContentAlignment.MiddleLeft;
+            btnEmpleadoAPI.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnEmpleadoAPI.UseVisualStyleBackColor = false;
             // 
             // btnCargaBar
             // 
@@ -120,5 +143,6 @@
         private Panel panelContainer;
         private FontAwesome.Sharp.IconButton btnListadoBar;
         private FontAwesome.Sharp.IconButton btnCargaBar;
+        private FontAwesome.Sharp.IconButton btnEmpleadoAPI;
     }
 }
