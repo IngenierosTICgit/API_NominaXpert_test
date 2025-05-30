@@ -28,7 +28,7 @@ namespace API_NominaXpert
         {
             try
             {
-                var nominas = _nominasController.DesplegarNominas();
+                var nominas = _nominasController.DesplegarNominasConDatosCompletos();
 
                 _logger.LogInformation($"Se obtuvieron {nominas.Count} nóminas del sistema");
 
@@ -55,14 +55,14 @@ namespace API_NominaXpert
             try
             {
                 // Validar estados permitidos
-                var estadosPermitidos = new[] { "Todos", "Pendiente", "Pagado" };
+                var estadosPermitidos = new[] { "Todos", "Pendiente", "Pagado", "Rechazado" };
                 if (!estadosPermitidos.Contains(estado, StringComparer.OrdinalIgnoreCase))
                 {
-                    return BadRequest("Estado inválido. Estados permitidos: Todos, Pendiente, Pagado");
+                    return BadRequest("Estado inválido. Estados permitidos: Todos, Pendiente, Pagado, Rechazado");
                 }
 
                 // Obtener todas las nóminas
-                var nominas = _nominasController.DesplegarNominas();
+                var nominas = _nominasController.DesplegarNominasConDatosCompletos();
 
                 // Filtrar por estado si no es "Todos"
                 if (!estado.Equals("Todos", StringComparison.OrdinalIgnoreCase))
@@ -240,7 +240,7 @@ namespace API_NominaXpert
         {
             try
             {
-                var nominas = _nominasController.DesplegarNominas();
+                var nominas = _nominasController.DesplegarNominasConDatosCompletos();
 
                 var estadisticas = new
                 {
@@ -307,7 +307,7 @@ namespace API_NominaXpert
                 // Si no se proporcionan filtros específicos, obtener todas
                 else
                 {
-                    nominas = _nominasController.DesplegarNominas();
+                    var nominas = _nominasController.DesplegarNominasConDatosCompletos();
                 }
 
                 // Filtrar por estado si se proporciona

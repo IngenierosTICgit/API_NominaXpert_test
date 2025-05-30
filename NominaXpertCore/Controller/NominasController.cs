@@ -392,5 +392,91 @@ public bool VerificarSueldoIgualMinimo(decimal sueldoBase)
                 throw;
             }
         }
+
+        // Agrega este método a tu clase NominasController, justo después del método BuscarNominasPorFechas
+
+        /// <summary>
+        /// Obtiene todas las nóminas con datos completos de empleados (nombre, departamento, RFC, sueldo)
+        /// </summary>
+        /// <returns>Lista de nóminas con información completa del empleado</returns>
+        /// <summary>
+        /// Obtiene todas las nóminas con datos completos de empleados (nombre, departamento, RFC, sueldo)
+        /// </summary>
+        /// <returns>Lista de nóminas con información completa del empleado</returns>
+        public List<NominaConsulta> DesplegarNominasConDatosCompletos()
+        {
+            string query = @"
+        SELECT 
+            n.id AS IdNomina, 
+            e.id AS IdEmpleado, 
+            p.nombre_completo AS NombreEmpleado, 
+            e.departamento AS Departamento, 
+            e.sueldo AS SueldoBase, 
+            p.rfc AS RFCEmpleado, 
+            n.estado_pago AS EstadoPago, 
+            n.fecha_inicio AS FechaInicio, 
+            n.fecha_fin AS FechaFin,
+            n.monto_total AS MontoTotal,
+            n.monto_letras AS MontoLetras
+        FROM nomina.nomina n
+        INNER JOIN nomina.empleados e ON n.id_empleado = e.id
+        INNER JOIN seguridad.personas p ON e.id_persona = p.id
+        ORDER BY n.id DESC;";
+
+            List<NominaConsulta> nominas = new List<NominaConsulta>();
+
+            try
+            {
+                _dbAccess.Connect();
+                DataTable dt = _dbAccess.ExecuteQuery_Reader(query);
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    var nomina = new NominaConsulta
+                    {
+                        IdNomina = Convert.ToInt32(row["IdNomina"]),
+                        IdEmpleado = Convert.ToInt32(row["IdEmpleado"]),
+                        EstadoPago = row["EstadoPago"].ToString(),
+                        FechaInicio = Convert.ToDateTime(row["FechaInicio"]),
+                        FechaFin = Convert.ToDateTime(row["FechaFin"]),
+                        MontoTotal = row["MontoTotal"] != DBNull.Value ? Convert.ToDecimal(row["MontoTotal"]) : 0,
+                        MontoLetras = row["MontoLetras"]?.ToString() ?? "Nulo",
+
+                        // Datos del empleado directamente en las nuevas propiedades
+                        NombreEmpleadoDirecto = row["NombreEmpleado"]?.ToString() ?? "Sin Nombre",
+                        DepartamentoEmpleadoDirecto = row["Departamento"]?.ToString() ?? "Sin Departamento",
+                        RfcEmpleadoDirecto = row["RFCEmpleado"]?.ToString() ?? "Sin RFC",
+                        SueldoBaseDirecto = row["SueldoBase"] != DBNull.Value ? Convert.ToDecimal(row["SueldoBase"]) : 0,
+
+                        // También llenar el objeto DatosEmpleado para compatibilidad
+                        DatosEmpleado = new Empleado
+                        {
+                            Id = Convert.ToInt32(row["IdEmpleado"]),
+                            Departamento = row["Departamento"]?.ToString() ?? "Sin Departamento",
+                            Sueldo = row["SueldoBase"] != DBNull.Value ? Convert.ToDecimal(row["SueldoBase"]) : 0,
+                            DatosPersonales = new Persona
+                            {
+                                NombreCompleto = row["NombreEmpleado"]?.ToString() ?? "Sin Nombre",
+                                Rfc = row["RFCEmpleado"]?.ToString() ?? "Sin RFC"
+                            }
+                        }
+                    };
+
+                    nominas.Add(nomina);
+                }
+
+                _logger.Info($"Se obtuvieron {nominas.Count} nóminas con datos completos");
+                return nominas;
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex, "Error al obtener nóminas con datos completos");
+                throw;
+            }
+            finally
+            {
+                _dbAccess.Disconnect();
+            }
+        }
     }
 }
