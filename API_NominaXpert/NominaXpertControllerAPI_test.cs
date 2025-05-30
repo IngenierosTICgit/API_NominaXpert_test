@@ -1,6 +1,7 @@
 ﻿using NominaXpertCore.Controller;
 using Microsoft.AspNetCore.Mvc;
 using NominaXpertCore.Model;
+using System.Linq;
 
 namespace API_NominaXpert
 {
@@ -22,17 +23,18 @@ namespace API_NominaXpert
         /// </summary>
         /// <returns>Lista completa de nóminas</returns>
         [HttpGet("nominas")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<NominaConsulta>))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<NominaApiResponse>))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult GetTodasLasNominas()
         {
             try
             {
                 var nominas = _nominasController.DesplegarNominasConDatosCompletos();
+                var response = NominaApiResponse.FromNominaConsultaList(nominas);
 
-                _logger.LogInformation($"Se obtuvieron {nominas.Count} nóminas del sistema");
+                _logger.LogInformation($"Se obtuvieron {response.Count} nóminas del sistema");
 
-                return Ok(nominas);
+                return Ok(response);
             }
             catch (Exception ex)
             {
@@ -47,7 +49,7 @@ namespace API_NominaXpert
         /// <param name="estado">Estado de pago (Todos, Pendiente, Pagado)</param>
         /// <returns>Lista de nóminas filtradas por estado</returns>
         [HttpGet("nominas/estado/{estado}")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<NominaConsulta>))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<NominaApiResponse>))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult GetNominasPorEstado(string estado)
@@ -70,9 +72,10 @@ namespace API_NominaXpert
                     nominas = nominas.Where(n => n.EstadoPago.Equals(estado, StringComparison.OrdinalIgnoreCase)).ToList();
                 }
 
-                _logger.LogInformation($"Se encontraron {nominas.Count} nóminas con estado '{estado}'");
+                var response = NominaApiResponse.FromNominaConsultaList(nominas);
+                _logger.LogInformation($"Se encontraron {response.Count} nóminas con estado '{estado}'");
 
-                return Ok(nominas);
+                return Ok(response);
             }
             catch (Exception ex)
             {
@@ -81,6 +84,7 @@ namespace API_NominaXpert
             }
         }
 
+
         /// <summary>
         /// Obtiene las nóminas filtradas por rango de fechas
         /// </summary>
@@ -88,7 +92,7 @@ namespace API_NominaXpert
         /// <param name="fechaFin">Fecha de fin del periodo</param>
         /// <returns>Lista de nóminas en el rango de fechas</returns>
         [HttpGet("nominas/fechas")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<NominaConsulta>))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<NominaApiResponse>))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult GetNominasPorFechas([FromQuery] DateTime fechaInicio, [FromQuery] DateTime fechaFin)
@@ -102,10 +106,11 @@ namespace API_NominaXpert
                 }
 
                 var nominas = _nominasController.BuscarNominasPorFechas(fechaInicio, fechaFin);
+                var response = NominaApiResponse.FromNominaConsultaList(nominas);
 
-                _logger.LogInformation($"Se encontraron {nominas.Count} nóminas entre {fechaInicio:dd/MM/yyyy} y {fechaFin:dd/MM/yyyy}");
+                _logger.LogInformation($"Se encontraron {response.Count} nóminas entre {fechaInicio:dd/MM/yyyy} y {fechaFin:dd/MM/yyyy}");
 
-                return Ok(nominas);
+                return Ok(response);
             }
             catch (Exception ex)
             {
@@ -120,7 +125,7 @@ namespace API_NominaXpert
         /// <param name="matricula">Matrícula del empleado</param>
         /// <returns>Lista de nóminas del empleado</returns>
         [HttpGet("nominas/empleado/{matricula}")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<NominaConsulta>))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<NominaApiResponse>))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -144,9 +149,10 @@ namespace API_NominaXpert
                     return NotFound($"No se encontraron nóminas para la matrícula: {matricula}");
                 }
 
-                _logger.LogInformation($"Se encontraron {nominas.Count} nóminas para la matrícula: {matricula}");
+                var response = NominaApiResponse.FromNominaConsultaList(nominas);
+                _logger.LogInformation($"Se encontraron {response.Count} nóminas para la matrícula: {matricula}");
 
-                return Ok(nominas);
+                return Ok(response);
             }
             catch (Exception ex)
             {
@@ -162,7 +168,7 @@ namespace API_NominaXpert
         /// <param name="fechaFin">Fecha de fin del periodo a buscar</param>
         /// <returns>Lista de nóminas pagadas en el rango de fechas especificado</returns>
         [HttpGet("nominas-pagadas")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<NominaConsulta>))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<NominaApiResponse>))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult GetNominasPagadas([FromQuery] DateTime fechaInicio, [FromQuery] DateTime fechaFin)
@@ -181,9 +187,10 @@ namespace API_NominaXpert
                 // Filtrar solo las nóminas con estado "Pagado"
                 var nominasPagadas = nominas.Where(n => n.EstadoPago.Equals("Pagado", StringComparison.OrdinalIgnoreCase)).ToList();
 
-                _logger.LogInformation($"Se encontraron {nominasPagadas.Count} nóminas pagadas entre {fechaInicio:dd/MM/yyyy} y {fechaFin:dd/MM/yyyy}");
+                var response = NominaApiResponse.FromNominaConsultaList(nominasPagadas);
+                _logger.LogInformation($"Se encontraron {response.Count} nóminas pagadas entre {fechaInicio:dd/MM/yyyy} y {fechaFin:dd/MM/yyyy}");
 
-                return Ok(nominasPagadas);
+                return Ok(response);
             }
             catch (Exception ex)
             {
@@ -198,7 +205,7 @@ namespace API_NominaXpert
         /// <param name="id">ID de la nómina</param>
         /// <returns>Detalle de la nómina</returns>
         [HttpGet("nomina/{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(NominaConsulta))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(NominaApiResponse))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -218,9 +225,10 @@ namespace API_NominaXpert
                     return NotFound($"No se encontró la nómina con ID: {id}");
                 }
 
+                var response = NominaApiResponse.FromNominaConsulta(nomina);
                 _logger.LogInformation($"Se obtuvo la nómina con ID: {id}");
 
-                return Ok(nomina);
+                return Ok(response);
             }
             catch (Exception ex)
             {
@@ -245,10 +253,25 @@ namespace API_NominaXpert
                 var estadisticas = new
                 {
                     TotalNominas = nominas.Count,
-                    NominasPendientes = nominas.Count(n => n.EstadoPago == "Pendiente"),
-                    NominasPagadas = nominas.Count(n => n.EstadoPago == "Pagado"),
-                    MontoTotalPagado = nominas.Where(n => n.EstadoPago == "Pagado").Sum(n => n.MontoTotal),
-                    MontoTotalPendiente = nominas.Where(n => n.EstadoPago == "Pendiente").Sum(n => n.MontoTotal)
+                    NominasPendientes = nominas.Count(n => n.EstadoPago.Equals("Pendiente", StringComparison.OrdinalIgnoreCase)),
+                    NominasPagadas = nominas.Count(n => n.EstadoPago.Equals("Pagado", StringComparison.OrdinalIgnoreCase)),
+                    NominasRechazadas = nominas.Count(n => n.EstadoPago.Equals("Rechazado", StringComparison.OrdinalIgnoreCase)),
+                    MontoTotalPagado = nominas.Where(n => n.EstadoPago.Equals("Pagado", StringComparison.OrdinalIgnoreCase)).Sum(n => n.MontoTotal),
+                    MontoTotalPendiente = nominas.Where(n => n.EstadoPago.Equals("Pendiente", StringComparison.OrdinalIgnoreCase)).Sum(n => n.MontoTotal),
+                    MontoTotalRechazado = nominas.Where(n => n.EstadoPago.Equals("Rechazado", StringComparison.OrdinalIgnoreCase)).Sum(n => n.MontoTotal),
+                    // Estadísticas adicionales útiles
+                    PromedioMontoPagado = nominas.Where(n => n.EstadoPago.Equals("Pagado", StringComparison.OrdinalIgnoreCase)).Any()
+                        ? nominas.Where(n => n.EstadoPago.Equals("Pagado", StringComparison.OrdinalIgnoreCase)).Average(n => n.MontoTotal)
+                        : 0,
+                    PorcentajePagadas = nominas.Count > 0
+                        ? Math.Round((double)nominas.Count(n => n.EstadoPago.Equals("Pagado", StringComparison.OrdinalIgnoreCase)) / nominas.Count * 100, 2)
+                        : 0,
+                    PorcentajePendientes = nominas.Count > 0
+                        ? Math.Round((double)nominas.Count(n => n.EstadoPago.Equals("Pendiente", StringComparison.OrdinalIgnoreCase)) / nominas.Count * 100, 2)
+                        : 0,
+                    PorcentajeRechazadas = nominas.Count > 0
+                        ? Math.Round((double)nominas.Count(n => n.EstadoPago.Equals("Rechazado", StringComparison.OrdinalIgnoreCase)) / nominas.Count * 100, 2)
+                        : 0
                 };
 
                 _logger.LogInformation("Se generaron las estadísticas de nóminas");
@@ -271,14 +294,14 @@ namespace API_NominaXpert
         /// <param name="fechaFin">Fecha de fin (opcional)</param>
         /// <returns>Lista de nóminas filtradas</returns>
         [HttpGet("nominas/busqueda")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<NominaConsulta>))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<NominaApiResponse>))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult BusquedaAvanzadaNominas(
-            [FromQuery] string? matricula = null,
-            [FromQuery] string? estado = null,
-            [FromQuery] DateTime? fechaInicio = null,
-            [FromQuery] DateTime? fechaFin = null)
+     [FromQuery] string? matricula = null,
+     [FromQuery] string? estado = null,
+     [FromQuery] DateTime? fechaInicio = null,
+     [FromQuery] DateTime? fechaFin = null)
         {
             try
             {
@@ -316,9 +339,10 @@ namespace API_NominaXpert
                     nominas = nominas.Where(n => n.EstadoPago.Equals(estado, StringComparison.OrdinalIgnoreCase)).ToList();
                 }
 
-                _logger.LogInformation($"Búsqueda avanzada completada. Se encontraron {nominas.Count} nóminas");
+                var response = NominaApiResponse.FromNominaConsultaList(nominas);
+                _logger.LogInformation($"Búsqueda avanzada completada. Se encontraron {response.Count} nóminas");
 
-                return Ok(nominas);
+                return Ok(response);
             }
             catch (Exception ex)
             {
