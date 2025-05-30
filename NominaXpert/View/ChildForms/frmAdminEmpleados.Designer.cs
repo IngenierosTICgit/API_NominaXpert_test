@@ -68,6 +68,7 @@
             btnEmpleadoAPI.TextAlign = ContentAlignment.MiddleLeft;
             btnEmpleadoAPI.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnEmpleadoAPI.UseVisualStyleBackColor = false;
+            btnEmpleadoAPI.Click += btnEmpleadoAPI_Click;
             // 
             // btnCargaBar
             // 

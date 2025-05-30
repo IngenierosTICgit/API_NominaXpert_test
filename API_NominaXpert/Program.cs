@@ -4,8 +4,8 @@ using NominaXpertCore.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configurar la cadena de conexión para PostgreSQLDataAccess
-PostgresSQLDataAccess.ConnectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+// Configurar la cadena de conexiÃ³n para PostgreSQLDataAccess
+PostgresSQLDataAccess.ConnectionString = builder.Configuration.GetConnectionString("ConexionBD");
 
 // Add services to the container.
 

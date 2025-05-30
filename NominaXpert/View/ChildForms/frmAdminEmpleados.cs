@@ -1,4 +1,5 @@
-﻿using NominaXpertCore.Controller;
+﻿using NominaXpert.View.UsersControl;
+using NominaXpertCore.Controller;
 using NominaXpertCore.Utilities;
 using NominaXpertCore.View.UsersControl;
 
@@ -12,7 +13,7 @@ namespace NominaXpertCore.View.Forms
             Formas.InitializePanel(panelBar); // Inicializa el borde izquierdo en el panel
             CargarUserControlInicial();
             ConfigurarPermisos();
-        }        
+        }
         private void CargarUserControlInicial()
         {
             UC_EmpleadosListado uc = new UC_EmpleadosListado();
@@ -63,6 +64,13 @@ namespace NominaXpertCore.View.Forms
             var controller = new UsuariosController();
             btnListadoBar.Enabled = controller.TienePermiso("EMP_VIEW");
             btnCargaBar.Enabled = controller.TienePermiso("CRG_MASV");
+        }
+
+        private void btnEmpleadoAPI_Click(object sender, EventArgs e)
+        {
+            UC_EmpleadosAPI uc = new UC_EmpleadosAPI();
+            Utilities.Formas.ActivateButton(sender, Formas.RGBColors.ChangeColor);
+            addUsersControl(uc);
         }
     }
 }

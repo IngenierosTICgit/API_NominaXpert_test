@@ -1,4 +1,6 @@
 using OfficeOpenXml;
+using ControlEscolar.Data;
+using System.Configuration;
 
 namespace NominaXpertCore
 {
@@ -10,6 +12,9 @@ namespace NominaXpertCore
         [STAThread]
         static void Main()
         {
+            // Configurar la cadena de conexión
+            PostgresSQLDataAccess.ConnectionString = ConfigurationManager.ConnectionStrings["ConexionBD"]?.ConnectionString;
+
             ExcelPackage.License.SetNonCommercialOrganization("My Noncommercial organization");
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
@@ -36,8 +41,6 @@ namespace NominaXpertCore
                 }
 
             } while (usuarioAutenticado == false);  // No permite que el MDI se ejecute dos veces
-
-
         }
     }
 }
