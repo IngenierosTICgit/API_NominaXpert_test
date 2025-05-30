@@ -23,8 +23,6 @@ public class ApiService
         try
         {
             string endpoint = "RecursosHumanosControllerAPI_test/obtenerInfo";
-
-            // Formatear fechas en yyyy-MM-dd para evitar confusiones
             string fechaInicioStr = fechaInicio.ToString("yyyy-MM-dd");
             string fechaFinStr = fechaFin.ToString("yyyy-MM-dd");
 
@@ -32,22 +30,20 @@ public class ApiService
 
             HttpResponseMessage response = await _httpClient.GetAsync(_baseUrl + endpoint + queryString);
 
-            if (response.IsSuccessStatusCode)
+            if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
             {
-                string json = await response.Content.ReadAsStringAsync();
-
-                // Dependiendo si la API devuelve una lista o un objeto:
-                // Si es un solo objeto:
-                // return new List<EmpleadosRH> { JsonConvert.DeserializeObject<EmpleadosRH>(json) };
-
-                // Si es lista:
-                return JsonConvert.DeserializeObject<List<EmpleadosRH>>(json);
+                return new List<EmpleadosRH>(); // Retorna lista vacía si no se encuentra
             }
-            else
-            {
-                string errorContent = await response.Content.ReadAsStringAsync();
-                throw new Exception($"Error al obtener info: {response.StatusCode} - {errorContent}");
-            }
+
+            string json = await response.Content.ReadAsStringAsync();
+
+            // Deserializar el objeto JSON único
+            var empleado = JsonConvert.DeserializeObject<EmpleadosRH>(json);
+
+            if (empleado != null && !string.IsNullOrEmpty(empleado.matricula))
+                return new List<EmpleadosRH> { empleado };
+
+            return new List<EmpleadosRH>(); // Lista vacía si el objeto es null
         }
         catch (Exception ex)
         {
@@ -55,5 +51,6 @@ public class ApiService
             throw;
         }
     }
+
 
 }

@@ -28,38 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             tableLayoutPanel1 = new TableLayoutPanel();
             dataGridView1 = new DataGridView();
-            panel2 = new Panel();
-            panel1 = new Panel();
-            lblTotaldeRegistros = new Label();
-            label2 = new Label();
-            label1 = new Label();
             matricula = new DataGridViewTextBoxColumn();
             NombreEmpleado = new DataGridViewTextBoxColumn();
             EstatusEmpleado = new DataGridViewTextBoxColumn();
             EstatusContrato = new DataGridViewTextBoxColumn();
             Salario = new DataGridViewTextBoxColumn();
             DiasTrabajados = new DataGridViewTextBoxColumn();
+            panel2 = new Panel();
+            bntLimpiarfiltrosfechas = new Button();
+            label6 = new Label();
+            label5 = new Label();
+            DTPFechaFinNomina = new NominaXpertCore.Utilities.NominaDatePicker();
+            DTPFechaInicioNomina = new NominaXpertCore.Utilities.NominaDatePicker();
             panel3 = new Panel();
             ipbMatricula = new FontAwesome.Sharp.IconPictureBox();
             btnBuscar = new FontAwesome.Sharp.IconButton();
             lblMatricula = new Label();
             txtMatricula = new TextBox();
-            btnFiltrarFechas = new Button();
-            label6 = new Label();
-            label5 = new Label();
-            DTPFechaFinNomina = new NominaXpertCore.Utilities.NominaDatePicker();
-            DTPFechaInicioNomina = new NominaXpertCore.Utilities.NominaDatePicker();
-            bntLimpiarfiltrosfechas = new Button();
+            panel1 = new Panel();
+            lblTotaldeRegistros = new Label();
+            label2 = new Label();
+            label1 = new Label();
             tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel2.SuspendLayout();
-            panel1.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ipbMatricula).BeginInit();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -81,24 +80,24 @@
             // 
             dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView1.BorderStyle = BorderStyle.None;
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = Color.FromArgb(30, 30, 30);
-            dataGridViewCellStyle7.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            dataGridViewCellStyle7.ForeColor = Color.Cyan;
-            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(30, 30, 30);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = Color.Cyan;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { matricula, NombreEmpleado, EstatusEmpleado, EstatusContrato, Salario, DiasTrabajados });
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = Color.FromArgb(45, 45, 48);
-            dataGridViewCellStyle8.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle8.ForeColor = Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = Color.Teal;
-            dataGridViewCellStyle8.SelectionForeColor = Color.White;
-            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
-            dataGridView1.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(45, 45, 48);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = Color.Teal;
+            dataGridViewCellStyle2.SelectionForeColor = Color.White;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.GridColor = Color.DarkCyan;
             dataGridView1.Location = new Point(40, 3);
@@ -108,66 +107,6 @@
             dataGridView1.RowTemplate.Height = 30;
             dataGridView1.Size = new Size(1205, 484);
             dataGridView1.TabIndex = 0;
-            // 
-            // panel2
-            // 
-            panel2.BackColor = Color.FromArgb(37, 41, 47);
-            panel2.Controls.Add(bntLimpiarfiltrosfechas);
-            panel2.Controls.Add(btnFiltrarFechas);
-            panel2.Controls.Add(label6);
-            panel2.Controls.Add(label5);
-            panel2.Controls.Add(DTPFechaFinNomina);
-            panel2.Controls.Add(DTPFechaInicioNomina);
-            panel2.Controls.Add(panel3);
-            panel2.Dock = DockStyle.Top;
-            panel2.Location = new Point(0, 112);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(1262, 92);
-            panel2.TabIndex = 22;
-            // 
-            // panel1
-            // 
-            panel1.Controls.Add(lblTotaldeRegistros);
-            panel1.Controls.Add(label2);
-            panel1.Controls.Add(label1);
-            panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(0, 0);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(1262, 112);
-            panel1.TabIndex = 21;
-            // 
-            // lblTotaldeRegistros
-            // 
-            lblTotaldeRegistros.AutoSize = true;
-            lblTotaldeRegistros.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTotaldeRegistros.ForeColor = Color.FromArgb(12, 215, 253);
-            lblTotaldeRegistros.Location = new Point(714, 64);
-            lblTotaldeRegistros.Name = "lblTotaldeRegistros";
-            lblTotaldeRegistros.Size = new Size(163, 23);
-            lblTotaldeRegistros.TabIndex = 7;
-            lblTotaldeRegistros.Text = "Total de Registros: ";
-            lblTotaldeRegistros.Click += lblTotaldeRegistros_Click;
-            // 
-            // label2
-            // 
-            label2.Font = new Font("Corbel", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(21, 63);
-            label2.Name = "label2";
-            label2.Size = new Size(563, 46);
-            label2.TabIndex = 3;
-            label2.Text = "Visualiza la información consumida de la API de RH";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Corbel", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.FromArgb(12, 215, 253);
-            label1.Location = new Point(21, 17);
-            label1.Name = "label1";
-            label1.Size = new Size(336, 35);
-            label1.TabIndex = 0;
-            label1.Text = "API recibida de Empleados";
             // 
             // matricula
             // 
@@ -217,80 +156,34 @@
             DiasTrabajados.ReadOnly = true;
             DiasTrabajados.Width = 125;
             // 
-            // panel3
+            // panel2
             // 
-            panel3.Controls.Add(ipbMatricula);
-            panel3.Controls.Add(btnBuscar);
-            panel3.Controls.Add(lblMatricula);
-            panel3.Controls.Add(txtMatricula);
-            panel3.Location = new Point(40, 13);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(509, 73);
-            panel3.TabIndex = 1;
+            panel2.BackColor = Color.FromArgb(37, 41, 47);
+            panel2.Controls.Add(bntLimpiarfiltrosfechas);
+            panel2.Controls.Add(btnBuscar);
+            panel2.Controls.Add(label6);
+            panel2.Controls.Add(label5);
+            panel2.Controls.Add(DTPFechaFinNomina);
+            panel2.Controls.Add(DTPFechaInicioNomina);
+            panel2.Controls.Add(panel3);
+            panel2.Dock = DockStyle.Top;
+            panel2.Location = new Point(0, 112);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(1262, 92);
+            panel2.TabIndex = 22;
             // 
-            // ipbMatricula
+            // bntLimpiarfiltrosfechas
             // 
-            ipbMatricula.BackColor = Color.FromArgb(37, 41, 47);
-            ipbMatricula.ForeColor = Color.LightBlue;
-            ipbMatricula.IconChar = FontAwesome.Sharp.IconChar.CircleInfo;
-            ipbMatricula.IconColor = Color.LightBlue;
-            ipbMatricula.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            ipbMatricula.IconSize = 40;
-            ipbMatricula.Location = new Point(300, 25);
-            ipbMatricula.Name = "ipbMatricula";
-            ipbMatricula.Size = new Size(40, 40);
-            ipbMatricula.TabIndex = 25;
-            ipbMatricula.TabStop = false;
-            // 
-            // btnBuscar
-            // 
-            btnBuscar.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnBuscar.ForeColor = SystemColors.ActiveCaptionText;
-            btnBuscar.IconChar = FontAwesome.Sharp.IconChar.Search;
-            btnBuscar.IconColor = Color.DeepSkyBlue;
-            btnBuscar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnBuscar.IconSize = 32;
-            btnBuscar.Location = new Point(365, 25);
-            btnBuscar.Name = "btnBuscar";
-            btnBuscar.Size = new Size(121, 36);
-            btnBuscar.TabIndex = 24;
-            btnBuscar.Text = "Buscar";
-            btnBuscar.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnBuscar.UseVisualStyleBackColor = true;
-            // 
-            // lblMatricula
-            // 
-            lblMatricula.Dock = DockStyle.Top;
-            lblMatricula.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblMatricula.ForeColor = Color.White;
-            lblMatricula.Location = new Point(0, 0);
-            lblMatricula.Name = "lblMatricula";
-            lblMatricula.Size = new Size(509, 29);
-            lblMatricula.TabIndex = 5;
-            lblMatricula.Text = "Matrícula*";
-            // 
-            // txtMatricula
-            // 
-            txtMatricula.BackColor = Color.White;
-            txtMatricula.ForeColor = Color.Black;
-            txtMatricula.Location = new Point(15, 32);
-            txtMatricula.MaxLength = 20;
-            txtMatricula.Name = "txtMatricula";
-            txtMatricula.Size = new Size(263, 27);
-            txtMatricula.TabIndex = 4;
-            // 
-            // btnFiltrarFechas
-            // 
-            btnFiltrarFechas.BackColor = Color.Black;
-            btnFiltrarFechas.FlatStyle = FlatStyle.Popup;
-            btnFiltrarFechas.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnFiltrarFechas.ForeColor = Color.White;
-            btnFiltrarFechas.Location = new Point(949, 49);
-            btnFiltrarFechas.Name = "btnFiltrarFechas";
-            btnFiltrarFechas.Size = new Size(133, 29);
-            btnFiltrarFechas.TabIndex = 23;
-            btnFiltrarFechas.Text = "Filtrar fechas";
-            btnFiltrarFechas.UseVisualStyleBackColor = false;
+            bntLimpiarfiltrosfechas.BackColor = Color.Black;
+            bntLimpiarfiltrosfechas.FlatStyle = FlatStyle.Popup;
+            bntLimpiarfiltrosfechas.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            bntLimpiarfiltrosfechas.ForeColor = Color.White;
+            bntLimpiarfiltrosfechas.Location = new Point(949, 11);
+            bntLimpiarfiltrosfechas.Name = "bntLimpiarfiltrosfechas";
+            bntLimpiarfiltrosfechas.Size = new Size(130, 29);
+            bntLimpiarfiltrosfechas.TabIndex = 24;
+            bntLimpiarfiltrosfechas.Text = "Limpiar filtros";
+            bntLimpiarfiltrosfechas.UseVisualStyleBackColor = false;
             // 
             // label6
             // 
@@ -340,18 +233,111 @@
             DTPFechaInicioNomina.TabIndex = 19;
             DTPFechaInicioNomina.TextColor = Color.FromArgb(12, 215, 253);
             // 
-            // bntLimpiarfiltrosfechas
+            // panel3
             // 
-            bntLimpiarfiltrosfechas.BackColor = Color.Black;
-            bntLimpiarfiltrosfechas.FlatStyle = FlatStyle.Popup;
-            bntLimpiarfiltrosfechas.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            bntLimpiarfiltrosfechas.ForeColor = Color.White;
-            bntLimpiarfiltrosfechas.Location = new Point(949, 11);
-            bntLimpiarfiltrosfechas.Name = "bntLimpiarfiltrosfechas";
-            bntLimpiarfiltrosfechas.Size = new Size(130, 29);
-            bntLimpiarfiltrosfechas.TabIndex = 24;
-            bntLimpiarfiltrosfechas.Text = "Limpiar filtros";
-            bntLimpiarfiltrosfechas.UseVisualStyleBackColor = false;
+            panel3.Controls.Add(ipbMatricula);
+            panel3.Controls.Add(lblMatricula);
+            panel3.Controls.Add(txtMatricula);
+            panel3.Location = new Point(40, 13);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(509, 73);
+            panel3.TabIndex = 1;
+            // 
+            // ipbMatricula
+            // 
+            ipbMatricula.BackColor = Color.FromArgb(37, 41, 47);
+            ipbMatricula.ForeColor = Color.LightBlue;
+            ipbMatricula.IconChar = FontAwesome.Sharp.IconChar.CircleInfo;
+            ipbMatricula.IconColor = Color.LightBlue;
+            ipbMatricula.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            ipbMatricula.IconSize = 40;
+            ipbMatricula.Location = new Point(300, 25);
+            ipbMatricula.Name = "ipbMatricula";
+            ipbMatricula.Size = new Size(40, 40);
+            ipbMatricula.TabIndex = 25;
+            ipbMatricula.TabStop = false;
+            // 
+            // btnBuscar
+            // 
+            btnBuscar.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnBuscar.ForeColor = SystemColors.ActiveCaptionText;
+            btnBuscar.IconChar = FontAwesome.Sharp.IconChar.Search;
+            btnBuscar.IconColor = Color.DeepSkyBlue;
+            btnBuscar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnBuscar.IconSize = 32;
+            btnBuscar.Location = new Point(949, 46);
+            btnBuscar.Name = "btnBuscar";
+            btnBuscar.Size = new Size(121, 36);
+            btnBuscar.TabIndex = 24;
+            btnBuscar.Text = "Buscar";
+            btnBuscar.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnBuscar.UseVisualStyleBackColor = true;
+            btnBuscar.Click += btnBuscar_Click_1;
+            // 
+            // lblMatricula
+            // 
+            lblMatricula.Dock = DockStyle.Top;
+            lblMatricula.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblMatricula.ForeColor = Color.White;
+            lblMatricula.Location = new Point(0, 0);
+            lblMatricula.Name = "lblMatricula";
+            lblMatricula.Size = new Size(509, 29);
+            lblMatricula.TabIndex = 5;
+            lblMatricula.Text = "Matrícula*";
+            // 
+            // txtMatricula
+            // 
+            txtMatricula.BackColor = Color.White;
+            txtMatricula.ForeColor = Color.Black;
+            txtMatricula.Location = new Point(15, 32);
+            txtMatricula.MaxLength = 20;
+            txtMatricula.Name = "txtMatricula";
+            txtMatricula.Size = new Size(263, 27);
+            txtMatricula.TabIndex = 4;
+            // 
+            // panel1
+            // 
+            panel1.Controls.Add(lblTotaldeRegistros);
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(label1);
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1262, 112);
+            panel1.TabIndex = 21;
+            // 
+            // lblTotaldeRegistros
+            // 
+            lblTotaldeRegistros.AutoSize = true;
+            lblTotaldeRegistros.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTotaldeRegistros.ForeColor = Color.FromArgb(12, 215, 253);
+            lblTotaldeRegistros.Location = new Point(714, 64);
+            lblTotaldeRegistros.Name = "lblTotaldeRegistros";
+            lblTotaldeRegistros.Size = new Size(163, 23);
+            lblTotaldeRegistros.TabIndex = 7;
+            lblTotaldeRegistros.Text = "Total de Registros: ";
+            lblTotaldeRegistros.Click += lblTotaldeRegistros_Click;
+            // 
+            // label2
+            // 
+            label2.Font = new Font("Corbel", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(21, 63);
+            label2.Name = "label2";
+            label2.Size = new Size(563, 46);
+            label2.TabIndex = 3;
+            label2.Text = "Visualiza la información consumida de la API de RH";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Corbel", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.FromArgb(12, 215, 253);
+            label1.Location = new Point(21, 17);
+            label1.Name = "label1";
+            label1.Size = new Size(336, 35);
+            label1.TabIndex = 0;
+            label1.Text = "API recibida de Empleados";
             // 
             // UC_EmpleadosAPI
             // 
@@ -366,11 +352,11 @@
             tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             panel2.ResumeLayout(false);
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)ipbMatricula).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -394,7 +380,6 @@
         private FontAwesome.Sharp.IconButton btnBuscar;
         private Label lblMatricula;
         private TextBox txtMatricula;
-        private Button btnFiltrarFechas;
         private Label label6;
         private Label label5;
         private NominaXpertCore.Utilities.NominaDatePicker DTPFechaFinNomina;
