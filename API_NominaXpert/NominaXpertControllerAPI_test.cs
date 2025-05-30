@@ -307,7 +307,7 @@ namespace API_NominaXpert
                 // Si no se proporcionan filtros específicos, obtener todas
                 else
                 {
-                    var nominas = _nominasController.DesplegarNominasConDatosCompletos();
+                    nominas = _nominasController.DesplegarNominasConDatosCompletos();
                 }
 
                 // Filtrar por estado si se proporciona
