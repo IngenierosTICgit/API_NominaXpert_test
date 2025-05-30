@@ -3,7 +3,7 @@ using NominaXpertCore.Data;
 using NominaXpertCore.Utilities;
 using NominaXpertCore.Model;
 using System.Data;
-using ControlEscolar.Utilities;
+using ControlEscolarCore.Utilities;
 namespace NominaXpertCore.Controller
 {
     public class UsuariosController

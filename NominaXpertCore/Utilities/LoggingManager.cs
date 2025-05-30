@@ -7,7 +7,7 @@ using NLog;
 using NLog.Config;
 using NLog.Targets;
 
-namespace ControlEscolar.Utilities
+namespace ControlEscolarCore.Utilities
 {
     public static class LoggingManager
     {

@@ -10,7 +10,7 @@ namespace NominaXpertCore.Business
 {
    public class NominaNegocio
     {
-        private static readonly NLog.Logger _logger = ControlEscolar.Utilities.LoggingManager.GetLogger("NominaXpert.Business.NominaNegocio");
+        private static readonly NLog.Logger _logger = ControlEscolarCore.Utilities.LoggingManager.GetLogger("NominaXpert.Business.NominaNegocio");
 
         public static bool EsMatriculaValido(string matricula)
         {

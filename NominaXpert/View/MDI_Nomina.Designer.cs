@@ -1,4 +1,4 @@
-﻿namespace NominaXpertCore.View
+﻿namespace NominaXpert.View
 {
     partial class MDI_Nomina
     {

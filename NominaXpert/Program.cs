@@ -1,8 +1,8 @@
 using OfficeOpenXml;
-using ControlEscolar.Data;
+using ControlEscolarCore.Data;
 using System.Configuration;
 
-namespace NominaXpertCore
+namespace NominaXpert
 {
     internal static class Program
     {

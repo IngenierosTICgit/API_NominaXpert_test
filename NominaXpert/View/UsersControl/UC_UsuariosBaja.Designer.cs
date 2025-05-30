@@ -1,4 +1,4 @@
-﻿namespace NominaXpertCore.View.UsersControl
+﻿namespace NominaXpert.View.UsersControl
 {
     partial class UC_UsuariosBaja
     {
@@ -32,7 +32,7 @@
             btnSearch = new Button();
             txtSearchEmpleado = new TextBox();
             iconPIcture = new FontAwesome.Sharp.IconPictureBox();
-            dtpFechaBaja = new NominaXpertCore.Utilities.NominaDatePicker();
+            dtpFechaBaja = new NominaXpert.Utilities.NominaDatePicker();
             ibtnCancelar = new FontAwesome.Sharp.IconButton();
             panel1 = new Panel();
             lblTituloBaja = new Label();

@@ -1,8 +1,8 @@
 ﻿using NominaXpertCore.Business;
 using NominaXpertCore.Controller;
-using NominaXpertCore.Model;
-using NominaXpertCore.View.UsersControl;
-using NominaXpertCore.Utilities;
+using NominaXpert.Model;
+using NominaXpert.View.UsersControl;
+using NominaXpert.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,8 +19,9 @@ using iText.Layout.Element;
 using iText.Kernel.Font;
 using iText.IO.Font.Constants;
 using iText.Layout.Properties;
+using NominaXpertCore.Model;
 
-namespace NominaXpertCore.View.Forms
+namespace NominaXpert.View.Forms
 {
     public partial class frmReportes : Form
     {

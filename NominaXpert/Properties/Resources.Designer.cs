@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NominaXpertCore.Properties {
+namespace NominaXpert.Properties {
     using System;
     
     

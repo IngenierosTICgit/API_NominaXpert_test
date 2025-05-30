@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NominaXpertCore.Utilities
+namespace NominaXpert.Utilities
 {
     internal class Formas
     {

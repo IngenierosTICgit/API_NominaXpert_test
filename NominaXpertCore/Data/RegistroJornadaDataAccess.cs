@@ -1,5 +1,5 @@
-﻿using ControlEscolar.Data;
-using ControlEscolar.Utilities;
+﻿using ControlEscolarCore.Data;
+using ControlEscolarCore.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

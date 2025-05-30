@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ControlEscolar.Utilities; // LoggingManager
+using NominaXpertCore.Utilities; // LoggingManager
 using Npgsql; // NpgsqlConnection, NpgsqlCommand
 using NLog; // Logger para el registro de logs
 using NominaXpertCore.Model; // Modelo de Empleado
 using System.Data;
-using ControlEscolar.Data;
-
+using ControlEscolarCore.Data;
+using NominaXpertCore.Model;
+using ControlEscolarCore.Utilities;
 
 namespace NominaXpertCore.Data
 {
@@ -306,5 +307,9 @@ namespace NominaXpertCore.Data
             }
         }
 
+        //internal int InsertarPersonaSeguridad(Persona datosPersonales)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

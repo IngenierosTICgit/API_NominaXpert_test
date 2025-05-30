@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using NominaXpertCore.Business;
 using NominaXpertCore.Controller;
-using NominaXpertCore.Utilities;
+using NominaXpert.Utilities;
 
-namespace NominaXpertCore.View.UsersControl
+namespace NominaXpert.View.UsersControl
 {
 
     public partial class UC_NominaEditar : UserControl

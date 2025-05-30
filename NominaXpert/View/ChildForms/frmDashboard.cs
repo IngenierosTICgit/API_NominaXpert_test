@@ -1,5 +1,5 @@
 ﻿using NominaXpertCore.Data;
-using NominaXpertCore.Model;
+using NominaXpert.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,8 +9,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using NominaXpertCore.Model;
 
-namespace NominaXpertCore.View.Forms
+namespace NominaXpert.View.Forms
 {
     public partial class frmDashboard : Form
     {

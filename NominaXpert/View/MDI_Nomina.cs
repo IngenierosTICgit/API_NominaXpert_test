@@ -13,7 +13,7 @@ using FontAwesome.Sharp; // Librería para los iconos
 using NominaXpertCore.Business;
 using NominaXpertCore.Controller;
 
-namespace NominaXpertCore.View
+namespace NominaXpert.View
 {
     public partial class MDI_Nomina : Form
     {

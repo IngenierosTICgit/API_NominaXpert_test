@@ -1,6 +1,7 @@
-﻿using NominaXpertCore.Model;
+﻿using NominaXpert.Model;
+using NominaXpertCore.Model;
 
-namespace NominaXpertCore.Utilities
+namespace NominaXpert.Utilities
 {
     public static class UsuarioSesion
     {

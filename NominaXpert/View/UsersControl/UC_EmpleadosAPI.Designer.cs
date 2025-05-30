@@ -42,8 +42,8 @@
             bntLimpiarfiltrosfechas = new Button();
             label6 = new Label();
             label5 = new Label();
-            DTPFechaFinNomina = new NominaXpertCore.Utilities.NominaDatePicker();
-            DTPFechaInicioNomina = new NominaXpertCore.Utilities.NominaDatePicker();
+            DTPFechaFinNomina = new NominaXpert.Utilities.NominaDatePicker();
+            DTPFechaInicioNomina = new NominaXpert.Utilities.NominaDatePicker();
             panel3 = new Panel();
             ipbMatricula = new FontAwesome.Sharp.IconPictureBox();
             btnBuscar = new FontAwesome.Sharp.IconButton();
@@ -382,8 +382,8 @@
         private TextBox txtMatricula;
         private Label label6;
         private Label label5;
-        private NominaXpertCore.Utilities.NominaDatePicker DTPFechaFinNomina;
-        private NominaXpertCore.Utilities.NominaDatePicker DTPFechaInicioNomina;
+        private NominaXpert.Utilities.NominaDatePicker DTPFechaFinNomina;
+        private NominaXpert.Utilities.NominaDatePicker DTPFechaInicioNomina;
         private Button bntLimpiarfiltrosfechas;
     }
 }

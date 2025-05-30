@@ -1,4 +1,4 @@
-﻿namespace NominaXpertCore.View.UsersControl
+﻿namespace NominaXpert.View.UsersControl
 {
     partial class UC_NominaEditar
     {

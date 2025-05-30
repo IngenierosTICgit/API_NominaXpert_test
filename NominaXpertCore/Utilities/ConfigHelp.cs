@@ -6,7 +6,7 @@ namespace NominaXpertCore.Utilities
 {
     public static class ConfigHelp
     {
-        private static readonly Logger _logger = ControlEscolar.Utilities.LoggingManager.GetLogger("NominaXpert.Utilities.ConfigHelp");
+        private static readonly Logger _logger = ControlEscolarCore.Utilities.LoggingManager.GetLogger("NominaXpert.Utilities.ConfigHelp");
 
         /// <summary>
         /// Obtiene el valor del sueldo mínimo desde App.config

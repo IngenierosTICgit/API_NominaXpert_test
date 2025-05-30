@@ -1,8 +1,8 @@
 ﻿using System.Data;
 using NominaXpertCore.Controller;
+using NominaXpert.Model;
 using NominaXpertCore.Model;
-
-namespace NominaXpertCore.View.UsersControl
+namespace NominaXpert.View.UsersControl
 {
     public partial class UC_RolesAlta : UserControl
     {

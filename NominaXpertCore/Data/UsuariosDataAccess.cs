@@ -4,7 +4,7 @@ using NominaXpertCore.Model;
 using NLog;
 using NominaXpertCore.Data;
 using NominaXpertCore.Utilities;
-using ControlEscolar.Data;
+using ControlEscolarCore.Data;
 namespace NominaXpertCore.Data
 {
     public class UsuariosDataAccess

@@ -3,7 +3,7 @@ using System.Windows.Forms;
 using NominaXpertCore.Controller;
 using NominaXpertCore.Data;
 using NominaXpertCore.Model;
-namespace NominaXpertCore.View.UsersControl
+namespace NominaXpert.View.UsersControl
 {
     public partial class UC_UsuariosListado : UserControl
     {

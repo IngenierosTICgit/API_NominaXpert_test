@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
-using ControlEscolar.Data;
-using ControlEscolar.Utilities;
+using ControlEscolarCore.Data;
+using ControlEscolarCore.Utilities;
 using NLog;
 using NominaXpertCore.Model;
 using Npgsql;

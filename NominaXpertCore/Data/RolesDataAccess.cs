@@ -6,8 +6,8 @@ using NominaXpertCore.Data;
 using NominaXpertCore.Utilities;
 using NLog;
 using Npgsql;
-using ControlEscolar.Data;
-using ControlEscolar.Utilities;
+using ControlEscolarCore.Data;
+using ControlEscolarCore.Utilities;
 
 namespace NominaXpertCore.Data
 {

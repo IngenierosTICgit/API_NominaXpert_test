@@ -1,4 +1,4 @@
-﻿namespace NominaXpertCore.View.UsersControl
+﻿namespace NominaXpert.View.UsersControl
 {
     partial class UC_RolesBaja
     {
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            dtpFechaBaja = new NominaXpertCore.Utilities.NominaDatePicker();
+            dtpFechaBaja = new NominaXpert.Utilities.NominaDatePicker();
             panel1 = new Panel();
             lblTituloBaja = new Label();
             cbxMotivoBaja = new ComboBox();

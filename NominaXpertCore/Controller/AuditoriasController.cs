@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using NominaXpertCore.Model;
 using NLog;
 using NominaXpertCore.Data;
-using ControlEscolar.Utilities;
+using ControlEscolarCore.Utilities;
 
 namespace NominaXpertCore.Controller
 {

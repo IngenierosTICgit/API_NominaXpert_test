@@ -2,7 +2,7 @@
 using System.Configuration;
 using NLog;
 
-namespace NominaXpertCore.Utilities
+namespace NominaXpert.Utilities
 {
     public static class ConfigHelp
     {

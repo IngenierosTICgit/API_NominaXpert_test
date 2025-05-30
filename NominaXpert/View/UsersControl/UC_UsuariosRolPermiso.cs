@@ -1,10 +1,10 @@
 ﻿using NominaXpertCore.Controller;
 using System.Data;
-using NominaXpertCore.Utilities;
+using NominaXpert.Utilities;
 using NominaXpertCore.Model;
 using NominaXpertCore.Data;
 using static System.Net.Mime.MediaTypeNames;
-namespace NominaXpertCore.View.UsersControl
+namespace NominaXpert.View.UsersControl
 {
     public partial class UC_UsuariosRolPermiso : UserControl
     {

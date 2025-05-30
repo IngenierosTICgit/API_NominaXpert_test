@@ -1,7 +1,7 @@
 ﻿using NominaXpertCore.Controller;
 using NominaXpertCore.Data;
-using NominaXpertCore.Model;
-using NominaXpertCore.Utilities;
+using NominaXpert.Model;
+using NominaXpert.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,8 +11,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
-namespace NominaXpertCore.View.UsersControl
+using NominaXpertCore.Model;
+namespace NominaXpert.View.UsersControl
 {
     public partial class UC_NominaPercepciones : UserControl
     {

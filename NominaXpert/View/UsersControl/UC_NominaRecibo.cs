@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using NominaXpertCore.Controller;
 using NominaXpertCore.Business;
-using NominaXpertCore.Model;
+using NominaXpert.Model;
 using ControlEscolar.Utilities;
 using NLog;
 
@@ -21,9 +21,11 @@ using iText.Kernel.Font;
 using iText.Layout.Properties;
 using iText.Kernel.Exceptions;
 using iText.IO.Font.Constants;
-using NominaXpertCore.Utilities;
+using NominaXpert.Utilities;
+using NominaXpertCore.Controller;
+using NominaXpertCore.Model;
 
-namespace NominaXpertCore.View.UsersControl
+namespace NominaXpert.View.UsersControl
 {
     public partial class UC_NominaRecibo : UserControl
     {

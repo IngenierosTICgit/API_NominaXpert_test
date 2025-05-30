@@ -1,9 +1,9 @@
 ﻿using NominaXpert.View.UsersControl;
 using NominaXpertCore.Controller;
-using NominaXpertCore.Utilities;
-using NominaXpertCore.View.UsersControl;
+using NominaXpert.Utilities;
+using NominaXpert.View.UsersControl;
 
-namespace NominaXpertCore.View.Forms
+namespace NominaXpert.View.Forms
 {
     public partial class frmAdminEmpleados : Form
     {

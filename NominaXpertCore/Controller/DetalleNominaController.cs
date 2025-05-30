@@ -1,4 +1,4 @@
-﻿using ControlEscolar.Utilities;
+﻿using ControlEscolarCore.Utilities;
 using NLog;
 using NominaXpertCore.Data;
 using NominaXpertCore.Model;

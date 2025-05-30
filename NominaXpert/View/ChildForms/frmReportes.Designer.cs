@@ -1,4 +1,4 @@
-﻿namespace NominaXpertCore.View.Forms
+﻿namespace NominaXpert.View.Forms
 {
     partial class frmReportes
     {
@@ -60,8 +60,8 @@
             btnDatalleNomina = new FontAwesome.Sharp.IconButton();
             label6 = new Label();
             label5 = new Label();
-            DTPFechaFinNomina = new NominaXpertCore.Utilities.NominaDatePicker();
-            DTPFechaInicioNomina = new NominaXpertCore.Utilities.NominaDatePicker();
+            DTPFechaFinNomina = new NominaXpert.Utilities.NominaDatePicker();
+            DTPFechaInicioNomina = new NominaXpert.Utilities.NominaDatePicker();
             gBoxHistorial = new GroupBox();
             dataGridView1 = new DataGridView();
             Id_Nomina = new DataGridViewTextBoxColumn();

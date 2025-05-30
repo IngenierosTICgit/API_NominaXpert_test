@@ -1,4 +1,4 @@
-﻿namespace NominaXpertCore.View.Forms
+﻿namespace NominaXpert.View.Forms
 {
     partial class Login
     {

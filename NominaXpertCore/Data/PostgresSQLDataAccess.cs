@@ -5,12 +5,12 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ControlEscolar.Utilities;
+using NominaXpertCore.Utilities;
 using NLog; //Paqueteria en la que se llaman los log 
 using Npgsql;
+using ControlEscolarCore.Utilities;
 
-
-namespace ControlEscolar.Data
+namespace ControlEscolarCore.Data
 {
     /// <summary>
     /// Clase que maneja el acceso a datos PostgreSQL, incluyendo conexiones, colsultas,

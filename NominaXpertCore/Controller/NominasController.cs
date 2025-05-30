@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 using NominaXpertCore.Model;
 using NLog;
 using NominaXpertCore.Utilities;
-using ControlEscolar.Utilities;
+using ControlEscolarCore.Utilities;
 using Npgsql;
 using System.Data;
-using ControlEscolar.Data;
+using ControlEscolarCore.Data;
 using NominaXpertCore.Business;
 
 

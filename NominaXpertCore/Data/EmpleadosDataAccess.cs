@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ControlEscolar.Utilities; // LoggingManager
+using ControlEscolarCore.Utilities; // LoggingManager
 using Npgsql; // NpgsqlConnection, NpgsqlCommand
 using NLog; // Logger para el registro de logs
 using NominaXpertCore.Model; // Modelo de Empleado
 using System.Data;
 
-using ControlEscolar.Data;
+using ControlEscolarCore.Data;
 
 
 namespace NominaXpertCore.Data

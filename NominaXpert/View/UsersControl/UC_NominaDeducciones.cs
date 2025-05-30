@@ -8,10 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using NominaXpertCore.Controller;
+using NominaXpert.Model;
+using NominaXpert.Utilities;
 using NominaXpertCore.Model;
-using NominaXpertCore.Utilities;
 
-namespace NominaXpertCore.View.UsersControl
+namespace NominaXpert.View.UsersControl
 {
     public partial class UC_NominaDeducciones : UserControl
     {

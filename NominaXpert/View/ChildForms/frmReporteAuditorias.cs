@@ -8,10 +8,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using NominaXpert.Model;
+using NominaXpert.Utilities;
 using NominaXpertCore.Model;
-using NominaXpertCore.Utilities;
 
-namespace NominaXpertCore.View.ChildForms
+namespace NominaXpert.View.ChildForms
 {
     public partial class frmReporteAuditorias : Form
     {

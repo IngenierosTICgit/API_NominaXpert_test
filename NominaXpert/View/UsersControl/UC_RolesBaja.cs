@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using NominaXpertCore.Controller;
 using NominaXpertCore.Data;
-using NominaXpertCore.Model;
+using NominaXpert.Model;
 
-namespace NominaXpertCore.View.UsersControl
+namespace NominaXpert.View.UsersControl
 {
     public partial class UC_RolesBaja : UserControl
     {

@@ -1,4 +1,4 @@
-﻿namespace NominaXpertCore.View.UsersControl
+﻿namespace NominaXpert.View.UsersControl
 {
     partial class UC_EmpleadosRegistro
     {
@@ -46,7 +46,7 @@
             txtApMaterno = new TextBox();
             label4 = new Label();
             panel5 = new Panel();
-            DTPFechaNacimiento = new NominaXpertCore.Utilities.NominaDatePicker();
+            DTPFechaNacimiento = new NominaXpert.Utilities.NominaDatePicker();
             label5 = new Label();
             panel6 = new Panel();
             cboGenero = new ComboBox();
@@ -73,7 +73,7 @@
             cboPuesto = new ComboBox();
             label13 = new Label();
             panel15 = new Panel();
-            DTPFechaContratacion = new NominaXpertCore.Utilities.NominaDatePicker();
+            DTPFechaContratacion = new NominaXpert.Utilities.NominaDatePicker();
             label15 = new Label();
             panel14 = new Panel();
             txtSalario = new TextBox();
