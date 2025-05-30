@@ -403,24 +403,31 @@ public bool VerificarSueldoIgualMinimo(decimal sueldoBase)
         /// Obtiene todas las nóminas con datos completos de empleados (nombre, departamento, RFC, sueldo)
         /// </summary>
         /// <returns>Lista de nóminas con información completa del empleado</returns>
+        // Agrega este método a tu clase NominasController, justo después del método BuscarNominasPorFechas
+
+        /// <summary>
+        /// Obtiene todas las nóminas con datos completos de empleados (nombre, departamento, RFC, sueldo)
+        /// </summary>
+        /// <returns>Lista de nóminas con información completa del empleado</returns>
         public List<NominaConsulta> DesplegarNominasConDatosCompletos()
         {
             string query = @"
         SELECT 
-            n.id AS IdNomina, 
-            e.id AS IdEmpleado, 
-            p.nombre_completo AS NombreEmpleado, 
-            e.departamento AS Departamento, 
-            e.sueldo AS SueldoBase, 
-            p.rfc AS RFCEmpleado, 
-            n.estado_pago AS EstadoPago, 
-            n.fecha_inicio AS FechaInicio, 
+            n.id AS IdNomina,
+            n.id_empleado AS IdEmpleado,
+            n.fecha_inicio AS FechaInicio,
             n.fecha_fin AS FechaFin,
-            n.monto_total AS MontoTotal,
-            n.monto_letras AS MontoLetras
+            n.estado_pago AS EstadoPago,
+            pay.monto_total AS MontoTotal,
+            pay.monto_letras AS MontoLetras,
+            sp.nombre_completo AS NombreComp,
+            sp.rfc AS Rfc,
+            e.sueldo AS Sueldo,
+            e.departamento AS Depto
         FROM nomina.nomina n
         INNER JOIN nomina.empleados e ON n.id_empleado = e.id
-        INNER JOIN seguridad.personas p ON e.id_persona = p.id
+        INNER JOIN seguridad.personas sp ON e.id_persona = sp.id
+        LEFT JOIN nomina.pagos pay ON n.id = pay.id_nomina
         ORDER BY n.id DESC;";
 
             List<NominaConsulta> nominas = new List<NominaConsulta>();
@@ -443,21 +450,21 @@ public bool VerificarSueldoIgualMinimo(decimal sueldoBase)
                         MontoLetras = row["MontoLetras"]?.ToString() ?? "Nulo",
 
                         // Datos del empleado directamente en las nuevas propiedades
-                        NombreEmpleadoDirecto = row["NombreEmpleado"]?.ToString() ?? "Sin Nombre",
-                        DepartamentoEmpleadoDirecto = row["Departamento"]?.ToString() ?? "Sin Departamento",
-                        RfcEmpleadoDirecto = row["RFCEmpleado"]?.ToString() ?? "Sin RFC",
-                        SueldoBaseDirecto = row["SueldoBase"] != DBNull.Value ? Convert.ToDecimal(row["SueldoBase"]) : 0,
+                        NombreEmpleadoDirecto = row["NombreComp"]?.ToString() ?? "Sin Nombre",
+                        DepartamentoEmpleadoDirecto = row["Depto"]?.ToString() ?? "Sin Departamento",
+                        RfcEmpleadoDirecto = row["Rfc"]?.ToString() ?? "Sin RFC",
+                        SueldoBaseDirecto = row["Sueldo"] != DBNull.Value ? Convert.ToDecimal(row["Sueldo"]) : 0,
 
                         // También llenar el objeto DatosEmpleado para compatibilidad
                         DatosEmpleado = new Empleado
                         {
                             Id = Convert.ToInt32(row["IdEmpleado"]),
-                            Departamento = row["Departamento"]?.ToString() ?? "Sin Departamento",
-                            Sueldo = row["SueldoBase"] != DBNull.Value ? Convert.ToDecimal(row["SueldoBase"]) : 0,
+                            Departamento = row["Depto"]?.ToString() ?? "Sin Departamento",
+                            Sueldo = row["Sueldo"] != DBNull.Value ? Convert.ToDecimal(row["Sueldo"]) : 0,
                             DatosPersonales = new Persona
                             {
-                                NombreCompleto = row["NombreEmpleado"]?.ToString() ?? "Sin Nombre",
-                                Rfc = row["RFCEmpleado"]?.ToString() ?? "Sin RFC"
+                                NombreCompleto = row["NombreComp"]?.ToString() ?? "Sin Nombre",
+                                Rfc = row["Rfc"]?.ToString() ?? "Sin RFC"
                             }
                         }
                     };
