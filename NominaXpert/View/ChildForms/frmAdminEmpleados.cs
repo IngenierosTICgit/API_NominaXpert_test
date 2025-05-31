@@ -72,5 +72,12 @@ namespace NominaXpert.View.Forms
             Utilities.Formas.ActivateButton(sender, Formas.RGBColors.ChangeColor);
             addUsersControl(uc);
         }
+
+        private void btnListaEmpleados_Click(object sender, EventArgs e)
+        {
+            UC_EmpleadosListaAPI uc = new UC_EmpleadosListaAPI();
+            Utilities.Formas.ActivateButton(sender, Formas.RGBColors.ChangeColor);
+            addUsersControl(uc);
+        }
     }
 }

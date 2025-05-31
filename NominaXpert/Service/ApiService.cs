@@ -52,5 +52,33 @@ public class ApiService
         }
     }
 
+    public async Task<List<EmpleadosRH>> ObtenerTodosEmpleadosAsync()
+    {
+        try
+        {
+            string endpoint = "RecursosHumanosControllerAPI_test/obtenerTodosEmpleados";
+
+            HttpResponseMessage response = await _httpClient.GetAsync(_baseUrl + endpoint);
+
+            if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                return new List<EmpleadosRH>(); // Lista vacía si no encuentra
+            }
+
+            string json = await response.Content.ReadAsStringAsync();
+
+            // Aquí deserializas una lista de empleados (array JSON)
+            var empleados = JsonConvert.DeserializeObject<List<EmpleadosRH>>(json);
+
+            return empleados ?? new List<EmpleadosRH>();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error en API ObtenerTodosEmpleados: {ex.Message}");
+            throw;
+        }
+    }
+
+
 
 }

@@ -69,7 +69,7 @@ namespace NominaXpert.View.UsersControl
 
                 foreach (var emp in empleados)
                 {
-                    dataGridView1.Rows.Add(emp.matricula, emp.nombreEmpleado, emp.estatusEmpleado, emp.estatusContrato, emp.salario, emp.diasTrabajados);
+                    dataGridView1.Rows.Add(emp.matricula, emp.nombreEmpleado, emp.estatusEmpleado, emp.estatusContrato, emp.salario, emp.diasTrabajados, emp.rfc, emp.departamento);
                 }
                 lblTotaldeRegistros.Text = $"Total de Registros: {dataGridView1.Rows.Count-1}";
             }

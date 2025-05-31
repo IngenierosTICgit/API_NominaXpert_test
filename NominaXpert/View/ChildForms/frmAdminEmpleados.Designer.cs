@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panelBar = new Panel();
+            btnListaEmpleados = new FontAwesome.Sharp.IconButton();
             btnEmpleadoAPI = new FontAwesome.Sharp.IconButton();
             btnCargaBar = new FontAwesome.Sharp.IconButton();
             btnListadoBar = new FontAwesome.Sharp.IconButton();
@@ -39,6 +40,7 @@
             // panelBar
             // 
             panelBar.BackColor = Color.FromArgb(48, 51, 59);
+            panelBar.Controls.Add(btnListaEmpleados);
             panelBar.Controls.Add(btnEmpleadoAPI);
             panelBar.Controls.Add(btnCargaBar);
             panelBar.Controls.Add(btnListadoBar);
@@ -47,6 +49,27 @@
             panelBar.Name = "panelBar";
             panelBar.Size = new Size(1262, 64);
             panelBar.TabIndex = 2;
+            // 
+            // btnListaEmpleados
+            // 
+            btnListaEmpleados.Cursor = Cursors.Hand;
+            btnListaEmpleados.FlatAppearance.BorderSize = 0;
+            btnListaEmpleados.FlatStyle = FlatStyle.Flat;
+            btnListaEmpleados.Font = new Font("Corbel", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnListaEmpleados.ForeColor = Color.White;
+            btnListaEmpleados.IconChar = FontAwesome.Sharp.IconChar.UsersRectangle;
+            btnListaEmpleados.IconColor = Color.FromArgb(12, 215, 253);
+            btnListaEmpleados.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnListaEmpleados.IconSize = 32;
+            btnListaEmpleados.Location = new Point(532, 2);
+            btnListaEmpleados.Name = "btnListaEmpleados";
+            btnListaEmpleados.Padding = new Padding(10, 0, 20, 0);
+            btnListaEmpleados.Size = new Size(240, 61);
+            btnListaEmpleados.TabIndex = 6;
+            btnListaEmpleados.Text = "Lista empleados API";
+            btnListaEmpleados.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnListaEmpleados.UseVisualStyleBackColor = false;
+            btnListaEmpleados.Click += btnListaEmpleados_Click;
             // 
             // btnEmpleadoAPI
             // 
@@ -64,7 +87,7 @@
             btnEmpleadoAPI.Padding = new Padding(10, 0, 20, 0);
             btnEmpleadoAPI.Size = new Size(199, 61);
             btnEmpleadoAPI.TabIndex = 5;
-            btnEmpleadoAPI.Text = "Empleados API";
+            btnEmpleadoAPI.Text = "Empleado API";
             btnEmpleadoAPI.TextAlign = ContentAlignment.MiddleLeft;
             btnEmpleadoAPI.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnEmpleadoAPI.UseVisualStyleBackColor = false;
@@ -145,5 +168,6 @@
         private FontAwesome.Sharp.IconButton btnListadoBar;
         private FontAwesome.Sharp.IconButton btnCargaBar;
         private FontAwesome.Sharp.IconButton btnEmpleadoAPI;
+        private FontAwesome.Sharp.IconButton btnListaEmpleados;
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace NominaXpert.View.UsersControl
 {
-    partial class UC_EmpleadosAPI
+    partial class UC_EmpleadosListaAPI
     {
         /// <summary> 
         /// Variable del diseñador necesaria.
@@ -34,19 +34,18 @@
             dataGridView1 = new DataGridView();
             matricula = new DataGridViewTextBoxColumn();
             NombreEmpleado = new DataGridViewTextBoxColumn();
+            Departamento = new DataGridViewTextBoxColumn();
+            Puesto = new DataGridViewTextBoxColumn();
             EstatusEmpleado = new DataGridViewTextBoxColumn();
             EstatusContrato = new DataGridViewTextBoxColumn();
             Salario = new DataGridViewTextBoxColumn();
-            Departamento = new DataGridViewTextBoxColumn();
+            FechaIngreso = new DataGridViewTextBoxColumn();
+            FechaBaja = new DataGridViewTextBoxColumn();
             panel2 = new Panel();
             bntLimpiarfiltrosfechas = new Button();
-            label6 = new Label();
-            label5 = new Label();
-            DTPFechaFinNomina = new NominaXpert.Utilities.NominaDatePicker();
-            DTPFechaInicioNomina = new NominaXpert.Utilities.NominaDatePicker();
+            btnBuscar = new FontAwesome.Sharp.IconButton();
             panel3 = new Panel();
             ipbMatricula = new FontAwesome.Sharp.IconPictureBox();
-            btnBuscar = new FontAwesome.Sharp.IconButton();
             lblMatricula = new Label();
             txtMatricula = new TextBox();
             panel1 = new Panel();
@@ -74,7 +73,7 @@
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel1.Size = new Size(1262, 490);
-            tableLayoutPanel1.TabIndex = 23;
+            tableLayoutPanel1.TabIndex = 26;
             // 
             // dataGridView1
             // 
@@ -89,7 +88,17 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { matricula, NombreEmpleado, EstatusEmpleado, EstatusContrato, Salario,Departamento });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { 
+                matricula, 
+                NombreEmpleado, 
+                Departamento, 
+                Puesto, 
+                EstatusEmpleado, 
+                EstatusContrato, 
+                Salario, 
+                FechaIngreso, 
+                FechaBaja 
+            });
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(45, 45, 48);
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
@@ -112,68 +121,96 @@
             // 
             // matricula
             // 
-            matricula.HeaderText = "Matricula";
+            matricula.DataPropertyName = "matricula";
+            matricula.HeaderText = "Matrícula";
             matricula.MinimumWidth = 6;
             matricula.Name = "matricula";
             matricula.ReadOnly = true;
-            matricula.Width = 125;
+            matricula.Width = 120;
             // 
             // NombreEmpleado
             // 
-            NombreEmpleado.HeaderText = "Nombre empleado";
+            NombreEmpleado.DataPropertyName = "nombreEmpleado";
+            NombreEmpleado.HeaderText = "Nombre Empleado";
             NombreEmpleado.MinimumWidth = 6;
             NombreEmpleado.Name = "NombreEmpleado";
             NombreEmpleado.ReadOnly = true;
-            NombreEmpleado.Width = 125;
-            // 
-            // EstatusEmpleado
-            // 
-            EstatusEmpleado.HeaderText = "Estatus Empleado";
-            EstatusEmpleado.MinimumWidth = 6;
-            EstatusEmpleado.Name = "EstatusEmpleado";
-            EstatusEmpleado.ReadOnly = true;
-            EstatusEmpleado.Width = 125;
-            // 
-            // EstatusContrato
-            // 
-            EstatusContrato.HeaderText = "Contrato";
-            EstatusContrato.MinimumWidth = 6;
-            EstatusContrato.Name = "EstatusContrato";
-            EstatusContrato.ReadOnly = true;
-            EstatusContrato.Width = 125;
-            // 
-            // Salario
-            // 
-            Salario.HeaderText = "Salario";
-            Salario.MinimumWidth = 6;
-            Salario.Name = "Salario";
-            Salario.ReadOnly = true;
-            Salario.Width = 125;
-            
+            NombreEmpleado.Width = 250;
             // 
             // Departamento
             // 
+            Departamento.DataPropertyName = "departamento";
             Departamento.HeaderText = "Departamento";
             Departamento.MinimumWidth = 6;
             Departamento.Name = "Departamento";
             Departamento.ReadOnly = true;
-            Departamento.Width = 125;
+            Departamento.Width = 150;
+            // 
+            // Puesto
+            // 
+            Puesto.DataPropertyName = "puesto";
+            Puesto.HeaderText = "Puesto";
+            Puesto.MinimumWidth = 6;
+            Puesto.Name = "Puesto";
+            Puesto.ReadOnly = true;
+            Puesto.Width = 200;
+            // 
+            // EstatusEmpleado
+            // 
+            EstatusEmpleado.DataPropertyName = "estatusEmpleado";
+            EstatusEmpleado.HeaderText = "Estatus Empleado";
+            EstatusEmpleado.MinimumWidth = 6;
+            EstatusEmpleado.Name = "EstatusEmpleado";
+            EstatusEmpleado.ReadOnly = true;
+            EstatusEmpleado.Width = 120;
+            // 
+            // EstatusContrato
+            // 
+            EstatusContrato.DataPropertyName = "estatusContrato";
+            EstatusContrato.HeaderText = "Contrato";
+            EstatusContrato.MinimumWidth = 6;
+            EstatusContrato.Name = "EstatusContrato";
+            EstatusContrato.ReadOnly = true;
+            EstatusContrato.Width = 120;
+            // 
+            // Salario
+            // 
+            Salario.DataPropertyName = "salario";
+            Salario.HeaderText = "Salario";
+            Salario.MinimumWidth = 6;
+            Salario.Name = "Salario";
+            Salario.ReadOnly = true;
+            Salario.Width = 100;
+            // 
+            // FechaIngreso
+            // 
+            FechaIngreso.DataPropertyName = "fechaIngreso";
+            FechaIngreso.HeaderText = "Fecha de Ingreso";
+            FechaIngreso.MinimumWidth = 6;
+            FechaIngreso.Name = "FechaIngreso";
+            FechaIngreso.ReadOnly = true;
+            FechaIngreso.Width = 150;
+            // 
+            // FechaBaja
+            // 
+            FechaBaja.DataPropertyName = "fechaBaja";
+            FechaBaja.HeaderText = "Fecha de Baja";
+            FechaBaja.MinimumWidth = 6;
+            FechaBaja.Name = "FechaBaja";
+            FechaBaja.ReadOnly = true;
+            FechaBaja.Width = 150;
             // 
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(37, 41, 47);
             panel2.Controls.Add(bntLimpiarfiltrosfechas);
             panel2.Controls.Add(btnBuscar);
-            panel2.Controls.Add(label6);
-            panel2.Controls.Add(label5);
-            panel2.Controls.Add(DTPFechaFinNomina);
-            panel2.Controls.Add(DTPFechaInicioNomina);
             panel2.Controls.Add(panel3);
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(0, 112);
             panel2.Name = "panel2";
             panel2.Size = new Size(1262, 92);
-            panel2.TabIndex = 22;
+            panel2.TabIndex = 25;
             // 
             // bntLimpiarfiltrosfechas
             // 
@@ -181,60 +218,30 @@
             bntLimpiarfiltrosfechas.FlatStyle = FlatStyle.Popup;
             bntLimpiarfiltrosfechas.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             bntLimpiarfiltrosfechas.ForeColor = Color.White;
-            bntLimpiarfiltrosfechas.Location = new Point(949, 11);
+            bntLimpiarfiltrosfechas.Location = new Point(564, 15);
             bntLimpiarfiltrosfechas.Name = "bntLimpiarfiltrosfechas";
             bntLimpiarfiltrosfechas.Size = new Size(130, 29);
             bntLimpiarfiltrosfechas.TabIndex = 24;
             bntLimpiarfiltrosfechas.Text = "Limpiar filtros";
             bntLimpiarfiltrosfechas.UseVisualStyleBackColor = false;
+            bntLimpiarfiltrosfechas.Click += bntLimpiarfiltrosfechas_Click;
             // 
-            // label6
+            // btnBuscar
             // 
-            label6.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.ForeColor = Color.White;
-            label6.Location = new Point(770, 18);
-            label6.Name = "label6";
-            label6.Size = new Size(118, 22);
-            label6.TabIndex = 22;
-            label6.Text = "Fecha de fin:";
-            // 
-            // label5
-            // 
-            label5.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.ForeColor = Color.White;
-            label5.Location = new Point(577, 18);
-            label5.Name = "label5";
-            label5.Size = new Size(134, 22);
-            label5.TabIndex = 21;
-            label5.Text = "Fecha de inicio:";
-            // 
-            // DTPFechaFinNomina
-            // 
-            DTPFechaFinNomina.BorderColor = Color.FromArgb(12, 215, 253);
-            DTPFechaFinNomina.BorderSize = 2;
-            DTPFechaFinNomina.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            DTPFechaFinNomina.Format = DateTimePickerFormat.Short;
-            DTPFechaFinNomina.Location = new Point(770, 43);
-            DTPFechaFinNomina.MinimumSize = new Size(0, 35);
-            DTPFechaFinNomina.Name = "DTPFechaFinNomina";
-            DTPFechaFinNomina.Size = new Size(147, 35);
-            DTPFechaFinNomina.SkinColor = Color.FromArgb(48, 51, 59);
-            DTPFechaFinNomina.TabIndex = 20;
-            DTPFechaFinNomina.TextColor = Color.FromArgb(12, 215, 253);
-            // 
-            // DTPFechaInicioNomina
-            // 
-            DTPFechaInicioNomina.BorderColor = Color.FromArgb(12, 215, 253);
-            DTPFechaInicioNomina.BorderSize = 2;
-            DTPFechaInicioNomina.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            DTPFechaInicioNomina.Format = DateTimePickerFormat.Short;
-            DTPFechaInicioNomina.Location = new Point(583, 43);
-            DTPFechaInicioNomina.MinimumSize = new Size(0, 35);
-            DTPFechaInicioNomina.Name = "DTPFechaInicioNomina";
-            DTPFechaInicioNomina.Size = new Size(147, 35);
-            DTPFechaInicioNomina.SkinColor = Color.FromArgb(48, 51, 59);
-            DTPFechaInicioNomina.TabIndex = 19;
-            DTPFechaInicioNomina.TextColor = Color.FromArgb(12, 215, 253);
+            btnBuscar.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnBuscar.ForeColor = SystemColors.ActiveCaptionText;
+            btnBuscar.IconChar = FontAwesome.Sharp.IconChar.Search;
+            btnBuscar.IconColor = Color.DeepSkyBlue;
+            btnBuscar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnBuscar.IconSize = 32;
+            btnBuscar.Location = new Point(564, 50);
+            btnBuscar.Name = "btnBuscar";
+            btnBuscar.Size = new Size(121, 36);
+            btnBuscar.TabIndex = 24;
+            btnBuscar.Text = "Buscar";
+            btnBuscar.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnBuscar.UseVisualStyleBackColor = true;
+            btnBuscar.Click += btnBuscar_Click;
             // 
             // panel3
             // 
@@ -259,23 +266,6 @@
             ipbMatricula.Size = new Size(40, 40);
             ipbMatricula.TabIndex = 25;
             ipbMatricula.TabStop = false;
-            // 
-            // btnBuscar
-            // 
-            btnBuscar.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnBuscar.ForeColor = SystemColors.ActiveCaptionText;
-            btnBuscar.IconChar = FontAwesome.Sharp.IconChar.Search;
-            btnBuscar.IconColor = Color.DeepSkyBlue;
-            btnBuscar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnBuscar.IconSize = 32;
-            btnBuscar.Location = new Point(949, 46);
-            btnBuscar.Name = "btnBuscar";
-            btnBuscar.Size = new Size(121, 36);
-            btnBuscar.TabIndex = 24;
-            btnBuscar.Text = "Buscar";
-            btnBuscar.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnBuscar.UseVisualStyleBackColor = true;
-            btnBuscar.Click += btnBuscar_Click_1;
             // 
             // lblMatricula
             // 
@@ -307,7 +297,7 @@
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(1262, 112);
-            panel1.TabIndex = 21;
+            panel1.TabIndex = 24;
             // 
             // lblTotaldeRegistros
             // 
@@ -319,7 +309,6 @@
             lblTotaldeRegistros.Size = new Size(163, 23);
             lblTotaldeRegistros.TabIndex = 7;
             lblTotaldeRegistros.Text = "Total de Registros: ";
-            lblTotaldeRegistros.Click += lblTotaldeRegistros_Click;
             // 
             // label2
             // 
@@ -329,7 +318,7 @@
             label2.Name = "label2";
             label2.Size = new Size(563, 46);
             label2.TabIndex = 3;
-            label2.Text = "Visualiza la información consumida de la API de RH";
+            label2.Text = "Visualiza la información de toda la lista de empleados";
             // 
             // label1
             // 
@@ -338,11 +327,11 @@
             label1.ForeColor = Color.FromArgb(12, 215, 253);
             label1.Location = new Point(21, 17);
             label1.Name = "label1";
-            label1.Size = new Size(336, 35);
+            label1.Size = new Size(298, 35);
             label1.TabIndex = 0;
-            label1.Text = "API recibida de Empleados";
+            label1.Text = "Lista de Empleados API";
             // 
-            // UC_EmpleadosAPI
+            // UC_EmpleadosListaAPI
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -350,8 +339,9 @@
             Controls.Add(tableLayoutPanel1);
             Controls.Add(panel2);
             Controls.Add(panel1);
-            Name = "UC_EmpleadosAPI";
+            Name = "UC_EmpleadosListaAPI";
             Size = new Size(1262, 755);
+            Load += UC_EmpleadosListaAPI_Load;
             tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             panel2.ResumeLayout(false);
@@ -368,25 +358,24 @@
         private TableLayoutPanel tableLayoutPanel1;
         private DataGridView dataGridView1;
         private Panel panel2;
+        private Button bntLimpiarfiltrosfechas;
+        private FontAwesome.Sharp.IconButton btnBuscar;
+        private Panel panel3;
+        private FontAwesome.Sharp.IconPictureBox ipbMatricula;
+        private Label lblMatricula;
+        private TextBox txtMatricula;
         private Panel panel1;
         private Label lblTotaldeRegistros;
         private Label label2;
         private Label label1;
         private DataGridViewTextBoxColumn matricula;
         private DataGridViewTextBoxColumn NombreEmpleado;
+        private DataGridViewTextBoxColumn Departamento;
+        private DataGridViewTextBoxColumn Puesto;
         private DataGridViewTextBoxColumn EstatusEmpleado;
         private DataGridViewTextBoxColumn EstatusContrato;
         private DataGridViewTextBoxColumn Salario;
-        private DataGridViewTextBoxColumn Departamento;
-        private Panel panel3;
-        private FontAwesome.Sharp.IconPictureBox ipbMatricula;
-        private FontAwesome.Sharp.IconButton btnBuscar;
-        private Label lblMatricula;
-        private TextBox txtMatricula;
-        private Label label6;
-        private Label label5;
-        private NominaXpert.Utilities.NominaDatePicker DTPFechaFinNomina;
-        private NominaXpert.Utilities.NominaDatePicker DTPFechaInicioNomina;
-        private Button bntLimpiarfiltrosfechas;
+        private DataGridViewTextBoxColumn FechaIngreso;
+        private DataGridViewTextBoxColumn FechaBaja;
     }
 }
