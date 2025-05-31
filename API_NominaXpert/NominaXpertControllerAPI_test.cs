@@ -1,6 +1,6 @@
-﻿using NominaXpert.Controller;
+﻿using NominaXpertCore.Controller;
 using Microsoft.AspNetCore.Mvc;
-using NominaXpert.Model;
+using NominaXpertCore.Model;
 using System.Linq;
 
 namespace API_NominaXpert

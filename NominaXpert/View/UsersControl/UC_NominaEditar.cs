@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using NominaXpertCore.Business;
 using NominaXpertCore.Controller;
 using NominaXpert.Utilities;
-
+using NominaXpertCore.Utilities;
 namespace NominaXpert.View.UsersControl
 {
 

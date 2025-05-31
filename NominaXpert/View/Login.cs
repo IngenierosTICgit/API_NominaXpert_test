@@ -1,6 +1,6 @@
 ﻿using NominaXpertCore.Business;
 using NominaXpertCore.Controller;
-
+using NominaXpertCore.Utilities;
 namespace NominaXpert.View.Forms
 {
     public partial class Login : Form
@@ -35,10 +35,10 @@ namespace NominaXpert.View.Forms
                 MessageBox.Show("El campo de correo no tiene el formato correcto...", "Información del sistema", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
             // 3 Verificar credenciales y obtener rol
             var controller = new UsuariosController();
             var (autenticado, rol, mensaje) = controller.AutenticarUsuario(txtCorreo.Text, txtConstraseña.Text);
-
             if (autenticado)
             {
                 this.DialogResult = DialogResult.OK;

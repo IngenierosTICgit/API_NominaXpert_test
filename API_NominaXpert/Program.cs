@@ -1,6 +1,6 @@
-using ControlEscolar.Data;
-using NominaXpert.Controller;
-using NominaXpert.Data;
+using ControlEscolarCore.Data;
+using NominaXpertCore.Controller;
+using NominaXpertCore.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -11,6 +11,7 @@ using NominaXpertCore.Controller;
 using NominaXpert.Model;
 using NominaXpert.Utilities;
 using NominaXpertCore.Model;
+using NominaXpertCore.Utilities;
 
 namespace NominaXpert.View.UsersControl
 {

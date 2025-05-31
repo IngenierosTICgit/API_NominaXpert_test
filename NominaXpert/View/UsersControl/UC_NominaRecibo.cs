@@ -21,7 +21,7 @@ using iText.Kernel.Font;
 using iText.Layout.Properties;
 using iText.Kernel.Exceptions;
 using iText.IO.Font.Constants;
-using NominaXpert.Utilities;
+using NominaXpertCore.Utilities;
 using NominaXpertCore.Controller;
 using NominaXpertCore.Model;
 
