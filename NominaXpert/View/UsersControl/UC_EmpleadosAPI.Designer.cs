@@ -37,6 +37,8 @@
             EstatusEmpleado = new DataGridViewTextBoxColumn();
             EstatusContrato = new DataGridViewTextBoxColumn();
             Salario = new DataGridViewTextBoxColumn();
+            DiasTrabajados = new DataGridViewTextBoxColumn();
+            RFC = new DataGridViewTextBoxColumn();
             Departamento = new DataGridViewTextBoxColumn();
             panel2 = new Panel();
             bntLimpiarfiltrosfechas = new Button();
@@ -89,7 +91,7 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { matricula, NombreEmpleado, EstatusEmpleado, EstatusContrato, Salario,Departamento });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { matricula, NombreEmpleado, EstatusEmpleado, EstatusContrato, Salario, DiasTrabajados, RFC, Departamento });
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(45, 45, 48);
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
@@ -149,7 +151,22 @@
             Salario.Name = "Salario";
             Salario.ReadOnly = true;
             Salario.Width = 125;
-            
+            // 
+            // DiasTrabajados
+            // 
+            DiasTrabajados.HeaderText = "Dias Trabajados";
+            DiasTrabajados.MinimumWidth = 6;
+            DiasTrabajados.Name = "DiasTrabajados";
+            DiasTrabajados.ReadOnly = true;
+            DiasTrabajados.Width = 125;
+            // 
+            // RFC
+            // 
+            RFC.HeaderText = "RFC";
+            RFC.MinimumWidth = 6;
+            RFC.Name = "RFC";
+            RFC.ReadOnly = true;
+            RFC.Width = 125;
             // 
             // Departamento
             // 
@@ -377,6 +394,8 @@
         private DataGridViewTextBoxColumn EstatusEmpleado;
         private DataGridViewTextBoxColumn EstatusContrato;
         private DataGridViewTextBoxColumn Salario;
+        private DataGridViewTextBoxColumn DiasTrabajados;
+        private DataGridViewTextBoxColumn RFC;
         private DataGridViewTextBoxColumn Departamento;
         private Panel panel3;
         private FontAwesome.Sharp.IconPictureBox ipbMatricula;

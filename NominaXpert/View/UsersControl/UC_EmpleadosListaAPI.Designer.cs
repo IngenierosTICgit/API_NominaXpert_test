@@ -41,6 +41,8 @@
             Salario = new DataGridViewTextBoxColumn();
             FechaIngreso = new DataGridViewTextBoxColumn();
             FechaBaja = new DataGridViewTextBoxColumn();
+            DiasTrabajados = new DataGridViewTextBoxColumn();
+            RFC = new DataGridViewTextBoxColumn();
             panel2 = new Panel();
             bntLimpiarfiltrosfechas = new Button();
             btnBuscar = new FontAwesome.Sharp.IconButton();
@@ -91,13 +93,13 @@
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { 
                 matricula, 
                 NombreEmpleado, 
-                Departamento, 
-                Puesto, 
+                Departamento,
+                Puesto,
                 EstatusEmpleado, 
                 EstatusContrato, 
-                Salario, 
-                FechaIngreso, 
-                FechaBaja 
+                Salario,
+                FechaIngreso,
+                FechaBaja
             });
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(45, 45, 48);
@@ -185,20 +187,38 @@
             // FechaIngreso
             // 
             FechaIngreso.DataPropertyName = "fechaIngreso";
-            FechaIngreso.HeaderText = "Fecha de Ingreso";
+            FechaIngreso.HeaderText = "Fecha Ingreso";
             FechaIngreso.MinimumWidth = 6;
             FechaIngreso.Name = "FechaIngreso";
             FechaIngreso.ReadOnly = true;
-            FechaIngreso.Width = 150;
+            FechaIngreso.Width = 120;
             // 
             // FechaBaja
             // 
             FechaBaja.DataPropertyName = "fechaBaja";
-            FechaBaja.HeaderText = "Fecha de Baja";
+            FechaBaja.HeaderText = "Fecha Baja";
             FechaBaja.MinimumWidth = 6;
             FechaBaja.Name = "FechaBaja";
             FechaBaja.ReadOnly = true;
-            FechaBaja.Width = 150;
+            FechaBaja.Width = 120;
+            // 
+            // DiasTrabajados
+            // 
+            DiasTrabajados.DataPropertyName = "diasTrabajados";
+            DiasTrabajados.HeaderText = "Días Trabajados";
+            DiasTrabajados.MinimumWidth = 6;
+            DiasTrabajados.Name = "DiasTrabajados";
+            DiasTrabajados.ReadOnly = true;
+            DiasTrabajados.Width = 120;
+            // 
+            // RFC
+            // 
+            RFC.DataPropertyName = "rfc";
+            RFC.HeaderText = "RFC";
+            RFC.MinimumWidth = 6;
+            RFC.Name = "RFC";
+            RFC.ReadOnly = true;
+            RFC.Width = 120;
             // 
             // panel2
             // 
@@ -377,5 +397,7 @@
         private DataGridViewTextBoxColumn Salario;
         private DataGridViewTextBoxColumn FechaIngreso;
         private DataGridViewTextBoxColumn FechaBaja;
+        private DataGridViewTextBoxColumn DiasTrabajados;
+        private DataGridViewTextBoxColumn RFC;
     }
 }

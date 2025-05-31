@@ -55,8 +55,8 @@ namespace NominaXpert.View.UsersControl
             dataGridView1.Columns["estatusEmpleado"].Width = 120;
             dataGridView1.Columns["estatusContrato"].Width = 120;
             dataGridView1.Columns["salario"].Width = 100;
-            dataGridView1.Columns["fechaIngreso"].Width = 150;
-            dataGridView1.Columns["fechaBaja"].Width = 150;
+            dataGridView1.Columns["fechaIngreso"].Width = 120;
+            dataGridView1.Columns["fechaBaja"].Width = 120;
 
             // Centrar estatus y contrato
             dataGridView1.Columns["estatusEmpleado"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
