@@ -15,12 +15,14 @@ namespace NominaXpert.View.UsersControl
     {
         private readonly ApiService _apiService = new ApiService();
         private List<EmpleadosRH> _empleadosList;
+        private LoadingForm _loadingForm;
 
         public UC_EmpleadosListaAPI()
         {
             InitializeComponent();
             _apiService = new ApiService();
             ConfigurarDataGridView();
+            _loadingForm = new LoadingForm();
         }
 
         private void ConfigurarDataGridView()
@@ -93,6 +95,10 @@ namespace NominaXpert.View.UsersControl
         {
             try
             {
+                _loadingForm.Show();
+                _loadingForm.UpdateMessage("Cargando datos de empleados...");
+                Application.DoEvents();
+
                 // Llamada a la API para obtener todos los empleados
                 _empleadosList = await _apiService.ObtenerTodosEmpleadosAsync();
 
@@ -102,31 +108,50 @@ namespace NominaXpert.View.UsersControl
 
                 // Actualizar etiqueta con total registros
                 lblTotaldeRegistros.Text = $"Total de Registros: {_empleadosList.Count}";
+
+                _loadingForm.Hide();
+                MessageBox.Show("Datos cargados correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
+                _loadingForm.Hide();
                 MessageBox.Show($"Error al cargar empleados: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void FiltrarEmpleados()
         {
-            string matricula = txtMatricula.Text.Trim().ToLower();
-
-            if (string.IsNullOrEmpty(matricula))
+            try
             {
-                dataGridView1.DataSource = null;
-                dataGridView1.DataSource = _empleadosList;
-            }
-            else
-            {
-                var empleadosFiltrados = _empleadosList.Where(e => 
-                    e.matricula.ToLower().Contains(matricula)).ToList();
-                dataGridView1.DataSource = null;
-                dataGridView1.DataSource = empleadosFiltrados;
-            }
+                _loadingForm.Show();
+                _loadingForm.UpdateMessage("Filtrando empleados...");
+                Application.DoEvents();
 
-            lblTotaldeRegistros.Text = $"Total de Registros: {((List<EmpleadosRH>)dataGridView1.DataSource).Count}";
+                string matricula = txtMatricula.Text.Trim().ToLower();
+
+                if (string.IsNullOrEmpty(matricula))
+                {
+                    dataGridView1.DataSource = null;
+                    dataGridView1.DataSource = _empleadosList;
+                }
+                else
+                {
+                    var empleadosFiltrados = _empleadosList.Where(e => 
+                        e.matricula.ToLower().Contains(matricula)).ToList();
+                    dataGridView1.DataSource = null;
+                    dataGridView1.DataSource = empleadosFiltrados;
+                }
+
+                lblTotaldeRegistros.Text = $"Total de Registros: {((List<EmpleadosRH>)dataGridView1.DataSource).Count}";
+                
+                _loadingForm.Hide();
+                MessageBox.Show("Filtrado completado", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                _loadingForm.Hide();
+                MessageBox.Show($"Error al filtrar empleados: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -140,6 +165,60 @@ namespace NominaXpert.View.UsersControl
             dataGridView1.DataSource = null;
             dataGridView1.DataSource = _empleadosList;
             lblTotaldeRegistros.Text = $"Total de Registros: {_empleadosList.Count}";
+        }
+    }
+
+    public class LoadingForm : Form
+    {
+        private Label lblMessage;
+        private ProgressBar progressBar;
+
+        public LoadingForm()
+        {
+            InitializeLoadingForm();
+        }
+
+        private void InitializeLoadingForm()
+        {
+            this.Size = new Size(300, 100);
+            this.FormBorderStyle = FormBorderStyle.None;
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.BackColor = Color.FromArgb(45, 45, 48);
+            this.TopMost = true;
+
+            lblMessage = new Label
+            {
+                Text = "Cargando...",
+                ForeColor = Color.White,
+                Font = new Font("Segoe UI", 9F),
+                TextAlign = ContentAlignment.MiddleCenter,
+                Dock = DockStyle.Top,
+                Height = 30
+            };
+
+            progressBar = new ProgressBar
+            {
+                Style = ProgressBarStyle.Marquee,
+                MarqueeAnimationSpeed = 30,
+                Height = 20,
+                Dock = DockStyle.Bottom,
+                Margin = new Padding(10)
+            };
+
+            this.Controls.Add(lblMessage);
+            this.Controls.Add(progressBar);
+        }
+
+        public void UpdateMessage(string message)
+        {
+            if (lblMessage.InvokeRequired)
+            {
+                lblMessage.Invoke(new Action(() => lblMessage.Text = message));
+            }
+            else
+            {
+                lblMessage.Text = message;
+            }
         }
     }
 }
