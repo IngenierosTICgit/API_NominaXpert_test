@@ -412,23 +412,37 @@ public bool VerificarSueldoIgualMinimo(decimal sueldoBase)
         public List<NominaConsulta> DesplegarNominasConDatosCompletos()
         {
             string query = @"
-        SELECT 
-            n.id AS IdNomina,
-            n.id_empleado AS IdEmpleado,
-            n.fecha_inicio AS FechaInicio,
-            n.fecha_fin AS FechaFin,
-            n.estado_pago AS EstadoPago,
-            pay.monto_total AS MontoTotal,
-            pay.monto_letras AS MontoLetras,
-            sp.nombre_completo AS NombreComp,
-            sp.rfc AS Rfc,
-            e.sueldo AS Sueldo,
-            e.departamento AS Depto
-        FROM nomina.nomina n
-        INNER JOIN nomina.empleados e ON n.id_empleado = e.id
-        INNER JOIN seguridad.personas sp ON e.id_persona = sp.id
-        LEFT JOIN nomina.pagos pay ON n.id = pay.id_nomina
-        ORDER BY n.id DESC;";
+          SELECT 
+                    n.id AS IdNomina,
+                    n.id_empleado AS IdEmpleado,
+                    n.fecha_inicio AS FechaInicio,
+                    n.fecha_fin AS FechaFin,
+                    n.estado_pago AS EstadoPago,
+                    pay.monto_total AS MontoTotal,
+                    pay.monto_letras AS MontoLetras,
+                    'Interna' AS TipoNomina
+                FROM 
+                    nomina.nomina n
+                LEFT JOIN 
+                    nomina.pagos pay ON pay.id_nomina = n.id
+
+                UNION ALL
+
+                SELECT
+                    ne.id AS IdNomina,
+                    ne.id_empleado AS IdEmpleado,
+                    ne.fecha_inicio AS FechaInicio,
+                    ne.fecha_fin AS FechaFin,
+                    ne.estado_pago AS EstadoPago,
+                    pay.monto_total AS MontoTotal,
+                    pay.monto_letras AS MontoLetras,
+                    'Externa' AS TipoNomina
+                FROM
+                    nomina.nomina_externa ne
+                LEFT JOIN
+                    nomina.pagos pay ON pay.id_nomina = ne.id
+
+                ORDER BY IdNomina DESC";
 
             List<NominaConsulta> nominas = new List<NominaConsulta>();
 
