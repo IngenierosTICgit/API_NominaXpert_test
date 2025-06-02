@@ -8,17 +8,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using NominaXpert.Model;
-
 using Newtonsoft.Json;
 using System.Net.Http;
-
+using NominaXpert.View.UsersControl;
+using NominaXpertCore.Controller;
+using NominaXpertCore.Model;
+using NominaXpertCore.Business;
 
 namespace NominaXpert.View.UC_NominasAPI
 {
     public partial class UC_CalculoNominaExterna : UserControl
     {
         private readonly ApiService _apiService = new ApiService();
+        private readonly NominaExController _nominaExController = new NominaExController();
         private bool _isLoading = false;
+        private EmpleadosRH _empleadoActual;
 
         public UC_CalculoNominaExterna()
         {
@@ -83,8 +87,8 @@ namespace NominaXpert.View.UC_NominasAPI
                     return;
                 }
 
-                var empleado = empleados.First();
-                MostrarDatosEmpleado(empleado);
+                _empleadoActual = empleados.First();
+                MostrarDatosEmpleado(_empleadoActual);
             }
             catch (HttpRequestException ex)
             {
@@ -131,6 +135,7 @@ namespace NominaXpert.View.UC_NominasAPI
             ContratoEstatus.Clear();
             txtDiasLaborados.Clear();
             txtSueldoBase.Text = "  $";
+            _empleadoActual = null;
         }
 
         private async void btnBuscar_Click(object sender, EventArgs e)
@@ -148,6 +153,95 @@ namespace NominaXpert.View.UC_NominasAPI
         private async void btnBuscar_Click_1(object sender, EventArgs e)
         {
             await BuscarEmpleado();
+        }
+
+        private async void btnCalculoNominaExternas_Click(object sender, EventArgs e)
+        {
+            if (_empleadoActual == null)
+            {
+                MessageBox.Show("Por favor, busque primero un empleado.", "Información del sistema", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // 1. Validar las horas trabajadas
+            decimal totalHoras;
+            bool isValid = decimal.TryParse(txtDiasLaborados.Text, out totalHoras);
+
+            if (!isValid || totalHoras == 0)
+            {
+                MessageBox.Show("No se puede generar la nómina porque las horas trabajadas son 0 o no son válidas.", "Información del sistema", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // 2. Validar que el empleado esté activo
+            if (txtEstatusEmpleado.Text != "Activo")
+            {
+                MessageBox.Show("El empleado no está activo. No se puede generar la nómina.", "Información del sistema", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                MostrarCarga(true);
+                DateTime fechaInicio = dtpFechaInicioNomina.Value;
+                DateTime fechaFin = dtpFechaFinNomina.Value;
+
+                bool resultado = _nominaExController.GuardarNominaExterna(_empleadoActual, fechaInicio, fechaFin);
+
+                if (resultado)
+                {
+                    MessageBox.Show("La nómina externa se guardó correctamente.", "Información del sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Obtener el ID de la nómina recién creada
+                    var nominas = _nominaExController.ObtenerNominasExternas();
+                    var ultimaNomina = nominas.AsEnumerable()
+                        .Where(n => n.Field<string>("matricula") == _empleadoActual.matricula)
+                        .OrderByDescending(n => n.Field<DateTime>("creado_at"))
+                        .FirstOrDefault();
+
+                    if (ultimaNomina != null)
+                    {
+                        int idNominaGenerada = ultimaNomina.Field<int>("id");
+
+                        // Redirigir a UC_PercepcionesExternas
+                        Control parent = this.Parent;
+                        if (parent != null)
+                        {
+                            parent.Controls.Remove(this);
+
+                            UC_PercepcionesExternas ucPercepciones = new UC_PercepcionesExternas();
+                            ucPercepciones.Dock = DockStyle.Fill;
+
+                            // Pasar la ID de la nómina a UC_PercepcionesExternas
+                            ucPercepciones.IdNomina = idNominaGenerada;
+
+                            parent.Controls.Add(ucPercepciones);
+                            parent.Controls.SetChildIndex(ucPercepciones, 0); // Ponerlo al frente
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al obtener el ID de la nómina generada.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Ya existe una nómina externa para este empleado en el período especificado.", "Información del sistema", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al guardar la nómina externa: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                MostrarCarga(false);
+            }
+        }
+
+        private void ConfigurarPermisos()
+        {
+            
         }
     }
 }

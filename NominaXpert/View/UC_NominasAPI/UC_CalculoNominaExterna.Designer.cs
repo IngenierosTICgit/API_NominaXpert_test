@@ -358,6 +358,7 @@
             btnCalculoNominaExternas.TextAlign = ContentAlignment.MiddleRight;
             btnCalculoNominaExternas.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnCalculoNominaExternas.UseVisualStyleBackColor = false;
+            btnCalculoNominaExternas.Click += btnCalculoNominaExternas_Click;
             // 
             // panel4
             // 

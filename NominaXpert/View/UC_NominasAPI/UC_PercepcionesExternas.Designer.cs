@@ -1,6 +1,6 @@
-﻿namespace NominaXpert.View.UsersControl
+﻿namespace NominaXpert.View.UC_NominasAPI
 {
-    partial class UC_NominaDeducciones
+    partial class UC_PercepcionesExternas
     {
         /// <summary> 
         /// Variable del diseñador necesaria.
@@ -28,12 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            panel1 = new Panel();
-            label4 = new Label();
-            txtIdNomina = new TextBox();
-            lblDescripcionCN = new Label();
-            lblHistorialNominas = new Label();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            panel3 = new Panel();
+            btnSiguiente = new FontAwesome.Sharp.IconButton();
             panel2 = new Panel();
             btnEliminar = new FontAwesome.Sharp.IconButton();
             btnModificar = new FontAwesome.Sharp.IconButton();
@@ -45,82 +42,68 @@
             txtMonto = new TextBox();
             label2 = new Label();
             label1 = new Label();
-            dataGridViewDeducciones = new DataGridView();
-            Id = new DataGridViewTextBoxColumn();
+            DataGridViewPercepciones = new DataGridView();
+            id = new DataGridViewTextBoxColumn();
             Id_nomina = new DataGridViewTextBoxColumn();
             Tipo = new DataGridViewTextBoxColumn();
             Monto = new DataGridViewTextBoxColumn();
-            btnSiguiente = new FontAwesome.Sharp.IconButton();
-            btnRegresar = new FontAwesome.Sharp.IconButton();
-            panel1.SuspendLayout();
+            panel1 = new Panel();
+            txtIdNomina = new TextBox();
+            label4 = new Label();
+            lblDescripcionCN = new Label();
+            lblHistorialNominas = new Label();
+            iconButton1 = new FontAwesome.Sharp.IconButton();
+            panel3.SuspendLayout();
             panel2.SuspendLayout();
             groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridViewDeducciones).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)DataGridViewPercepciones).BeginInit();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
-            // panel1
+            // panel3
             // 
-            panel1.Controls.Add(label4);
-            panel1.Controls.Add(txtIdNomina);
-            panel1.Controls.Add(lblDescripcionCN);
-            panel1.Controls.Add(lblHistorialNominas);
-            panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(0, 0);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(1262, 119);
-            panel1.TabIndex = 3;
+            panel3.Controls.Add(iconButton1);
+            panel3.Controls.Add(btnSiguiente);
+            panel3.Dock = DockStyle.Top;
+            panel3.Location = new Point(0, 592);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(1262, 76);
+            panel3.TabIndex = 7;
             // 
-            // label4
+            // btnSiguiente
             // 
-            label4.AutoSize = true;
-            label4.ForeColor = Color.White;
-            label4.Location = new Point(648, 76);
-            label4.Name = "label4";
-            label4.Size = new Size(84, 20);
-            label4.TabIndex = 24;
-            label4.Text = "ID Nomina:";
-            // 
-            // txtIdNomina
-            // 
-            txtIdNomina.Location = new Point(738, 73);
-            txtIdNomina.Name = "txtIdNomina";
-            txtIdNomina.ReadOnly = true;
-            txtIdNomina.Size = new Size(115, 27);
-            txtIdNomina.TabIndex = 23;
-            txtIdNomina.TextChanged += txtIdNomina_TextChanged;
-            // 
-            // lblDescripcionCN
-            // 
-            lblDescripcionCN.Font = new Font("Corbel", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblDescripcionCN.ForeColor = Color.White;
-            lblDescripcionCN.Location = new Point(32, 73);
-            lblDescripcionCN.Name = "lblDescripcionCN";
-            lblDescripcionCN.Size = new Size(743, 32);
-            lblDescripcionCN.TabIndex = 4;
-            lblDescripcionCN.Text = "Permite modificar las deducciones de la nómina de un empleado";
-            // 
-            // lblHistorialNominas
-            // 
-            lblHistorialNominas.AutoSize = true;
-            lblHistorialNominas.Font = new Font("Corbel", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblHistorialNominas.ForeColor = Color.FromArgb(12, 215, 253);
-            lblHistorialNominas.Location = new Point(32, 26);
-            lblHistorialNominas.Name = "lblHistorialNominas";
-            lblHistorialNominas.Size = new Size(269, 35);
-            lblHistorialNominas.TabIndex = 1;
-            lblHistorialNominas.Text = "Lista de Deducciones";
+            btnSiguiente.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnSiguiente.BackColor = Color.Black;
+            btnSiguiente.Cursor = Cursors.Hand;
+            btnSiguiente.FlatAppearance.BorderColor = Color.Lime;
+            btnSiguiente.FlatAppearance.BorderSize = 2;
+            btnSiguiente.FlatStyle = FlatStyle.Flat;
+            btnSiguiente.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSiguiente.ForeColor = Color.Azure;
+            btnSiguiente.IconChar = FontAwesome.Sharp.IconChar.CircleRight;
+            btnSiguiente.IconColor = Color.Lime;
+            btnSiguiente.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnSiguiente.IconSize = 32;
+            btnSiguiente.Location = new Point(2128, -7);
+            btnSiguiente.Name = "btnSiguiente";
+            btnSiguiente.Size = new Size(148, 40);
+            btnSiguiente.TabIndex = 12;
+            btnSiguiente.Text = "Siguente";
+            btnSiguiente.TextAlign = ContentAlignment.MiddleRight;
+            btnSiguiente.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnSiguiente.UseVisualStyleBackColor = false;
             // 
             // panel2
             // 
             panel2.Controls.Add(btnEliminar);
             panel2.Controls.Add(btnModificar);
             panel2.Controls.Add(groupBox1);
-            panel2.Controls.Add(dataGridViewDeducciones);
+            panel2.Controls.Add(DataGridViewPercepciones);
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(0, 119);
             panel2.Name = "panel2";
             panel2.Size = new Size(1262, 473);
-            panel2.TabIndex = 4;
+            panel2.TabIndex = 6;
             // 
             // btnEliminar
             // 
@@ -143,7 +126,6 @@
             btnEliminar.TextAlign = ContentAlignment.MiddleRight;
             btnEliminar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnEliminar.UseVisualStyleBackColor = false;
-            btnEliminar.Click += btnEliminar_Click;
             // 
             // btnModificar
             // 
@@ -166,7 +148,6 @@
             btnModificar.TextAlign = ContentAlignment.MiddleRight;
             btnModificar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnModificar.UseVisualStyleBackColor = false;
-            btnModificar.Click += btnModificar_Click;
             // 
             // groupBox1
             // 
@@ -190,19 +171,19 @@
             // 
             label3.AutoSize = true;
             label3.ForeColor = Color.Cyan;
-            label3.Location = new Point(47, 190);
+            label3.Location = new Point(47, 199);
             label3.Name = "label3";
             label3.Size = new Size(367, 20);
-            label3.TabIndex = 20;
+            label3.TabIndex = 21;
             label3.Text = "(Se permite números hasta con 2 decimales: 00.00)";
             // 
             // cboTipo
             // 
             cboTipo.FormattingEnabled = true;
-            cboTipo.Location = new Point(126, 67);
+            cboTipo.Location = new Point(126, 71);
             cboTipo.Name = "cboTipo";
             cboTipo.Size = new Size(204, 28);
-            cboTipo.TabIndex = 19;
+            cboTipo.TabIndex = 20;
             // 
             // btnLimpiar
             // 
@@ -225,7 +206,6 @@
             btnLimpiar.TextAlign = ContentAlignment.MiddleRight;
             btnLimpiar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnLimpiar.UseVisualStyleBackColor = false;
-            btnLimpiar.Click += btnLimpiar_Click;
             // 
             // btnGuardar
             // 
@@ -248,7 +228,6 @@
             btnGuardar.TextAlign = ContentAlignment.MiddleRight;
             btnGuardar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnGuardar.UseVisualStyleBackColor = false;
-            btnGuardar.Click += btnGuardar_Click;
             // 
             // txtMonto
             // 
@@ -275,26 +254,26 @@
             label1.TabIndex = 0;
             label1.Text = "Tipo: ";
             // 
-            // dataGridViewDeducciones
+            // DataGridViewPercepciones
             // 
-            dataGridViewDeducciones.AllowUserToAddRows = false;
-            dataGridViewDeducciones.AllowUserToDeleteRows = false;
-            dataGridViewDeducciones.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewDeducciones.Columns.AddRange(new DataGridViewColumn[] { Id, Id_nomina, Tipo, Monto });
-            dataGridViewDeducciones.Location = new Point(32, 32);
-            dataGridViewDeducciones.Name = "dataGridViewDeducciones";
-            dataGridViewDeducciones.ReadOnly = true;
-            dataGridViewDeducciones.RowHeadersWidth = 51;
-            dataGridViewDeducciones.Size = new Size(579, 345);
-            dataGridViewDeducciones.TabIndex = 0;
+            DataGridViewPercepciones.AllowUserToAddRows = false;
+            DataGridViewPercepciones.AllowUserToDeleteRows = false;
+            DataGridViewPercepciones.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            DataGridViewPercepciones.Columns.AddRange(new DataGridViewColumn[] { id, Id_nomina, Tipo, Monto });
+            DataGridViewPercepciones.Location = new Point(32, 32);
+            DataGridViewPercepciones.Name = "DataGridViewPercepciones";
+            DataGridViewPercepciones.ReadOnly = true;
+            DataGridViewPercepciones.RowHeadersWidth = 51;
+            DataGridViewPercepciones.Size = new Size(579, 345);
+            DataGridViewPercepciones.TabIndex = 0;
             // 
-            // Id
+            // id
             // 
-            Id.HeaderText = "Id";
-            Id.MinimumWidth = 6;
-            Id.Name = "Id";
-            Id.ReadOnly = true;
-            Id.Width = 125;
+            id.HeaderText = "Id";
+            id.MinimumWidth = 6;
+            id.Name = "id";
+            id.ReadOnly = true;
+            id.Width = 125;
             // 
             // Id_nomina
             // 
@@ -314,107 +293,135 @@
             // 
             // Monto
             // 
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle1.Format = "#,##0.00";
-            Monto.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "#,##0.00";
+            Monto.DefaultCellStyle = dataGridViewCellStyle2;
             Monto.HeaderText = "Monto";
             Monto.MinimumWidth = 6;
             Monto.Name = "Monto";
             Monto.ReadOnly = true;
             Monto.Width = 180;
             // 
-            // btnSiguiente
+            // panel1
             // 
-            btnSiguiente.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnSiguiente.BackColor = Color.Black;
-            btnSiguiente.Cursor = Cursors.Hand;
-            btnSiguiente.FlatAppearance.BorderColor = Color.Lime;
-            btnSiguiente.FlatAppearance.BorderSize = 2;
-            btnSiguiente.FlatStyle = FlatStyle.Flat;
-            btnSiguiente.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSiguiente.ForeColor = Color.Azure;
-            btnSiguiente.IconChar = FontAwesome.Sharp.IconChar.CircleRight;
-            btnSiguiente.IconColor = Color.Lime;
-            btnSiguiente.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnSiguiente.IconSize = 32;
-            btnSiguiente.Location = new Point(1086, 623);
-            btnSiguiente.Name = "btnSiguiente";
-            btnSiguiente.Size = new Size(148, 40);
-            btnSiguiente.TabIndex = 13;
-            btnSiguiente.Text = "Siguente";
-            btnSiguiente.TextAlign = ContentAlignment.MiddleRight;
-            btnSiguiente.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnSiguiente.UseVisualStyleBackColor = false;
-            btnSiguiente.Click += btnSiguiente_Click;
+            panel1.Controls.Add(txtIdNomina);
+            panel1.Controls.Add(label4);
+            panel1.Controls.Add(lblDescripcionCN);
+            panel1.Controls.Add(lblHistorialNominas);
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1262, 119);
+            panel1.TabIndex = 5;
             // 
-            // btnRegresar
+            // txtIdNomina
             // 
-            btnRegresar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnRegresar.BackColor = Color.Black;
-            btnRegresar.Cursor = Cursors.Hand;
-            btnRegresar.FlatAppearance.BorderColor = Color.Red;
-            btnRegresar.FlatAppearance.BorderSize = 2;
-            btnRegresar.FlatStyle = FlatStyle.Flat;
-            btnRegresar.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnRegresar.ForeColor = Color.Azure;
-            btnRegresar.IconChar = FontAwesome.Sharp.IconChar.ArrowAltCircleLeft;
-            btnRegresar.IconColor = Color.Red;
-            btnRegresar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnRegresar.IconSize = 32;
-            btnRegresar.Location = new Point(32, 632);
-            btnRegresar.Name = "btnRegresar";
-            btnRegresar.Size = new Size(148, 40);
-            btnRegresar.TabIndex = 14;
-            btnRegresar.Text = "Regresar";
-            btnRegresar.TextAlign = ContentAlignment.MiddleRight;
-            btnRegresar.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnRegresar.UseVisualStyleBackColor = false;
-            btnRegresar.Click += btnRegresar_Click;
+            txtIdNomina.Location = new Point(815, 66);
+            txtIdNomina.Name = "txtIdNomina";
+            txtIdNomina.ReadOnly = true;
+            txtIdNomina.Size = new Size(115, 27);
+            txtIdNomina.TabIndex = 22;
             // 
-            // UC_NominaDeducciones
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.ForeColor = Color.White;
+            label4.Location = new Point(662, 73);
+            label4.Name = "label4";
+            label4.Size = new Size(137, 20);
+            label4.TabIndex = 5;
+            label4.Text = "ID Nomina Externa:";
+            // 
+            // lblDescripcionCN
+            // 
+            lblDescripcionCN.Font = new Font("Corbel", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblDescripcionCN.ForeColor = Color.White;
+            lblDescripcionCN.Location = new Point(32, 73);
+            lblDescripcionCN.Name = "lblDescripcionCN";
+            lblDescripcionCN.Size = new Size(743, 32);
+            lblDescripcionCN.TabIndex = 4;
+            lblDescripcionCN.Text = "Permite modificar las percepciones de la nómina de un empleado";
+            // 
+            // lblHistorialNominas
+            // 
+            lblHistorialNominas.AutoSize = true;
+            lblHistorialNominas.Font = new Font("Corbel", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblHistorialNominas.ForeColor = Color.FromArgb(12, 215, 253);
+            lblHistorialNominas.Location = new Point(32, 26);
+            lblHistorialNominas.Name = "lblHistorialNominas";
+            lblHistorialNominas.Size = new Size(274, 35);
+            lblHistorialNominas.TabIndex = 1;
+            lblHistorialNominas.Text = "Lista de Percepciones";
+            // 
+            // iconButton1
+            // 
+            iconButton1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            iconButton1.BackColor = Color.Black;
+            iconButton1.Cursor = Cursors.Hand;
+            iconButton1.FlatAppearance.BorderColor = Color.Lime;
+            iconButton1.FlatAppearance.BorderSize = 2;
+            iconButton1.FlatStyle = FlatStyle.Flat;
+            iconButton1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            iconButton1.ForeColor = Color.Azure;
+            iconButton1.IconChar = FontAwesome.Sharp.IconChar.CircleRight;
+            iconButton1.IconColor = Color.Lime;
+            iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            iconButton1.IconSize = 32;
+            iconButton1.Location = new Point(1056, 21);
+            iconButton1.Name = "iconButton1";
+            iconButton1.Size = new Size(148, 40);
+            iconButton1.TabIndex = 13;
+            iconButton1.Text = "Siguente";
+            iconButton1.TextAlign = ContentAlignment.MiddleRight;
+            iconButton1.TextImageRelation = TextImageRelation.ImageBeforeText;
+            iconButton1.UseVisualStyleBackColor = false;
+            // 
+            // UC_PercepcionesExternas
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(37, 41, 47);
-            Controls.Add(btnRegresar);
-            Controls.Add(btnSiguiente);
+            Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
-            Name = "UC_NominaDeducciones";
+            Name = "UC_PercepcionesExternas";
             Size = new Size(1262, 691);
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            Load += UC_PercepcionesExternas_Load;
+            panel3.ResumeLayout(false);
             panel2.ResumeLayout(false);
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridViewDeducciones).EndInit();
+            ((System.ComponentModel.ISupportInitialize)DataGridViewPercepciones).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Panel panel1;
-        private Label lblDescripcionCN;
-        private Label lblHistorialNominas;
+        private Panel panel3;
+        private FontAwesome.Sharp.IconButton btnSiguiente;
         private Panel panel2;
         private FontAwesome.Sharp.IconButton btnEliminar;
         private FontAwesome.Sharp.IconButton btnModificar;
         private GroupBox groupBox1;
+        private Label label3;
+        private ComboBox cboTipo;
         private FontAwesome.Sharp.IconButton btnLimpiar;
         private FontAwesome.Sharp.IconButton btnGuardar;
         private TextBox txtMonto;
         private Label label2;
         private Label label1;
-        private DataGridView dataGridViewDeducciones;
-        private FontAwesome.Sharp.IconButton btnSiguiente;
-        private FontAwesome.Sharp.IconButton btnRegresar;
-        private ComboBox cboTipo;
-        private Label label3;
-        private TextBox txtIdNomina;
-        private Label label4;
-        private DataGridViewTextBoxColumn Id;
+        private DataGridView DataGridViewPercepciones;
+        private DataGridViewTextBoxColumn id;
         private DataGridViewTextBoxColumn Id_nomina;
         private DataGridViewTextBoxColumn Tipo;
         private DataGridViewTextBoxColumn Monto;
+        private Panel panel1;
+        private TextBox txtIdNomina;
+        private Label label4;
+        private Label lblDescripcionCN;
+        private Label lblHistorialNominas;
+        private FontAwesome.Sharp.IconButton iconButton1;
     }
 }

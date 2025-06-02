@@ -67,6 +67,13 @@ namespace NominaXpert.View.Forms
             Utilities.Formas.ActivateButton(sender, Formas.RGBColors.ChangeColor);
             addUsersControl(uceext);
         }
+
+        private void iconButton2_Click(object sender, EventArgs e)
+        {
+            UC_EditarNominaAPI a = new UC_EditarNominaAPI();
+            Utilities.Formas.ActivateButton(sender, Formas.RGBColors.ChangeColor);
+            addUsersControl(a);
+        }
     }
 
 }
