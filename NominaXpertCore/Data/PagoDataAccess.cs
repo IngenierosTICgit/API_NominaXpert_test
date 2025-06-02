@@ -107,10 +107,10 @@ namespace NominaXpertCore.Data
         public decimal ContarMontoTotalMesActual()
         {
             string query = @"
-        SELECT SUM(monto_total) AS MontoTotalMes
-        FROM nomina.pagos
-        WHERE EXTRACT(MONTH FROM fecha_pago) = EXTRACT(MONTH FROM CURRENT_DATE)
-        AND EXTRACT(YEAR FROM fecha_pago) = EXTRACT(YEAR FROM CURRENT_DATE);";
+            SELECT COALESCE(SUM(monto_total), 0) AS MontoTotalMes
+            FROM nomina.pagos
+            WHERE EXTRACT(MONTH FROM fecha_pago) = EXTRACT(MONTH FROM CURRENT_DATE)
+            AND EXTRACT(YEAR FROM fecha_pago) = EXTRACT(YEAR FROM CURRENT_DATE);";
 
             try
             {
@@ -119,12 +119,12 @@ namespace NominaXpertCore.Data
 
                 decimal montoTotalMes = 0;
 
-                if (resultado.Rows.Count > 0)
+                if (resultado.Rows.Count > 0 && resultado.Rows[0]["MontoTotalMes"] != DBNull.Value)
                 {
                     montoTotalMes = Convert.ToDecimal(resultado.Rows[0]["MontoTotalMes"]);
                 }
 
-                _logger.Info($"El monto total de los pagos realizados en el mes actual es: {montoTotalMes}");
+                _logger.Info($"El monto total de los pagos realizados en el mes actual es: {montoTotalMes:C}");
                 return montoTotalMes;
             }
             catch (Exception ex)

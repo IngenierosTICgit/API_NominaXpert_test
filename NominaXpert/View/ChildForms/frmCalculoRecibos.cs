@@ -1,6 +1,7 @@
 ﻿using FontAwesome.Sharp;
 using NominaXpertCore.Controller;
 using NominaXpert.Utilities;
+using NominaXpert.View.UC_NominasAPI;
 using NominaXpert.View.UsersControl;
 using System;
 using System.Collections.Generic;
@@ -30,7 +31,7 @@ namespace NominaXpert.View.Forms
         {
             UC_NominaCalculo1 uc = new UC_NominaCalculo1();
             addUsersControl(uc); // Usamos el mismo método que para los botones
-            
+
         }
         private void addUsersControl(UserControl userControl)
         {
@@ -58,6 +59,13 @@ namespace NominaXpert.View.Forms
             var controller = new UsuariosController();
             btnCalculoNomina.Enabled = controller.TienePermiso("NOM_ADD");
             btnEstatusNomina.Enabled = controller.TienePermiso("NOM_EDIT");
+        }
+
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+            UC_CalculoNominaExterna uceext = new UC_CalculoNominaExterna();
+            Utilities.Formas.ActivateButton(sender, Formas.RGBColors.ChangeColor);
+            addUsersControl(uceext);
         }
     }
 
