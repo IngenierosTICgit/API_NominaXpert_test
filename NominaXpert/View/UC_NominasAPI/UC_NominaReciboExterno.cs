@@ -14,7 +14,13 @@ using NominaXpertCore.Model;
 using ControlEscolar.Utilities;
 using NLog;
 using NominaXpertCore.Utilities;
-
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+using iText.Kernel.Font;
+using iText.Layout.Properties;
+using iText.Kernel.Exceptions;
+using iText.IO.Font.Constants;
 
 namespace NominaXpert.View.UC_NominasAPI
 {
@@ -210,7 +216,188 @@ namespace NominaXpert.View.UC_NominasAPI
 
         private void btnPDFReciboNomina_Click(object sender, EventArgs e)
         {
+            PdfWriter writer = null;
+            PdfDocument pdf = null;
+            Document document = null;
 
+            try
+            {
+                SaveFileDialog saveFileDialog = new SaveFileDialog
+                {
+                    Filter = "PDF Files (*.pdf)|*.pdf",
+                    Title = "Guardar Recibo de Nómina Externa",
+                    FileName = $"ReciboNominaExterna_{IdNomina}_{DateTime.Now:yyyyMMdd}.pdf"
+                };
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string path = saveFileDialog.FileName;
+
+                    // Validar que el directorio exista
+                    string directory = Path.GetDirectoryName(path);
+                    if (!Directory.Exists(directory))
+                    {
+                        MessageBox.Show("El directorio seleccionado no existe.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    // Validar que tengamos permisos de escritura
+                    try
+                    {
+                        using (FileStream fs = File.Create(path, 1, FileOptions.DeleteOnClose))
+                        {
+                            // Si llegamos aquí, tenemos permisos de escritura
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"No se tiene permiso para escribir en la ubicación seleccionada: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    writer = new PdfWriter(path);
+                    pdf = new PdfDocument(writer);
+                    document = new Document(pdf);
+
+                    // Configurar fuentes
+                    PdfFont boldFont = PdfFontFactory.CreateFont(StandardFonts.HELVETICA_BOLD);
+                    PdfFont regularFont = PdfFontFactory.CreateFont(StandardFonts.HELVETICA);
+
+                    // Encabezado
+                    Paragraph header = new Paragraph("NominaXpert")
+                        .SetTextAlignment(TextAlignment.CENTER)
+                        .SetFont(boldFont)
+                        .SetFontSize(24)
+                        .SetMarginTop(20);
+
+                    Paragraph subHeader = new Paragraph("Recibo de Nómina Externa")
+                        .SetTextAlignment(TextAlignment.CENTER)
+                        .SetFont(boldFont)
+                        .SetFontSize(18)
+                        .SetMarginBottom(20);
+
+                    document.Add(header);
+                    document.Add(subHeader);
+
+                    // Tabla principal
+                    Table mainTable = new Table(2).UseAllAvailableWidth();
+                    mainTable.SetMarginTop(20);
+                    mainTable.SetMarginBottom(20);
+
+                    // Información del empleado
+                    AddTableHeader(mainTable, "Datos del Empleado", boldFont);
+                    AddTableRow(mainTable, "Nombre:", lblNombreEmpleado.Text ?? "", regularFont);
+                    AddTableRow(mainTable, "Departamento:", lblDepartamento.Text ?? "", regularFont);
+                    AddTableRow(mainTable, "ID Empleado:", lblIdEmpleado.Text ?? "", regularFont);
+
+                    // Información de la nómina
+                    AddTableHeader(mainTable, "Datos de la Nómina", boldFont);
+                    AddTableRow(mainTable, "Fecha Inicio:", lblFechaInicio.Text ?? "", regularFont);
+                    AddTableRow(mainTable, "Fecha Fin:", lblFechaFin.Text ?? "", regularFont);
+                    AddTableRow(mainTable, "Estado:", lblEstado.Text ?? "", regularFont);
+
+                    // Información de percepciones
+                    AddTableHeader(mainTable, "Percepciones", boldFont);
+                    AddTableRow(mainTable, "Sueldo Base:", lblSueldoBase.Text ?? "", regularFont);
+                    AddTableRow(mainTable, "Sueldo por Horas:", lblSueldoPorHorasTrabajadas.Text ?? "", regularFont);
+                    AddTableRow(mainTable, "Total Percepciones:", lblTotalPercepciones.Text ?? "", regularFont);
+
+                    // Información de deducciones
+                    AddTableHeader(mainTable, "Deducciones", boldFont);
+                    AddTableRow(mainTable, "Total Deducciones:", lblTotalDeducciones.Text ?? "", regularFont);
+
+                    // Información del total
+                    AddTableHeader(mainTable, "Total Neto", boldFont);
+                    AddTableRow(mainTable, "Monto Total:", lblTotalNeto.Text ?? "", regularFont);
+                    AddTableRow(mainTable, "Monto en Letras:", lblMontoLetras.Text ?? "", regularFont);
+
+                    // Agregar la tabla al documento
+                    document.Add(mainTable);
+
+                    // Pie de página
+                    Paragraph footer = new Paragraph($"Generado el {DateTime.Now:dd/MM/yyyy HH:mm:ss}")
+                        .SetTextAlignment(TextAlignment.CENTER)
+                        .SetFont(regularFont)
+                        .SetFontSize(10)
+                        .SetMarginTop(20);
+
+                    document.Add(footer);
+
+                    // Cerrar el documento
+                    document.Close();
+                    document = null;
+                    pdf.Close();
+                    pdf = null;
+                    writer.Close();
+                    writer = null;
+
+                    MessageBox.Show("El recibo de nómina externa ha sido generado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex, "Error al generar el PDF del recibo de nómina externa");
+                MessageBox.Show($"Error al generar el PDF: {ex.Message}\n\nDetalles técnicos: {ex.ToString()}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                // Asegurar que todos los recursos se liberen correctamente
+                if (document != null)
+                {
+                    try { document.Close(); } catch { }
+                }
+                if (pdf != null)
+                {
+                    try { pdf.Close(); } catch { }
+                }
+                if (writer != null)
+                {
+                    try { writer.Close(); } catch { }
+                }
+            }
+        }
+
+        private void AddTableHeader(Table table, string text, PdfFont font)
+        {
+            try
+            {
+                Cell cell = new Cell(1, 2)
+                    .SetBackgroundColor(iText.Kernel.Colors.ColorConstants.LIGHT_GRAY)
+                    .SetFont(font)
+                    .SetPadding(5)
+                    .SetTextAlignment(TextAlignment.CENTER)
+                    .Add(new Paragraph(text ?? ""));
+                table.AddCell(cell);
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex, $"Error al agregar encabezado de tabla: {text}");
+                throw;
+            }
+        }
+
+        private void AddTableRow(Table table, string label, string value, PdfFont font)
+        {
+            try
+            {
+                Cell labelCell = new Cell()
+                    .SetFont(font)
+                    .SetPadding(5)
+                    .Add(new Paragraph(label ?? ""));
+                
+                Cell valueCell = new Cell()
+                    .SetFont(font)
+                    .SetPadding(5)
+                    .Add(new Paragraph(value ?? ""));
+                
+                table.AddCell(labelCell);
+                table.AddCell(valueCell);
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex, $"Error al agregar fila de tabla: {label} - {value}");
+                throw;
+            }
         }
 
         private void btnRegresar_Click_1(object sender, EventArgs e)
