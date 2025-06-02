@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             panel3 = new Panel();
+            btnSiguientePerExt = new FontAwesome.Sharp.IconButton();
             btnSiguiente = new FontAwesome.Sharp.IconButton();
             panel2 = new Panel();
             btnEliminar = new FontAwesome.Sharp.IconButton();
@@ -42,7 +43,7 @@
             txtMonto = new TextBox();
             label2 = new Label();
             label1 = new Label();
-            DataGridViewPercepciones = new DataGridView();
+            dgvPercepciones = new DataGridView();
             id = new DataGridViewTextBoxColumn();
             Id_nomina = new DataGridViewTextBoxColumn();
             Tipo = new DataGridViewTextBoxColumn();
@@ -52,23 +53,46 @@
             label4 = new Label();
             lblDescripcionCN = new Label();
             lblHistorialNominas = new Label();
-            iconButton1 = new FontAwesome.Sharp.IconButton();
             panel3.SuspendLayout();
             panel2.SuspendLayout();
             groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)DataGridViewPercepciones).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvPercepciones).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
             // panel3
             // 
-            panel3.Controls.Add(iconButton1);
+            panel3.Controls.Add(btnSiguientePerExt);
             panel3.Controls.Add(btnSiguiente);
             panel3.Dock = DockStyle.Top;
             panel3.Location = new Point(0, 592);
             panel3.Name = "panel3";
             panel3.Size = new Size(1262, 76);
             panel3.TabIndex = 7;
+            // 
+            // btnSiguientePerExt
+            // 
+            btnSiguientePerExt.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnSiguientePerExt.BackColor = Color.Black;
+            btnSiguientePerExt.Cursor = Cursors.Hand;
+            btnSiguientePerExt.FlatAppearance.BorderColor = Color.Lime;
+            btnSiguientePerExt.FlatAppearance.BorderSize = 2;
+            btnSiguientePerExt.FlatStyle = FlatStyle.Flat;
+            btnSiguientePerExt.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSiguientePerExt.ForeColor = Color.Azure;
+            btnSiguientePerExt.IconChar = FontAwesome.Sharp.IconChar.CircleRight;
+            btnSiguientePerExt.IconColor = Color.Lime;
+            btnSiguientePerExt.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnSiguientePerExt.IconSize = 32;
+            btnSiguientePerExt.Location = new Point(1056, 21);
+            btnSiguientePerExt.Name = "btnSiguientePerExt";
+            btnSiguientePerExt.Size = new Size(148, 40);
+            btnSiguientePerExt.TabIndex = 13;
+            btnSiguientePerExt.Text = "Siguente";
+            btnSiguientePerExt.TextAlign = ContentAlignment.MiddleRight;
+            btnSiguientePerExt.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnSiguientePerExt.UseVisualStyleBackColor = false;
+            btnSiguientePerExt.Click += btnSiguientePerExt_Click;
             // 
             // btnSiguiente
             // 
@@ -98,7 +122,7 @@
             panel2.Controls.Add(btnEliminar);
             panel2.Controls.Add(btnModificar);
             panel2.Controls.Add(groupBox1);
-            panel2.Controls.Add(DataGridViewPercepciones);
+            panel2.Controls.Add(dgvPercepciones);
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(0, 119);
             panel2.Name = "panel2";
@@ -126,6 +150,7 @@
             btnEliminar.TextAlign = ContentAlignment.MiddleRight;
             btnEliminar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnEliminar.UseVisualStyleBackColor = false;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // btnModificar
             // 
@@ -148,6 +173,7 @@
             btnModificar.TextAlign = ContentAlignment.MiddleRight;
             btnModificar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnModificar.UseVisualStyleBackColor = false;
+            btnModificar.Click += btnModificar_Click_1;
             // 
             // groupBox1
             // 
@@ -206,6 +232,7 @@
             btnLimpiar.TextAlign = ContentAlignment.MiddleRight;
             btnLimpiar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnLimpiar.UseVisualStyleBackColor = false;
+            btnLimpiar.Click += btnLimpiar_Click;
             // 
             // btnGuardar
             // 
@@ -228,6 +255,7 @@
             btnGuardar.TextAlign = ContentAlignment.MiddleRight;
             btnGuardar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnGuardar.UseVisualStyleBackColor = false;
+            btnGuardar.Click += btnGuardar_Click_1;
             // 
             // txtMonto
             // 
@@ -254,18 +282,18 @@
             label1.TabIndex = 0;
             label1.Text = "Tipo: ";
             // 
-            // DataGridViewPercepciones
+            // dgvPercepciones
             // 
-            DataGridViewPercepciones.AllowUserToAddRows = false;
-            DataGridViewPercepciones.AllowUserToDeleteRows = false;
-            DataGridViewPercepciones.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DataGridViewPercepciones.Columns.AddRange(new DataGridViewColumn[] { id, Id_nomina, Tipo, Monto });
-            DataGridViewPercepciones.Location = new Point(32, 32);
-            DataGridViewPercepciones.Name = "DataGridViewPercepciones";
-            DataGridViewPercepciones.ReadOnly = true;
-            DataGridViewPercepciones.RowHeadersWidth = 51;
-            DataGridViewPercepciones.Size = new Size(579, 345);
-            DataGridViewPercepciones.TabIndex = 0;
+            dgvPercepciones.AllowUserToAddRows = false;
+            dgvPercepciones.AllowUserToDeleteRows = false;
+            dgvPercepciones.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvPercepciones.Columns.AddRange(new DataGridViewColumn[] { id, Id_nomina, Tipo, Monto });
+            dgvPercepciones.Location = new Point(32, 32);
+            dgvPercepciones.Name = "dgvPercepciones";
+            dgvPercepciones.ReadOnly = true;
+            dgvPercepciones.RowHeadersWidth = 51;
+            dgvPercepciones.Size = new Size(579, 345);
+            dgvPercepciones.TabIndex = 0;
             // 
             // id
             // 
@@ -293,9 +321,9 @@
             // 
             // Monto
             // 
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.Format = "#,##0.00";
-            Monto.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.Format = "#,##0.00";
+            Monto.DefaultCellStyle = dataGridViewCellStyle1;
             Monto.HeaderText = "Monto";
             Monto.MinimumWidth = 6;
             Monto.Name = "Monto";
@@ -321,6 +349,7 @@
             txtIdNomina.ReadOnly = true;
             txtIdNomina.Size = new Size(115, 27);
             txtIdNomina.TabIndex = 22;
+            txtIdNomina.TextChanged += txtIdNomina_TextChanged;
             // 
             // label4
             // 
@@ -353,29 +382,6 @@
             lblHistorialNominas.TabIndex = 1;
             lblHistorialNominas.Text = "Lista de Percepciones";
             // 
-            // iconButton1
-            // 
-            iconButton1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            iconButton1.BackColor = Color.Black;
-            iconButton1.Cursor = Cursors.Hand;
-            iconButton1.FlatAppearance.BorderColor = Color.Lime;
-            iconButton1.FlatAppearance.BorderSize = 2;
-            iconButton1.FlatStyle = FlatStyle.Flat;
-            iconButton1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            iconButton1.ForeColor = Color.Azure;
-            iconButton1.IconChar = FontAwesome.Sharp.IconChar.CircleRight;
-            iconButton1.IconColor = Color.Lime;
-            iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconButton1.IconSize = 32;
-            iconButton1.Location = new Point(1056, 21);
-            iconButton1.Name = "iconButton1";
-            iconButton1.Size = new Size(148, 40);
-            iconButton1.TabIndex = 13;
-            iconButton1.Text = "Siguente";
-            iconButton1.TextAlign = ContentAlignment.MiddleRight;
-            iconButton1.TextImageRelation = TextImageRelation.ImageBeforeText;
-            iconButton1.UseVisualStyleBackColor = false;
-            // 
             // UC_PercepcionesExternas
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -391,7 +397,7 @@
             panel2.ResumeLayout(false);
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)DataGridViewPercepciones).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvPercepciones).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
@@ -412,7 +418,7 @@
         private TextBox txtMonto;
         private Label label2;
         private Label label1;
-        private DataGridView DataGridViewPercepciones;
+        private DataGridView dgvPercepciones;
         private DataGridViewTextBoxColumn id;
         private DataGridViewTextBoxColumn Id_nomina;
         private DataGridViewTextBoxColumn Tipo;
@@ -422,6 +428,6 @@
         private Label label4;
         private Label lblDescripcionCN;
         private Label lblHistorialNominas;
-        private FontAwesome.Sharp.IconButton iconButton1;
+        private FontAwesome.Sharp.IconButton btnSiguientePerExt;
     }
 }

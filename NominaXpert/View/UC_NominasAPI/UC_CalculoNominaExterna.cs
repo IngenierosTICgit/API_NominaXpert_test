@@ -209,7 +209,7 @@ namespace NominaXpert.View.UC_NominasAPI
                         {
                             parent.Controls.Remove(this);
 
-                            UC_PercepcionesExternas ucPercepciones = new UC_PercepcionesExternas();
+                            UC_PercepcionesExternas ucPercepciones = new UC_PercepcionesExternas(idNominaGenerada);
                             ucPercepciones.Dock = DockStyle.Fill;
 
                             // Pasar la ID de la nómina a UC_PercepcionesExternas
