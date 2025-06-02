@@ -423,12 +423,34 @@ public bool VerificarSueldoIgualMinimo(decimal sueldoBase)
             sp.nombre_completo AS NombreComp,
             sp.rfc AS Rfc,
             e.sueldo AS Sueldo,
-            e.departamento AS Depto
+            e.departamento AS Depto,
+            'Interna' AS TipoNomina
         FROM nomina.nomina n
         INNER JOIN nomina.empleados e ON n.id_empleado = e.id
         INNER JOIN seguridad.personas sp ON e.id_persona = sp.id
         LEFT JOIN nomina.pagos pay ON n.id = pay.id_nomina
-        ORDER BY n.id DESC;";
+
+        UNION ALL
+
+        SELECT
+            ne.id AS IdNomina,
+            ne.id_empleado AS IdEmpleado,
+            ne.fecha_inicio AS FechaInicio,
+            ne.fecha_fin AS FechaFin,
+            ne.estado_pago AS EstadoPago,
+            pay.monto_total AS MontoTotal,
+            pay.monto_letras AS MontoLetras,
+            sp.nombre_completo AS NombreComp,
+            sp.rfc AS Rfc,
+            e.sueldo AS Sueldo,
+            e.departamento AS Depto,
+            'Externa' AS TipoNomina
+        FROM nomina.nomina_externa ne
+        LEFT JOIN nomina.empleados e ON ne.id_empleado = e.id
+        LEFT JOIN seguridad.personas sp ON e.id_persona = sp.id
+        LEFT JOIN nomina.pagos pay ON ne.id = pay.id_nomina
+
+        ORDER BY IdNomina DESC;";
 
             List<NominaConsulta> nominas = new List<NominaConsulta>();
 
@@ -441,24 +463,23 @@ public bool VerificarSueldoIgualMinimo(decimal sueldoBase)
                 {
                     var nomina = new NominaConsulta
                     {
-                        IdNomina = Convert.ToInt32(row["IdNomina"]),
-                        IdEmpleado = Convert.ToInt32(row["IdEmpleado"]),
-                        EstadoPago = row["EstadoPago"].ToString(),
-                        FechaInicio = Convert.ToDateTime(row["FechaInicio"]),
-                        FechaFin = Convert.ToDateTime(row["FechaFin"]),
+                        IdNomina = row["IdNomina"] != DBNull.Value ? Convert.ToInt32(row["IdNomina"]) : 0,
+                        IdEmpleado = row["IdEmpleado"] != DBNull.Value ? Convert.ToInt32(row["IdEmpleado"]) : 0,
+                        EstadoPago = row["EstadoPago"]?.ToString() ?? "Pendiente",
+                        FechaInicio = row["FechaInicio"] != DBNull.Value ? Convert.ToDateTime(row["FechaInicio"]) : DateTime.Now,
+                        FechaFin = row["FechaFin"] != DBNull.Value ? Convert.ToDateTime(row["FechaFin"]) : DateTime.Now,
                         MontoTotal = row["MontoTotal"] != DBNull.Value ? Convert.ToDecimal(row["MontoTotal"]) : 0,
                         MontoLetras = row["MontoLetras"]?.ToString() ?? "Nulo",
+                        TipoNomina = row["TipoNomina"]?.ToString() ?? "Nulo",
 
-                        // Datos del empleado directamente en las nuevas propiedades
                         NombreEmpleadoDirecto = row["NombreComp"]?.ToString() ?? "Sin Nombre",
                         DepartamentoEmpleadoDirecto = row["Depto"]?.ToString() ?? "Sin Departamento",
                         RfcEmpleadoDirecto = row["Rfc"]?.ToString() ?? "Sin RFC",
                         SueldoBaseDirecto = row["Sueldo"] != DBNull.Value ? Convert.ToDecimal(row["Sueldo"]) : 0,
 
-                        // También llenar el objeto DatosEmpleado para compatibilidad
                         DatosEmpleado = new Empleado
                         {
-                            Id = Convert.ToInt32(row["IdEmpleado"]),
+                            Id = row["IdEmpleado"] != DBNull.Value ? Convert.ToInt32(row["IdEmpleado"]) : 0,
                             Departamento = row["Depto"]?.ToString() ?? "Sin Departamento",
                             Sueldo = row["Sueldo"] != DBNull.Value ? Convert.ToDecimal(row["Sueldo"]) : 0,
                             DatosPersonales = new Persona
@@ -472,12 +493,12 @@ public bool VerificarSueldoIgualMinimo(decimal sueldoBase)
                     nominas.Add(nomina);
                 }
 
-                _logger.Info($"Se obtuvieron {nominas.Count} nóminas con datos completos");
+                _logger.Info($"Se obtuvieron {nominas.Count} nóminas con datos completos de ambas tablas.");
                 return nominas;
             }
             catch (Exception ex)
             {
-                _logger.Error(ex, "Error al obtener nóminas con datos completos");
+                _logger.Error(ex, "Error al obtener nóminas con datos completos de ambas tablas.");
                 throw;
             }
             finally
