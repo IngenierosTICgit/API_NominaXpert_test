@@ -259,5 +259,63 @@ namespace NominaXpertCore.Data
                 _dbAccess.Disconnect();
             }
         }
+
+        public NominaConsulta BuscarNominaPorId(int idNomina)
+        {
+            string query = @"
+        SELECT n.id AS IdNomina, e.id AS IdEmpleado, p.nombre_completo AS NombreEmpleado, 
+               e.departamento AS Departamento, e.sueldo AS SueldoBase, p.rfc AS RFCEmpleado, 
+               n.estado_pago AS EstadoPago
+        FROM nomina.nomina_externa n
+        INNER JOIN nomina.empleados e ON n.id_empleado = e.id
+        INNER JOIN seguridad.personas p ON e.id_persona = p.id
+        WHERE n.id = @idNomina;";
+
+            try
+            {
+                if (idNomina <= 0)
+                    throw new ArgumentException("La ID de la nómina no es válida.");
+
+                var parametros = new NpgsqlParameter[]
+                {
+            _dbAccess.CreateParameter("@idNomina", idNomina)
+                };
+
+                _dbAccess.Connect();
+                DataTable dt = _dbAccess.ExecuteQuery_Reader(query, parametros);
+
+                if (dt.Rows.Count == 0)
+                    return null;
+
+                var row = dt.Rows[0];
+
+                return new NominaConsulta
+                {
+                    IdNomina = Convert.ToInt32(row["IdNomina"]),
+                    IdEmpleado = Convert.ToInt32(row["IdEmpleado"]),
+                    EstadoPago = row["EstadoPago"].ToString(),
+                    DatosEmpleado = new Empleado
+                    {
+                        Id = Convert.ToInt32(row["IdEmpleado"]),
+                        Departamento = row["Departamento"].ToString(),
+                        Sueldo = Convert.ToDecimal(row["SueldoBase"]),
+                        DatosPersonales = new Persona
+                        {
+                            NombreCompleto = row["NombreEmpleado"].ToString(),
+                            Rfc = row["RFCEmpleado"].ToString()
+                        }
+                    }
+                };
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex, "Error al buscar la nómina por ID.");
+                throw;
+            }
+            finally
+            {
+                _dbAccess.Disconnect();
+            }
+        }
     }
 } 

@@ -20,10 +20,12 @@ namespace NominaXpertCore.Controller
     {
         private static readonly Logger _logger = LoggingManager.GetLogger("NominaXpert.Controller.NominaExController");
         private readonly NominaExDataAccess _nominaExDataAccess;
+        private readonly AuditoriaDataAccess _auditoriaDataAccess;
 
         public NominaExController()
         {
             _nominaExDataAccess = new NominaExDataAccess();
+            _auditoriaDataAccess = new AuditoriaDataAccess();
         }
 
         public bool GuardarNominaExterna(EmpleadosRH empleado, DateTime fechaInicio, DateTime fechaFin)
@@ -79,6 +81,33 @@ namespace NominaXpertCore.Controller
             {
                 _logger.Error(ex, $"Error al actualizar el estado de pago de la nómina {idNomina}");
                 throw;
+            }
+        }
+
+        public int ActualizarEstadoPago(int idNomina, string nuevoEstado, int idUsuario)
+        {
+            try
+            {
+                // Registrar la auditoría de la acción de actualización del estado de pago
+                var nomina = _nominaExDataAccess.BuscarNominaPorId(idNomina); // Obtenemos la nómina para detalles adicionales
+                if (nomina != null)
+                {
+                    string detalleAccion = $"Se actualizó el estado de la nómina del empleado [ID: {nomina.IdEmpleado}] " +
+                                           $"para el periodo {nomina.FechaInicio.ToShortDateString()} - {nomina.FechaFin.ToShortDateString()} " +
+                                           $"a {nuevoEstado}.";
+
+                    // Llamar al método de auditoría para registrar la acción, incluyendo el idUsuario
+                    _auditoriaDataAccess.RegistrarAuditoria(idUsuario, "edición de nómina", detalleAccion);
+                }
+
+                // Realizar la actualización del estado de pago en la base de datos
+                _logger.Info($"NominasController -> ActualizarEstadoPago ejecutado para nómina {idNomina} nuevo estado: {nuevoEstado}");
+                return _nominaExDataAccess.ActualizarEstadoPago(idNomina, nuevoEstado);
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex, "Error al actualizar el estado de pago.");
+                return 0; // Retorna 0 en caso de error
             }
         }
     }

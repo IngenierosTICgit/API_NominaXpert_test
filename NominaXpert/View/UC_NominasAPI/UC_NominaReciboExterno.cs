@@ -192,7 +192,7 @@ namespace NominaXpert.View.UC_NominasAPI
 
                 if (exito)
                 {
-                    _nominaController.ActualizarEstadoPago(this.IdNomina, "Pagado", UsuarioSesion.UsuarioId);
+                    _nominaExController.ActualizarEstadoPago(this.IdNomina, "Pagado", UsuarioSesion.UsuarioId);
                     CargarRecibo();
                     MessageBox.Show("El pago ha sido registrado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
