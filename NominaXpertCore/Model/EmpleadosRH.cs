@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NominaXpert.Model
+namespace NominaXpertCore.Model
 {
     public class EmpleadosRH
     {
