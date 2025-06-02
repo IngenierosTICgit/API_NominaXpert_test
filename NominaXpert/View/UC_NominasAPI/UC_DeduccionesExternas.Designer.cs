@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             btnRegresar = new FontAwesome.Sharp.IconButton();
             panel2 = new Panel();
             btnEliminar = new FontAwesome.Sharp.IconButton();
@@ -41,7 +41,7 @@
             txtMonto = new TextBox();
             label2 = new Label();
             label1 = new Label();
-            dataGridViewDeducciones = new DataGridView();
+            dgvDeducciones = new DataGridView();
             Id = new DataGridViewTextBoxColumn();
             Id_nomina = new DataGridViewTextBoxColumn();
             Tipo = new DataGridViewTextBoxColumn();
@@ -54,7 +54,7 @@
             btnSiguiente = new FontAwesome.Sharp.IconButton();
             panel2.SuspendLayout();
             groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridViewDeducciones).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvDeducciones).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -80,13 +80,14 @@
             btnRegresar.TextAlign = ContentAlignment.MiddleRight;
             btnRegresar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnRegresar.UseVisualStyleBackColor = false;
+            btnRegresar.Click += btnRegresar_Click_1;
             // 
             // panel2
             // 
             panel2.Controls.Add(btnEliminar);
             panel2.Controls.Add(btnModificar);
             panel2.Controls.Add(groupBox1);
-            panel2.Controls.Add(dataGridViewDeducciones);
+            panel2.Controls.Add(dgvDeducciones);
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(0, 119);
             panel2.Name = "panel2";
@@ -114,6 +115,7 @@
             btnEliminar.TextAlign = ContentAlignment.MiddleRight;
             btnEliminar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnEliminar.UseVisualStyleBackColor = false;
+            btnEliminar.Click += btnEliminar_Click_1;
             // 
             // btnModificar
             // 
@@ -136,6 +138,7 @@
             btnModificar.TextAlign = ContentAlignment.MiddleRight;
             btnModificar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnModificar.UseVisualStyleBackColor = false;
+            btnModificar.Click += btnModificar_Click_1;
             // 
             // groupBox1
             // 
@@ -194,6 +197,7 @@
             btnLimpiar.TextAlign = ContentAlignment.MiddleRight;
             btnLimpiar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnLimpiar.UseVisualStyleBackColor = false;
+            btnLimpiar.Click += btnLimpiar_Click_1;
             // 
             // btnGuardar
             // 
@@ -216,6 +220,7 @@
             btnGuardar.TextAlign = ContentAlignment.MiddleRight;
             btnGuardar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnGuardar.UseVisualStyleBackColor = false;
+            btnGuardar.Click += btnGuardar_Click_1;
             // 
             // txtMonto
             // 
@@ -242,18 +247,18 @@
             label1.TabIndex = 0;
             label1.Text = "Tipo: ";
             // 
-            // dataGridViewDeducciones
+            // dgvDeducciones
             // 
-            dataGridViewDeducciones.AllowUserToAddRows = false;
-            dataGridViewDeducciones.AllowUserToDeleteRows = false;
-            dataGridViewDeducciones.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewDeducciones.Columns.AddRange(new DataGridViewColumn[] { Id, Id_nomina, Tipo, Monto });
-            dataGridViewDeducciones.Location = new Point(32, 32);
-            dataGridViewDeducciones.Name = "dataGridViewDeducciones";
-            dataGridViewDeducciones.ReadOnly = true;
-            dataGridViewDeducciones.RowHeadersWidth = 51;
-            dataGridViewDeducciones.Size = new Size(579, 345);
-            dataGridViewDeducciones.TabIndex = 0;
+            dgvDeducciones.AllowUserToAddRows = false;
+            dgvDeducciones.AllowUserToDeleteRows = false;
+            dgvDeducciones.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvDeducciones.Columns.AddRange(new DataGridViewColumn[] { Id, Id_nomina, Tipo, Monto });
+            dgvDeducciones.Location = new Point(32, 32);
+            dgvDeducciones.Name = "dgvDeducciones";
+            dgvDeducciones.ReadOnly = true;
+            dgvDeducciones.RowHeadersWidth = 51;
+            dgvDeducciones.Size = new Size(579, 345);
+            dgvDeducciones.TabIndex = 0;
             // 
             // Id
             // 
@@ -281,9 +286,9 @@
             // 
             // Monto
             // 
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.Format = "#,##0.00";
-            Monto.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.Format = "#,##0.00";
+            Monto.DefaultCellStyle = dataGridViewCellStyle1;
             Monto.HeaderText = "Monto";
             Monto.MinimumWidth = 6;
             Monto.Name = "Monto";
@@ -363,6 +368,7 @@
             btnSiguiente.TextAlign = ContentAlignment.MiddleRight;
             btnSiguiente.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnSiguiente.UseVisualStyleBackColor = false;
+            btnSiguiente.Click += btnSiguiente_Click_1;
             // 
             // UC_DeduccionesExternas
             // 
@@ -375,11 +381,10 @@
             Controls.Add(panel1);
             Name = "UC_DeduccionesExternas";
             Size = new Size(1262, 691);
-            Load += UC_DeduccionesExternas_Load;
             panel2.ResumeLayout(false);
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridViewDeducciones).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvDeducciones).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
@@ -399,7 +404,7 @@
         private TextBox txtMonto;
         private Label label2;
         private Label label1;
-        private DataGridView dataGridViewDeducciones;
+        private DataGridView dgvDeducciones;
         private DataGridViewTextBoxColumn Id;
         private DataGridViewTextBoxColumn Id_nomina;
         private DataGridViewTextBoxColumn Tipo;

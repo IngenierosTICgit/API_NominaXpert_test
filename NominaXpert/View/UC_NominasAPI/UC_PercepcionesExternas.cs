@@ -294,7 +294,7 @@ namespace NominaXpert.View.UC_NominasAPI
                         parent.Controls.Remove(this);
 
                         // Siguiente pantalla: UC_DeduccionesExternas (ajústalo si tiene otro nombre)
-                        var ucDeducciones = new UC_DeduccionesExternas(); //this.IdNomina
+                        var ucDeducciones = new UC_DeduccionesExternas(this.IdNomina);
                         ucDeducciones.Dock = DockStyle.Fill;
 
                         parent.Controls.Add(ucDeducciones);
