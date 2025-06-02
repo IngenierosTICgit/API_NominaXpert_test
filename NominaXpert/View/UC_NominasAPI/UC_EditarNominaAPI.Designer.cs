@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            tableLayoutPanel1 = new TableLayoutPanel();
+            panel1 = new Panel();
+            lblDescripcionCN = new Label();
+            lblHistorialNominas = new Label();
             flowLayoutPanel1 = new FlowLayoutPanel();
             gBoxDatosEmpleado = new GroupBox();
             panel3 = new Panel();
@@ -42,7 +44,7 @@
             txtNombreEmpleado = new TextBox();
             lblNombreCompleto = new Label();
             gBoxEditarEstatus = new GroupBox();
-            btnVisualizarNomina = new FontAwesome.Sharp.IconButton();
+            btnVistaPrevia = new FontAwesome.Sharp.IconButton();
             btnModificar = new FontAwesome.Sharp.IconButton();
             panel18 = new Panel();
             btnActualizarCambios = new FontAwesome.Sharp.IconButton();
@@ -50,11 +52,8 @@
             panel9 = new Panel();
             cBoxEstatusNomina = new ComboBox();
             lblEstatusNomina = new Label();
-            panel1 = new Panel();
-            lblDescripcionCN = new Label();
-            lblHistorialNominas = new Label();
-            iconButton1 = new FontAwesome.Sharp.IconButton();
-            tableLayoutPanel1.SuspendLayout();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            panel1.SuspendLayout();
             flowLayoutPanel1.SuspendLayout();
             gBoxDatosEmpleado.SuspendLayout();
             panel3.SuspendLayout();
@@ -63,23 +62,39 @@
             gBoxEditarEstatus.SuspendLayout();
             panel18.SuspendLayout();
             panel9.SuspendLayout();
-            panel1.SuspendLayout();
+            tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
-            // tableLayoutPanel1
+            // panel1
             // 
-            tableLayoutPanel1.ColumnCount = 3;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 5F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 90F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 5F));
-            tableLayoutPanel1.Controls.Add(flowLayoutPanel1, 1, 0);
-            tableLayoutPanel1.Dock = DockStyle.Top;
-            tableLayoutPanel1.Location = new Point(0, 125);
-            tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 1;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(1262, 566);
-            tableLayoutPanel1.TabIndex = 4;
+            panel1.Controls.Add(lblDescripcionCN);
+            panel1.Controls.Add(lblHistorialNominas);
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1262, 125);
+            panel1.TabIndex = 3;
+            // 
+            // lblDescripcionCN
+            // 
+            lblDescripcionCN.Font = new Font("Corbel", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblDescripcionCN.ForeColor = Color.White;
+            lblDescripcionCN.Location = new Point(32, 73);
+            lblDescripcionCN.Name = "lblDescripcionCN";
+            lblDescripcionCN.Size = new Size(743, 32);
+            lblDescripcionCN.TabIndex = 4;
+            lblDescripcionCN.Text = "Permite modificar el estatus de la nómina de un empleado";
+            // 
+            // lblHistorialNominas
+            // 
+            lblHistorialNominas.AutoSize = true;
+            lblHistorialNominas.Font = new Font("Corbel", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblHistorialNominas.ForeColor = Color.FromArgb(12, 215, 253);
+            lblHistorialNominas.Location = new Point(32, 26);
+            lblHistorialNominas.Name = "lblHistorialNominas";
+            lblHistorialNominas.Size = new Size(251, 35);
+            lblHistorialNominas.TabIndex = 1;
+            lblHistorialNominas.Text = " Estatus de Nómina";
             // 
             // flowLayoutPanel1
             // 
@@ -178,6 +193,7 @@
             btnBuscar.Text = "Buscar";
             btnBuscar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnBuscar.UseVisualStyleBackColor = true;
+            btnBuscar.Click += btnBuscar_Click_1;
             // 
             // panel4
             // 
@@ -210,8 +226,7 @@
             // 
             // gBoxEditarEstatus
             // 
-            gBoxEditarEstatus.Controls.Add(iconButton1);
-            gBoxEditarEstatus.Controls.Add(btnVisualizarNomina);
+            gBoxEditarEstatus.Controls.Add(btnVistaPrevia);
             gBoxEditarEstatus.Controls.Add(btnModificar);
             gBoxEditarEstatus.Controls.Add(panel18);
             gBoxEditarEstatus.Controls.Add(lblDatosObligatorios);
@@ -225,28 +240,29 @@
             gBoxEditarEstatus.TabStop = false;
             gBoxEditarEstatus.Text = "Estatus de nómina";
             // 
-            // btnVisualizarNomina
+            // btnVistaPrevia
             // 
-            btnVisualizarNomina.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnVisualizarNomina.BackColor = Color.Black;
-            btnVisualizarNomina.Cursor = Cursors.Hand;
-            btnVisualizarNomina.FlatAppearance.BorderColor = Color.LightGreen;
-            btnVisualizarNomina.FlatAppearance.BorderSize = 2;
-            btnVisualizarNomina.FlatStyle = FlatStyle.Flat;
-            btnVisualizarNomina.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnVisualizarNomina.ForeColor = Color.Azure;
-            btnVisualizarNomina.IconChar = FontAwesome.Sharp.IconChar.Eye;
-            btnVisualizarNomina.IconColor = Color.LightGreen;
-            btnVisualizarNomina.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnVisualizarNomina.IconSize = 32;
-            btnVisualizarNomina.Location = new Point(1722, 272);
-            btnVisualizarNomina.Name = "btnVisualizarNomina";
-            btnVisualizarNomina.Size = new Size(219, 40);
-            btnVisualizarNomina.TabIndex = 12;
-            btnVisualizarNomina.Text = "Vista previa de Nómina";
-            btnVisualizarNomina.TextAlign = ContentAlignment.MiddleRight;
-            btnVisualizarNomina.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnVisualizarNomina.UseVisualStyleBackColor = false;
+            btnVistaPrevia.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnVistaPrevia.BackColor = Color.Black;
+            btnVistaPrevia.Cursor = Cursors.Hand;
+            btnVistaPrevia.FlatAppearance.BorderColor = Color.LightGreen;
+            btnVistaPrevia.FlatAppearance.BorderSize = 2;
+            btnVistaPrevia.FlatStyle = FlatStyle.Flat;
+            btnVistaPrevia.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnVistaPrevia.ForeColor = Color.Azure;
+            btnVistaPrevia.IconChar = FontAwesome.Sharp.IconChar.Eye;
+            btnVistaPrevia.IconColor = Color.LightGreen;
+            btnVistaPrevia.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnVistaPrevia.IconSize = 32;
+            btnVistaPrevia.Location = new Point(789, 52);
+            btnVistaPrevia.Name = "btnVistaPrevia";
+            btnVistaPrevia.Size = new Size(219, 40);
+            btnVistaPrevia.TabIndex = 18;
+            btnVistaPrevia.Text = "Vista previa de Nómina";
+            btnVistaPrevia.TextAlign = ContentAlignment.MiddleRight;
+            btnVistaPrevia.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnVistaPrevia.UseVisualStyleBackColor = false;
+            btnVistaPrevia.Click += btnVistaPrevia_Click;
             // 
             // btnModificar
             // 
@@ -269,6 +285,7 @@
             btnModificar.TextAlign = ContentAlignment.MiddleRight;
             btnModificar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnModificar.UseVisualStyleBackColor = false;
+            btnModificar.Click += btnModificar_Click_1;
             // 
             // panel18
             // 
@@ -293,7 +310,7 @@
             btnActualizarCambios.IconColor = Color.Cyan;
             btnActualizarCambios.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnActualizarCambios.IconSize = 32;
-            btnActualizarCambios.Location = new Point(3, 19);
+            btnActualizarCambios.Location = new Point(14, 19);
             btnActualizarCambios.Name = "btnActualizarCambios";
             btnActualizarCambios.Size = new Size(243, 40);
             btnActualizarCambios.TabIndex = 11;
@@ -301,6 +318,7 @@
             btnActualizarCambios.TextAlign = ContentAlignment.MiddleRight;
             btnActualizarCambios.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnActualizarCambios.UseVisualStyleBackColor = false;
+            btnActualizarCambios.Click += btnActualizarCambios_Click_1;
             // 
             // lblDatosObligatorios
             // 
@@ -341,59 +359,20 @@
             lblEstatusNomina.TabIndex = 3;
             lblEstatusNomina.Text = "Estatus Nómina*";
             // 
-            // panel1
+            // tableLayoutPanel1
             // 
-            panel1.Controls.Add(lblDescripcionCN);
-            panel1.Controls.Add(lblHistorialNominas);
-            panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(0, 0);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(1262, 125);
-            panel1.TabIndex = 3;
-            // 
-            // lblDescripcionCN
-            // 
-            lblDescripcionCN.Font = new Font("Corbel", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblDescripcionCN.ForeColor = Color.White;
-            lblDescripcionCN.Location = new Point(32, 73);
-            lblDescripcionCN.Name = "lblDescripcionCN";
-            lblDescripcionCN.Size = new Size(743, 32);
-            lblDescripcionCN.TabIndex = 4;
-            lblDescripcionCN.Text = "Permite modificar el estatus de la nómina de un empleado";
-            // 
-            // lblHistorialNominas
-            // 
-            lblHistorialNominas.AutoSize = true;
-            lblHistorialNominas.Font = new Font("Corbel", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblHistorialNominas.ForeColor = Color.FromArgb(12, 215, 253);
-            lblHistorialNominas.Location = new Point(32, 26);
-            lblHistorialNominas.Name = "lblHistorialNominas";
-            lblHistorialNominas.Size = new Size(251, 35);
-            lblHistorialNominas.TabIndex = 1;
-            lblHistorialNominas.Text = " Estatus de Nómina";
-            // 
-            // iconButton1
-            // 
-            iconButton1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            iconButton1.BackColor = Color.Black;
-            iconButton1.Cursor = Cursors.Hand;
-            iconButton1.FlatAppearance.BorderColor = Color.LightGreen;
-            iconButton1.FlatAppearance.BorderSize = 2;
-            iconButton1.FlatStyle = FlatStyle.Flat;
-            iconButton1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            iconButton1.ForeColor = Color.Azure;
-            iconButton1.IconChar = FontAwesome.Sharp.IconChar.Eye;
-            iconButton1.IconColor = Color.LightGreen;
-            iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconButton1.IconSize = 32;
-            iconButton1.Location = new Point(789, 52);
-            iconButton1.Name = "iconButton1";
-            iconButton1.Size = new Size(219, 40);
-            iconButton1.TabIndex = 18;
-            iconButton1.Text = "Vista previa de Nómina";
-            iconButton1.TextAlign = ContentAlignment.MiddleRight;
-            iconButton1.TextImageRelation = TextImageRelation.ImageBeforeText;
-            iconButton1.UseVisualStyleBackColor = false;
+            tableLayoutPanel1.ColumnCount = 3;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 5F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 90F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 5F));
+            tableLayoutPanel1.Controls.Add(flowLayoutPanel1, 1, 0);
+            tableLayoutPanel1.Dock = DockStyle.Top;
+            tableLayoutPanel1.Location = new Point(0, 125);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 1;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.Size = new Size(1262, 566);
+            tableLayoutPanel1.TabIndex = 4;
             // 
             // UC_EditarNominaAPI
             // 
@@ -404,7 +383,9 @@
             Controls.Add(panel1);
             Name = "UC_EditarNominaAPI";
             Size = new Size(1262, 705);
-            tableLayoutPanel1.ResumeLayout(false);
+            Load += UC_EditarNominaAPI_Load_1;
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             flowLayoutPanel1.ResumeLayout(false);
             gBoxDatosEmpleado.ResumeLayout(false);
             panel3.ResumeLayout(false);
@@ -417,14 +398,14 @@
             gBoxEditarEstatus.PerformLayout();
             panel18.ResumeLayout(false);
             panel9.ResumeLayout(false);
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            tableLayoutPanel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
-
-        private TableLayoutPanel tableLayoutPanel1;
+        private Panel panel1;
+        private Label lblDescripcionCN;
+        private Label lblHistorialNominas;
         private FlowLayoutPanel flowLayoutPanel1;
         private GroupBox gBoxDatosEmpleado;
         private Panel panel3;
@@ -438,7 +419,6 @@
         private TextBox txtNombreEmpleado;
         private Label lblNombreCompleto;
         private GroupBox gBoxEditarEstatus;
-        private FontAwesome.Sharp.IconButton btnVisualizarNomina;
         private FontAwesome.Sharp.IconButton btnModificar;
         private Panel panel18;
         private FontAwesome.Sharp.IconButton btnActualizarCambios;
@@ -446,9 +426,7 @@
         private Panel panel9;
         private ComboBox cBoxEstatusNomina;
         private Label lblEstatusNomina;
-        private Panel panel1;
-        private Label lblDescripcionCN;
-        private Label lblHistorialNominas;
-        private FontAwesome.Sharp.IconButton iconButton1;
+        private TableLayoutPanel tableLayoutPanel1;
+        private FontAwesome.Sharp.IconButton btnVistaPrevia;
     }
 }

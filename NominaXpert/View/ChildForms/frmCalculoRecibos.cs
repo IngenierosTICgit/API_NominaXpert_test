@@ -70,7 +70,7 @@ namespace NominaXpert.View.Forms
 
         private void iconButton2_Click(object sender, EventArgs e)
         {
-            UC_EditarNominaAPI a = new UC_EditarNominaAPI();
+            UC_EditarNominaAPI a = new UC_EditarNominaAPI(this.IdNomina);
             Utilities.Formas.ActivateButton(sender, Formas.RGBColors.ChangeColor);
             addUsersControl(a);
         }
