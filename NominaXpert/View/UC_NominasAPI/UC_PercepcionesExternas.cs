@@ -26,6 +26,8 @@ namespace NominaXpert.View.UC_NominasAPI
 
             InitializeComponent();
             this.IdNomina = idNomina;
+            txtIdNomina.Text = IdNomina.ToString();
+
 
             _bonificacionController = new BonificacionController();
             _detalleNominaController = new DetalleNominaController();
@@ -301,11 +303,6 @@ namespace NominaXpert.View.UC_NominasAPI
                 });
             };
             timer.Start();
-        }
-
-        private void txtIdNomina_TextChanged(object sender, EventArgs e)
-        {
-            txtIdNomina.Text = this.IdNomina.ToString();
         }
     }
 }

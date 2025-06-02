@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             panel3 = new Panel();
             btnSiguientePerExt = new FontAwesome.Sharp.IconButton();
             btnSiguiente = new FontAwesome.Sharp.IconButton();
@@ -321,9 +321,9 @@
             // 
             // Monto
             // 
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle1.Format = "#,##0.00";
-            Monto.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "#,##0.00";
+            Monto.DefaultCellStyle = dataGridViewCellStyle2;
             Monto.HeaderText = "Monto";
             Monto.MinimumWidth = 6;
             Monto.Name = "Monto";
@@ -349,7 +349,6 @@
             txtIdNomina.ReadOnly = true;
             txtIdNomina.Size = new Size(115, 27);
             txtIdNomina.TabIndex = 22;
-            txtIdNomina.TextChanged += txtIdNomina_TextChanged;
             // 
             // label4
             // 
