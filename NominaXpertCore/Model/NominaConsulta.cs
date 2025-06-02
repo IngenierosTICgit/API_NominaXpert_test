@@ -14,6 +14,7 @@ namespace NominaXpertCore.Model
         // Nuevas propiedades agregadas para el pago
         public decimal MontoTotal { get; set; }
         public string MontoLetras { get; set; }
+        public string TipoNomina { get; set; }
 
         // NUEVAS PROPIEDADES: Datos directos del empleado (para API)
         public string NombreEmpleadoDirecto { get; set; }
@@ -32,7 +33,8 @@ namespace NominaXpertCore.Model
             DatosEmpleado = null; // Relación no cargada inicialmente
             MontoTotal = 0; // Monto inicial
             MontoLetras = string.Empty; // Monto en letras vacío
-                                        // Inicializar las nuevas propiedades
+            TipoNomina = string.Empty; // Tipo de nómina vacío
+            // Inicializar las nuevas propiedades
             NombreEmpleadoDirecto = string.Empty;
             DepartamentoEmpleadoDirecto = string.Empty;
             RfcEmpleadoDirecto = string.Empty;
@@ -50,6 +52,7 @@ namespace NominaXpertCore.Model
             DatosEmpleado = null;
             MontoTotal = 0;
             MontoLetras = string.Empty;
+            TipoNomina = string.Empty;
 
             // Inicializar las nuevas propiedades
             NombreEmpleadoDirecto = string.Empty;
@@ -70,6 +73,7 @@ namespace NominaXpertCore.Model
             DatosEmpleado = datosEmpleado;
             MontoTotal = montoTotal;
             MontoLetras = montoLetras;
+            TipoNomina = string.Empty;
 
             // Inicializar las nuevas propiedades
             NombreEmpleadoDirecto = string.Empty;

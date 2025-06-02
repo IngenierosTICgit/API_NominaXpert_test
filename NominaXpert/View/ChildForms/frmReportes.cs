@@ -40,6 +40,21 @@ namespace NominaXpert.View.Forms
         private void frmReportes_Load(object sender, EventArgs e)
         {
             InicializaVentanaCalculoRecibos();
+            
+            // Configurar las columnas del DataGridView
+            dataGridView1.Columns.Clear();
+            dataGridView1.Columns.Add("Id_Nomina", "ID Nómina");
+            dataGridView1.Columns.Add("Id_Empleado", "ID Empleado");
+            dataGridView1.Columns.Add("Fecha_Inicio", "Fecha Inicio");
+            dataGridView1.Columns.Add("Fecha_Fin", "Fecha Fin");
+            dataGridView1.Columns.Add("Estado_Pago", "Estado Pago");
+            dataGridView1.Columns.Add("Monto_Total", "Monto Total");
+            dataGridView1.Columns.Add("Monto_Letras", "Monto en Letras");
+            dataGridView1.Columns.Add("Tipo_Nomina", "Tipo Nómina");
+
+            // Inicializar el ComboBox de tipo de nómina
+            InicializarComboTipoNomina();
+
             // Cargar las nóminas automáticamente al abrir el formulario
             CargarNominasPorDefecto();
             // Inicializar el ComboBox de estados de pago
@@ -260,8 +275,9 @@ namespace NominaXpert.View.Forms
                             nomina.FechaInicio.ToShortDateString(),
                             nomina.FechaFin.ToShortDateString(),
                             nomina.EstadoPago,
-                            nomina.MontoTotal,
-                            nomina.MontoLetras
+                            nomina.EstadoPago == "Pendiente" ? "Nulo" : (nomina.MontoTotal == 0 ? "Nulo" : nomina.MontoTotal.ToString("C")),
+                            nomina.EstadoPago == "Pendiente" ? "Nulo" : (string.IsNullOrEmpty(nomina.MontoLetras) ? "Nulo" : nomina.MontoLetras),
+                            string.IsNullOrEmpty(nomina.TipoNomina) ? "Nulo" : nomina.TipoNomina
                         );
                     }
 
@@ -380,8 +396,9 @@ namespace NominaXpert.View.Forms
                             nomina.FechaInicio.ToShortDateString(),
                             nomina.FechaFin.ToShortDateString(),
                             nomina.EstadoPago,
-                            nomina.EstadoPago == "Pendiente" ? "Nulo" : (object)nomina.MontoTotal,
-                            nomina.EstadoPago == "Pendiente" ? "Nulo" : (object)nomina.MontoLetras
+                            nomina.EstadoPago == "Pendiente" ? "Nulo" : (nomina.MontoTotal == 0 ? "Nulo" : nomina.MontoTotal.ToString("C")),
+                            nomina.EstadoPago == "Pendiente" ? "Nulo" : (string.IsNullOrEmpty(nomina.MontoLetras) ? "Nulo" : nomina.MontoLetras),
+                            string.IsNullOrEmpty(nomina.TipoNomina) ? "Nulo" : nomina.TipoNomina
                         );
                     }
 
@@ -436,8 +453,9 @@ namespace NominaXpert.View.Forms
                             nomina.FechaInicio.ToShortDateString(),
                             nomina.FechaFin.ToShortDateString(),
                             nomina.EstadoPago,
-                            nomina.MontoTotal,
-                            nomina.MontoLetras
+                            nomina.EstadoPago == "Pendiente" ? "Nulo" : (nomina.MontoTotal == 0 ? "Nulo" : nomina.MontoTotal.ToString("C")),
+                            nomina.EstadoPago == "Pendiente" ? "Nulo" : (string.IsNullOrEmpty(nomina.MontoLetras) ? "Nulo" : nomina.MontoLetras),
+                            string.IsNullOrEmpty(nomina.TipoNomina) ? "Nulo" : nomina.TipoNomina
                         );
                     }
 
@@ -465,6 +483,9 @@ namespace NominaXpert.View.Forms
                 // Establecer las fechas a valores por defecto (por ejemplo, el mes actual)
                 DTPFechaInicioNomina.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
                 DTPFechaFinNomina.Value = DateTime.Now;
+
+                // Resetear el ComboBox de tipo de nómina
+                cboTipoNomina.SelectedIndex = 0;
 
                 // Limpiar el DataGridView
                 dataGridView1.Rows.Clear();
@@ -519,8 +540,9 @@ namespace NominaXpert.View.Forms
                             nomina.FechaInicio.ToShortDateString(),
                             nomina.FechaFin.ToShortDateString(),
                             nomina.EstadoPago,
-                            nomina.EstadoPago == "Pendiente" ? "Nulo" : (object)nomina.MontoTotal,
-                            nomina.EstadoPago == "Pendiente" ? "Nulo" : (object)nomina.MontoLetras
+                            nomina.EstadoPago == "Pendiente" ? "Nulo" : (nomina.MontoTotal == 0 ? "Nulo" : nomina.MontoTotal.ToString("C")),
+                            nomina.EstadoPago == "Pendiente" ? "Nulo" : (string.IsNullOrEmpty(nomina.MontoLetras) ? "Nulo" : nomina.MontoLetras),
+                            string.IsNullOrEmpty(nomina.TipoNomina) ? "Nulo" : nomina.TipoNomina
                         );
                     }
 
@@ -541,6 +563,69 @@ namespace NominaXpert.View.Forms
         private void txtMatricula_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void InicializarComboTipoNomina()
+        {
+            cboTipoNomina.Items.Clear();
+            cboTipoNomina.Items.Add("Todas");
+            cboTipoNomina.Items.Add("Interna");
+            cboTipoNomina.Items.Add("Externa");
+            cboTipoNomina.SelectedIndex = 0;
+        }
+
+        private void btnFiltrarTipoNomina_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string tipoSeleccionado = cboTipoNomina.SelectedItem?.ToString();
+                if (string.IsNullOrEmpty(tipoSeleccionado))
+                {
+                    MessageBox.Show("Por favor, seleccione un tipo de nómina.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Obtener todas las nóminas
+                List<NominaConsulta> nominas = _nominasController.DesplegarNominas();
+
+                // Filtrar por tipo si no es "Todas"
+                if (tipoSeleccionado != "Todas")
+                {
+                    nominas = nominas.Where(n => n.TipoNomina == tipoSeleccionado).ToList();
+                }
+
+                // Limpiar el DataGridView
+                dataGridView1.Rows.Clear();
+
+                // Llenar el DataGridView con los resultados
+                if (nominas.Count > 0)
+                {
+                    foreach (var nomina in nominas)
+                    {
+                        dataGridView1.Rows.Add(
+                            nomina.IdNomina,
+                            nomina.IdEmpleado,
+                            nomina.FechaInicio.ToShortDateString(),
+                            nomina.FechaFin.ToShortDateString(),
+                            nomina.EstadoPago,
+                            nomina.EstadoPago == "Pendiente" ? "Nulo" : (nomina.MontoTotal == 0 ? "Nulo" : nomina.MontoTotal.ToString("C")),
+                            nomina.EstadoPago == "Pendiente" ? "Nulo" : (string.IsNullOrEmpty(nomina.MontoLetras) ? "Nulo" : nomina.MontoLetras),
+                            string.IsNullOrEmpty(nomina.TipoNomina) ? "Nulo" : nomina.TipoNomina
+                        );
+                    }
+
+                    // Actualizar el total de registros
+                    lblTotaldeRegistros.Text = $"Total de Registros: {dataGridView1.Rows.Count}";
+                }
+                else
+                {
+                    MessageBox.Show("No se encontraron nóminas del tipo seleccionado.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al filtrar nóminas por tipo: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 

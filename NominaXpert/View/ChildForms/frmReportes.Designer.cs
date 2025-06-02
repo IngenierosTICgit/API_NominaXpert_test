@@ -60,8 +60,10 @@
             btnDatalleNomina = new FontAwesome.Sharp.IconButton();
             label6 = new Label();
             label5 = new Label();
-            DTPFechaFinNomina = new NominaXpert.Utilities.NominaDatePicker();
-            DTPFechaInicioNomina = new NominaXpert.Utilities.NominaDatePicker();
+            DTPFechaFinNomina = new Utilities.NominaDatePicker();
+            DTPFechaInicioNomina = new Utilities.NominaDatePicker();
+            cboTipoNomina = new ComboBox();
+            btnFiltrarTipoNomina = new Button();
             gBoxHistorial = new GroupBox();
             dataGridView1 = new DataGridView();
             Id_Nomina = new DataGridViewTextBoxColumn();
@@ -90,6 +92,8 @@
             panel1.Controls.Add(label2);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(panel3);
+            panel1.Controls.Add(cboTipoNomina);
+            panel1.Controls.Add(btnFiltrarTipoNomina);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
@@ -456,6 +460,25 @@
             DTPFechaInicioNomina.TabIndex = 12;
             DTPFechaInicioNomina.TextColor = Color.FromArgb(12, 215, 253);
             // 
+            // cboTipoNomina
+            // 
+            cboTipoNomina.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboTipoNomina.FormattingEnabled = true;
+            cboTipoNomina.Location = new Point(984, 55);
+            cboTipoNomina.Name = "cboTipoNomina";
+            cboTipoNomina.Size = new Size(121, 28);
+            cboTipoNomina.TabIndex = 20;
+            // 
+            // btnFiltrarTipoNomina
+            // 
+            btnFiltrarTipoNomina.Location = new Point(1121, 56);
+            btnFiltrarTipoNomina.Name = "btnFiltrarTipoNomina";
+            btnFiltrarTipoNomina.Size = new Size(75, 27);
+            btnFiltrarTipoNomina.TabIndex = 21;
+            btnFiltrarTipoNomina.Text = "Filtrar Tipo";
+            btnFiltrarTipoNomina.UseVisualStyleBackColor = true;
+            btnFiltrarTipoNomina.Click += btnFiltrarTipoNomina_Click;
+            // 
             // gBoxHistorial
             // 
             gBoxHistorial.Controls.Add(dataGridView1);
@@ -638,5 +661,7 @@
         private ComboBox cboEstadoDePago;
         private Button btnBuscarEstado;
         private Label label3;
+        private System.Windows.Forms.ComboBox cboTipoNomina;
+        private System.Windows.Forms.Button btnFiltrarTipoNomina;
     }
 }

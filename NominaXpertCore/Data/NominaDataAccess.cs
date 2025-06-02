@@ -386,22 +386,37 @@ namespace NominaXpertCore.Data
 
             // Consulta SQL modificada para usar LEFT JOIN y mostrar todas las nóminas
             string query = @"
-                            SELECT 
-                                n.id AS IdNomina,
-                                n.id_empleado AS IdEmpleado,
-                                n.fecha_inicio AS FechaInicio,
-                                n.fecha_fin AS FechaFin,
-                                n.estado_pago AS EstadoPago,
-                                pay.monto_total AS MontoTotal,
-                                pay.monto_letras AS MontoLetras
-                            FROM 
-                                nomina.nomina n
-                            LEFT JOIN 
-                                nomina.empleados e ON e.id = n.id_empleado
-                            LEFT JOIN 
-                                nomina.pagos pay ON pay.id_nomina = n.id
-                            ORDER BY 
-                                n.id DESC";
+                   SELECT 
+                    n.id AS IdNomina,
+                    n.id_empleado AS IdEmpleado,
+                    n.fecha_inicio AS FechaInicio,
+                    n.fecha_fin AS FechaFin,
+                    n.estado_pago AS EstadoPago,
+                    pay.monto_total AS MontoTotal,
+                    pay.monto_letras AS MontoLetras,
+                    'Interna' AS TipoNomina
+                FROM 
+                    nomina.nomina n
+                LEFT JOIN 
+                    nomina.pagos pay ON pay.id_nomina = n.id
+
+                UNION ALL
+
+                SELECT
+                    ne.id AS IdNomina,
+                    ne.id_empleado AS IdEmpleado,
+                    ne.fecha_inicio AS FechaInicio,
+                    ne.fecha_fin AS FechaFin,
+                    ne.estado_pago AS EstadoPago,
+                    pay.monto_total AS MontoTotal,
+                    pay.monto_letras AS MontoLetras,
+                    'Externa' AS TipoNomina
+                FROM
+                    nomina.nomina_externa ne
+                LEFT JOIN
+                    nomina.pagos pay ON pay.id_nomina = ne.id
+
+                ORDER BY IdNomina DESC";
 
             try
             {
@@ -412,13 +427,14 @@ namespace NominaXpertCore.Data
                 {
                     NominaConsulta nomina = new NominaConsulta
                     {
-                        IdNomina = Convert.ToInt32(row["IdNomina"]),
-                        IdEmpleado = Convert.ToInt32(row["IdEmpleado"]),
-                        FechaInicio = Convert.ToDateTime(row["FechaInicio"]),
-                        FechaFin = Convert.ToDateTime(row["FechaFin"]),
-                        EstadoPago = row["EstadoPago"].ToString(),
+                        IdNomina = row["IdNomina"] == DBNull.Value ? 0 : Convert.ToInt32(row["IdNomina"]),
+                        IdEmpleado = row["IdEmpleado"] == DBNull.Value ? 0 : Convert.ToInt32(row["IdEmpleado"]),
+                        FechaInicio = row["FechaInicio"] == DBNull.Value ? DateTime.Now : Convert.ToDateTime(row["FechaInicio"]),
+                        FechaFin = row["FechaFin"] == DBNull.Value ? DateTime.Now : Convert.ToDateTime(row["FechaFin"]),
+                        EstadoPago = row["EstadoPago"] == DBNull.Value ? "Pendiente" : row["EstadoPago"].ToString(),
                         MontoTotal = row["MontoTotal"] == DBNull.Value ? 0 : Convert.ToDecimal(row["MontoTotal"]),
-                        MontoLetras = row["MontoLetras"] == DBNull.Value ? null : row["MontoLetras"].ToString()
+                        MontoLetras = row["MontoLetras"] == DBNull.Value ? null : row["MontoLetras"].ToString(),
+                        TipoNomina = row["TipoNomina"] == DBNull.Value ? "Nulo" : row["TipoNomina"].ToString()
                     };
 
                     nominas.Add(nomina);
