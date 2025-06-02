@@ -138,10 +138,6 @@ namespace NominaXpert.View.UC_NominasAPI
             _empleadoActual = null;
         }
 
-        private async void btnBuscar_Click(object sender, EventArgs e)
-        {
-            await BuscarEmpleado();
-        }
 
         private void UC_CalculoNominaExterna_Load(object sender, EventArgs e)
         {

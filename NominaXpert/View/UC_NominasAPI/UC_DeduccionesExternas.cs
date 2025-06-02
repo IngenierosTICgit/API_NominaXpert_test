@@ -332,7 +332,7 @@ namespace NominaXpert.View.UC_NominasAPI
                         parent.Controls.Remove(this);
 
                         // Redirige al recibo de nómina externa
-                        UC_NominaReciboExterno ucRecibo = new UC_NominaReciboExterno();//this.IdNomina
+                        UC_NominaReciboExterno ucRecibo = new UC_NominaReciboExterno(this.IdNomina);
                         ucRecibo.Dock = DockStyle.Fill;
 
                         parent.Controls.Add(ucRecibo);

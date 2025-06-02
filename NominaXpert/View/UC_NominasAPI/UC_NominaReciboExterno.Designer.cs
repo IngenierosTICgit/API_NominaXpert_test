@@ -50,12 +50,12 @@
             label2 = new Label();
             label1 = new Label();
             gBoxVPCalculoNom = new GroupBox();
+            btnGenerarNómina = new FontAwesome.Sharp.IconButton();
+            btnPDFReciboNomina = new FontAwesome.Sharp.IconButton();
             lblSueldoPorHorasTrabajadas = new Label();
             label10 = new Label();
             cboMetodoPago = new ComboBox();
             lblMetodoPago = new Label();
-            btnGenerarNómina = new FontAwesome.Sharp.IconButton();
-            btnPDFReciboNomina = new FontAwesome.Sharp.IconButton();
             lblMontoLetras = new Label();
             lblTotalDeducciones = new Label();
             lblTotalNeto = new Label();
@@ -315,12 +315,12 @@
             // 
             // gBoxVPCalculoNom
             // 
+            gBoxVPCalculoNom.Controls.Add(btnGenerarNómina);
+            gBoxVPCalculoNom.Controls.Add(btnPDFReciboNomina);
             gBoxVPCalculoNom.Controls.Add(lblSueldoPorHorasTrabajadas);
             gBoxVPCalculoNom.Controls.Add(label10);
             gBoxVPCalculoNom.Controls.Add(cboMetodoPago);
             gBoxVPCalculoNom.Controls.Add(lblMetodoPago);
-            gBoxVPCalculoNom.Controls.Add(btnGenerarNómina);
-            gBoxVPCalculoNom.Controls.Add(btnPDFReciboNomina);
             gBoxVPCalculoNom.Controls.Add(lblMontoLetras);
             gBoxVPCalculoNom.Controls.Add(lblTotalDeducciones);
             gBoxVPCalculoNom.Controls.Add(lblTotalNeto);
@@ -338,6 +338,54 @@
             gBoxVPCalculoNom.TabIndex = 9;
             gBoxVPCalculoNom.TabStop = false;
             gBoxVPCalculoNom.Text = "Vista previa de cálculos de Nómina";
+            // 
+            // btnGenerarNómina
+            // 
+            btnGenerarNómina.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnGenerarNómina.BackColor = Color.Black;
+            btnGenerarNómina.Cursor = Cursors.Hand;
+            btnGenerarNómina.FlatAppearance.BorderColor = Color.Cyan;
+            btnGenerarNómina.FlatAppearance.BorderSize = 2;
+            btnGenerarNómina.FlatStyle = FlatStyle.Flat;
+            btnGenerarNómina.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnGenerarNómina.ForeColor = Color.Azure;
+            btnGenerarNómina.IconChar = FontAwesome.Sharp.IconChar.Usd;
+            btnGenerarNómina.IconColor = Color.Cyan;
+            btnGenerarNómina.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnGenerarNómina.IconSize = 32;
+            btnGenerarNómina.Location = new Point(842, 167);
+            btnGenerarNómina.Name = "btnGenerarNómina";
+            btnGenerarNómina.Size = new Size(176, 40);
+            btnGenerarNómina.TabIndex = 45;
+            btnGenerarNómina.Text = "Generar Nómina";
+            btnGenerarNómina.TextAlign = ContentAlignment.MiddleRight;
+            btnGenerarNómina.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnGenerarNómina.UseVisualStyleBackColor = false;
+            btnGenerarNómina.Click += btnGenerarNómina_Click;
+            // 
+            // btnPDFReciboNomina
+            // 
+            btnPDFReciboNomina.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnPDFReciboNomina.BackColor = Color.Black;
+            btnPDFReciboNomina.Cursor = Cursors.Hand;
+            btnPDFReciboNomina.FlatAppearance.BorderColor = Color.Red;
+            btnPDFReciboNomina.FlatAppearance.BorderSize = 2;
+            btnPDFReciboNomina.FlatStyle = FlatStyle.Flat;
+            btnPDFReciboNomina.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnPDFReciboNomina.ForeColor = Color.Azure;
+            btnPDFReciboNomina.IconChar = FontAwesome.Sharp.IconChar.SheetPlastic;
+            btnPDFReciboNomina.IconColor = Color.Red;
+            btnPDFReciboNomina.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnPDFReciboNomina.IconSize = 32;
+            btnPDFReciboNomina.Location = new Point(617, 167);
+            btnPDFReciboNomina.Name = "btnPDFReciboNomina";
+            btnPDFReciboNomina.Size = new Size(176, 40);
+            btnPDFReciboNomina.TabIndex = 44;
+            btnPDFReciboNomina.Text = "Descargar PDF";
+            btnPDFReciboNomina.TextAlign = ContentAlignment.MiddleRight;
+            btnPDFReciboNomina.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnPDFReciboNomina.UseVisualStyleBackColor = false;
+            btnPDFReciboNomina.Click += btnPDFReciboNomina_Click;
             // 
             // lblSueldoPorHorasTrabajadas
             // 
@@ -357,9 +405,9 @@
             label10.ForeColor = Color.White;
             label10.Location = new Point(31, 87);
             label10.Name = "label10";
-            label10.Size = new Size(208, 20);
+            label10.Size = new Size(198, 20);
             label10.TabIndex = 42;
-            label10.Text = "Sueldo por Horas Trabajadas";
+            label10.Text = "Sueldo por Días Trabajados";
             // 
             // cboMetodoPago
             // 
@@ -379,52 +427,6 @@
             lblMetodoPago.Size = new Size(132, 20);
             lblMetodoPago.TabIndex = 28;
             lblMetodoPago.Text = "Método de Pago: ";
-            // 
-            // btnGenerarNómina
-            // 
-            btnGenerarNómina.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnGenerarNómina.BackColor = Color.Black;
-            btnGenerarNómina.Cursor = Cursors.Hand;
-            btnGenerarNómina.FlatAppearance.BorderColor = Color.Cyan;
-            btnGenerarNómina.FlatAppearance.BorderSize = 2;
-            btnGenerarNómina.FlatStyle = FlatStyle.Flat;
-            btnGenerarNómina.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnGenerarNómina.ForeColor = Color.Azure;
-            btnGenerarNómina.IconChar = FontAwesome.Sharp.IconChar.Usd;
-            btnGenerarNómina.IconColor = Color.Cyan;
-            btnGenerarNómina.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnGenerarNómina.IconSize = 32;
-            btnGenerarNómina.Location = new Point(1897, 339);
-            btnGenerarNómina.Name = "btnGenerarNómina";
-            btnGenerarNómina.Size = new Size(176, 40);
-            btnGenerarNómina.TabIndex = 27;
-            btnGenerarNómina.Text = "Generar Nómina";
-            btnGenerarNómina.TextAlign = ContentAlignment.MiddleRight;
-            btnGenerarNómina.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnGenerarNómina.UseVisualStyleBackColor = false;
-            // 
-            // btnPDFReciboNomina
-            // 
-            btnPDFReciboNomina.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnPDFReciboNomina.BackColor = Color.Black;
-            btnPDFReciboNomina.Cursor = Cursors.Hand;
-            btnPDFReciboNomina.FlatAppearance.BorderColor = Color.Red;
-            btnPDFReciboNomina.FlatAppearance.BorderSize = 2;
-            btnPDFReciboNomina.FlatStyle = FlatStyle.Flat;
-            btnPDFReciboNomina.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnPDFReciboNomina.ForeColor = Color.Azure;
-            btnPDFReciboNomina.IconChar = FontAwesome.Sharp.IconChar.SheetPlastic;
-            btnPDFReciboNomina.IconColor = Color.Red;
-            btnPDFReciboNomina.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnPDFReciboNomina.IconSize = 32;
-            btnPDFReciboNomina.Location = new Point(1691, 339);
-            btnPDFReciboNomina.Name = "btnPDFReciboNomina";
-            btnPDFReciboNomina.Size = new Size(176, 40);
-            btnPDFReciboNomina.TabIndex = 11;
-            btnPDFReciboNomina.Text = "Descargar PDF";
-            btnPDFReciboNomina.TextAlign = ContentAlignment.MiddleRight;
-            btnPDFReciboNomina.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnPDFReciboNomina.UseVisualStyleBackColor = false;
             // 
             // lblMontoLetras
             // 
@@ -535,6 +537,7 @@
             btnRegresar.TextAlign = ContentAlignment.MiddleRight;
             btnRegresar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnRegresar.UseVisualStyleBackColor = false;
+            btnRegresar.Click += btnRegresar_Click_1;
             // 
             // panel1
             // 
@@ -616,8 +619,6 @@
         private Label label10;
         private ComboBox cboMetodoPago;
         private Label lblMetodoPago;
-        private FontAwesome.Sharp.IconButton btnGenerarNómina;
-        private FontAwesome.Sharp.IconButton btnPDFReciboNomina;
         private Label lblMontoLetras;
         private Label lblTotalDeducciones;
         private Label lblTotalNeto;
@@ -630,5 +631,7 @@
         private Panel panel1;
         private Label lblDescripcionCN;
         private Label lblReciboNominas;
+        private FontAwesome.Sharp.IconButton btnPDFReciboNomina;
+        private FontAwesome.Sharp.IconButton btnGenerarNómina;
     }
 }
