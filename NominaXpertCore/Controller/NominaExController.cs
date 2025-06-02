@@ -26,34 +26,34 @@ namespace NominaXpertCore.Controller
             _nominaExDataAccess = new NominaExDataAccess();
         }
 
-        //public bool GuardarNominaExterna(EmpleadosRH empleado, DateTime fechaInicio, DateTime fechaFin)
-        //{
-        //    try
-        //    {
-        //        // Verificar si ya existe una nómina para este empleado y período
-        //        if (_nominaExDataAccess.ExisteNominaExterna(empleado.matricula, fechaInicio, fechaFin))
-        //        {
-        //            _logger.Warn($"Ya existe una nómina externa para el empleado {empleado.nombreEmpleado} en el período especificado.");
-        //            return false;
-        //        }
+        public bool GuardarNominaExterna(EmpleadosRH empleado, DateTime fechaInicio, DateTime fechaFin)
+        {
+            try
+            {
+                // Verificar si ya existe una nómina para este empleado y período
+                if (_nominaExDataAccess.ExisteNominaExterna(empleado.matricula, fechaInicio, fechaFin))
+                {
+                    _logger.Warn($"Ya existe una nómina externa para el empleado {empleado.nombreEmpleado} en el período especificado.");
+                    return false;
+                }
 
-        //        // Registrar la nueva nómina externa
-        //        int idNomina = _nominaExDataAccess.RegistrarNominaExterna(empleado, fechaInicio, fechaFin);
-                
-        //        if (idNomina > 0)
-        //        {
-        //            _logger.Info($"Nómina externa guardada exitosamente. ID: {idNomina}");
-        //            return true;
-        //        }
+                // Registrar la nueva nómina externa
+                int idNomina = _nominaExDataAccess.RegistrarNominaExterna(empleado, fechaInicio, fechaFin);
 
-        //        return false;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        _logger.Error(ex, "Error al guardar la nómina externa");
-        //        throw;
-        //    }
-        //}
+                if (idNomina > 0)
+                {
+                    _logger.Info($"Nómina externa guardada exitosamente. ID: {idNomina}");
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex, "Error al guardar la nómina externa");
+                throw;
+            }
+        }
 
         public DataTable ObtenerNominasExternas()
         {

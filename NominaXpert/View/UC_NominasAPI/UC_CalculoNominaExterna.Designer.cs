@@ -31,8 +31,8 @@
             tableLayoutPanel1 = new TableLayoutPanel();
             flowLayoutPanel1 = new FlowLayoutPanel();
             gBoxPrestacionesLey = new GroupBox();
-            dtpFechaFinNomina = new Utilities.NominaDatePicker();
-            dtpFechaInicioNomina = new Utilities.NominaDatePicker();
+            dtpFechaFinNomina = new NominaXpert.Utilities.NominaDatePicker();
+            dtpFechaInicioNomina = new NominaXpert.Utilities.NominaDatePicker();
             panel10 = new Panel();
             ipbMatricula = new FontAwesome.Sharp.IconPictureBox();
             txtMatricula = new TextBox();

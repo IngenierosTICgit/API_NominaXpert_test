@@ -28,16 +28,56 @@ namespace NominaXpertCore.Data
         }
 
         /// <summary>
+        /// Extrae los últimos 3 dígitos de la matrícula para usar como id_empleado
+        /// </summary>
+        private int ExtraerIdEmpleadoDeMatricula(string matricula)
+        {
+            try
+            {
+                // Extraer solo los dígitos de la matrícula
+                string soloNumeros = System.Text.RegularExpressions.Regex.Replace(matricula, @"[^\d]", "");
+
+                if (soloNumeros.Length >= 3)
+                {
+                    // Tomar los últimos 3 dígitos
+                    string ultimosTresDigitos = soloNumeros.Substring(soloNumeros.Length - 3);
+                    return int.Parse(ultimosTresDigitos);
+                }
+                else if (soloNumeros.Length > 0)
+                {
+                    // Si hay menos de 3 dígitos, usar todos los disponibles
+                    return int.Parse(soloNumeros);
+                }
+                else
+                {
+                    // Si no hay dígitos, usar 0 como valor por defecto
+                    _logger.Warn($"No se encontraron dígitos en la matrícula: {matricula}. Usando 0 como id_empleado.");
+                    return 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex, $"Error al extraer id_empleado de la matrícula: {matricula}");
+                return 0; // Valor por defecto en caso de error
+            }
+        }
+
+
+        /// <summary>
         /// Registra una nueva nómina externa con la información obtenida del API
         /// </summary>
         public int RegistrarNominaExterna(EmpleadosRH empleado, DateTime fechaInicio, DateTime fechaFin)
         {
+            // Extraer id_empleado de los últimos 3 dígitos de la matrícula
+            int idEmpleado = ExtraerIdEmpleadoDeMatricula(empleado.matricula);
+
             string query = @"
                 INSERT INTO nomina.nomina_externa (
                     fecha_inicio, 
                     fecha_fin, 
                     estado_pago,
                     matricula,
+                    id_empleado,
                     nombre_empleado,
                     estatus_empleado,
                     estatus_contrato,
@@ -50,6 +90,7 @@ namespace NominaXpertCore.Data
                     @fechaFin,
                     'Pendiente',
                     @matricula,
+                    @idEmpleado,
                     @nombreEmpleado,
                     @estatusEmpleado,
                     @estatusContrato,
@@ -66,6 +107,7 @@ namespace NominaXpertCore.Data
                     _dbAccess.CreateParameter("@fechaInicio", fechaInicio),
                     _dbAccess.CreateParameter("@fechaFin", fechaFin),
                     _dbAccess.CreateParameter("@matricula", empleado.matricula),
+                    _dbAccess.CreateParameter("@idEmpleado", idEmpleado),
                     _dbAccess.CreateParameter("@nombreEmpleado", empleado.nombreEmpleado),
                     _dbAccess.CreateParameter("@estatusEmpleado", empleado.estatusEmpleado),
                     _dbAccess.CreateParameter("@estatusContrato", empleado.estatusContrato),
@@ -189,6 +231,7 @@ namespace NominaXpertCore.Data
                     fecha_fin,
                     estado_pago,
                     matricula,
+                    id_empleado,
                     nombre_empleado,
                     estatus_empleado,
                     estatus_contrato,
