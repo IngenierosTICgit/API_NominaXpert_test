@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using NominaXpertCore.Controller;
 using NominaXpertCore.Data;
-using NominaXpert.Model;
+using NominaXpertCore.Model;
 
 namespace NominaXpert.View.UsersControl
 {

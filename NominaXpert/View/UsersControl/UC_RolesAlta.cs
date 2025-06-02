@@ -1,6 +1,6 @@
 ﻿using System.Data;
 using NominaXpertCore.Controller;
-using NominaXpert.Model;
+using NominaXpertCore.Model;
 using NominaXpertCore.Model;
 namespace NominaXpert.View.UsersControl
 {

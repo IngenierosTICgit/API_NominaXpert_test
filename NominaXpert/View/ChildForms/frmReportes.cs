@@ -1,6 +1,6 @@
 ﻿using NominaXpertCore.Business;
 using NominaXpertCore.Controller;
-using NominaXpert.Model;
+using NominaXpertCore.Model;
 using NominaXpert.View.UsersControl;
 using NominaXpert.Utilities;
 using System;

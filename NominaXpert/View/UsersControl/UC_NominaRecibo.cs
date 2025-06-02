@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using NominaXpertCore.Controller;
 using NominaXpertCore.Business;
-using NominaXpert.Model;
+using NominaXpertCore.Model;
 using ControlEscolar.Utilities;
 using NLog;
 

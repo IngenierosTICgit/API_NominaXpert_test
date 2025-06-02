@@ -1,6 +1,6 @@
 ﻿using NominaXpertCore.Controller;
 using NominaXpertCore.Data;
-using NominaXpert.Model;
+using NominaXpertCore.Model;
 using NominaXpertCore.Utilities;
 using System;
 using System.Collections.Generic;

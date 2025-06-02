@@ -1,4 +1,4 @@
-﻿using NominaXpert.Model;
+﻿using NominaXpertCore.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

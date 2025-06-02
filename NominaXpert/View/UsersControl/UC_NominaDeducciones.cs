@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using NominaXpertCore.Controller;
-using NominaXpert.Model;
+using NominaXpertCore.Model;
 using NominaXpert.Utilities;
 using NominaXpertCore.Model;
 using NominaXpertCore.Utilities;
